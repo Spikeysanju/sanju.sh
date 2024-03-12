@@ -15,17 +15,18 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 	</head>
 
-	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6">
+	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<Header/>
 			
 			<article id="blog-content" class="w-full flex flex-col gap-6 items-center justify-center">
-				<h1 class="w-full text-7xl font-medium tracking-tight">{title}</h1>
+				<h1 class="w-full text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight">{title}</h1>
 				<p class="w-full text-start text-gray-500">
 					<FormattedDate date={pubDate.toString()}  />
 				</p>
 				<p class="w-full text-start">{description}</p>
-				<Image src={heroImage!} width={1200} height={800} alt="A starry night sky." />
+				<!-- we're using the Image component from Astro to handle the image optimization -->
+				<Image src={heroImage!} width={1200} height={800} alt={title}  />
 				<div class="prose prose-sm my-12">
 					<slot />
 				</div>

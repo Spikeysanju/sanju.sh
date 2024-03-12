@@ -15,11 +15,10 @@ const writings = (await getCollection('writing')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6">
+	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<NavBar/>
-			<h1 class="w-full text-7xl font-medium tracking-tight">hey i’m sanju, designer, engineer & developer</h1>
-
+			<h1 class="w-full text-start text-[min(12vw,80px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">hey i’m sanju, designer, engineer &amp; developer</h1>
 			{
 				writings.map((writing) => (
 					<WritingCard title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
