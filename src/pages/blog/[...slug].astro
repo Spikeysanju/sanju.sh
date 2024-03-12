@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import NavBar from '../../components/NavBar.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-8">
+		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
+			<NavBar/>
+			<h1 class="w-full text-7xl font-medium tracking-tight">Blogs</h1>
+			
+			<div id="blog-content" class="w-full flex flex-col gap-6 items-center justify-center">
+				<h1 class="text-4xl font-medium tracking-tight w-full text-start">{post.data.title}</h1>
+				<p class="w-full text-start">{post.data.description}</p>
+				<img src={post.data.heroImage} alt="cover image">
+				<div id="blog-content" class="prose prose-md">
+				<Content />
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
