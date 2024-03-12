@@ -1,1 +1,30 @@
-<h1>Writings</h1>
+---
+import BaseHead from '../../components/seo/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content'; 
+import WritingCard from '../../components/writings/WritingCard.astro';
+import Header from '../../components/misc/Header.astro';
+
+const writings = (await getCollection('writing')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6">
+		<div id="Header+title" class="flex flex-col w-full gap-6 max-w-xl">
+			<Header/>
+			<h1 class="w-full text-7xl font-medium tracking-tight">Writings</h1>
+			
+			{
+				writings.map((writing) => (
+					<WritingCard title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
+				))
+			}
+		</div>
+	</body>
+</html>

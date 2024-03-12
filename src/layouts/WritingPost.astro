@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/seo/BaseHead.astro';
+import Header from '../components/misc/Header.astro';
+import FormattedDate from '../components/misc/FormattedDate.astro';
+import Image from 'astro/components/Image.astro';
+
+type Props = CollectionEntry<'writing'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6">
+		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
+			<Header/>
+			
+			<article id="blog-content" class="w-full flex flex-col gap-6 items-center justify-center">
+				<h1 class="w-full text-7xl font-medium tracking-tight">{title}</h1>
+				<p class="w-full text-start text-gray-500">
+					<FormattedDate date={pubDate.toString()}  />
+				</p>
+				<p class="w-full text-start">{description}</p>
+				<Image src={heroImage!} width={1200} height={800} alt="A starry night sky." />
+				<div class="prose prose-sm my-12">
+					<slot />
+				</div>
+			</article>
+
+		</div>
+	</body>
+</html>

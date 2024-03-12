@@ -1,5 +1,5 @@
 ---
-title: 'Getting Started with React: A Quick Guide'
+title: 'Getting Started with React'
 description: 'React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It allows developers to create reusable UI components that update in response to data changes.'
 heroImage: '/blog-placeholder-1.jpg'
 pubDate: 'Jul 08 2022'

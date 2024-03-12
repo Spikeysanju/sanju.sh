@@ -1,11 +1,13 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import NavBar from '../components/NavBar.astro';
-import BlogCard from '../components/BlogCard.astro';
+import BaseHead from '../components/seo/BaseHead.astro';
+import NavBar from '../components/misc/Header.astro';
+import WritingCard from '../components/writings/WritingCard.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
-const blogs = await getCollection('blog')
+const writings = (await getCollection('writing')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
 ---
 
 <!doctype html>
@@ -13,18 +15,16 @@ const blogs = await getCollection('blog')
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-8">
+	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<NavBar/>
 			<h1 class="w-full text-7xl font-medium tracking-tight">hey i’m sanju, designer, engineer & developer</h1>
 
 			{
-				blogs.map((blog) => (
-					<BlogCard title={blog.data.title} date={blog.data.pubDate} slug={blog.slug} />
+				writings.map((writing) => (
+					<WritingCard title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
 				))
 			}
-
-
 		</div>
 	</body>
 </html>
