@@ -2,16 +2,12 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import WritingPostLayout from '../../layouts/WritingPost.astro';
 
-export async function getStaticPaths() {
-	const posts = await getCollection('writing');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
-}
+const posts = await getCollection('writing');
 type Props = CollectionEntry<'writing'>;
 
-const post = Astro.props;
+const { slug } = Astro.params;
+const post = posts.find((page) => page.slug === slug);
+if (!post) return Astro.redirect("/404");
 const { Content } = await post.render();
 ---
 
