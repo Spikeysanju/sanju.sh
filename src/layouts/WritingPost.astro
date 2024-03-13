@@ -27,7 +27,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				<p class="w-full text-start">{description}</p>
 				<!-- we're using the Image component from Astro to handle the image optimization -->
 				<Image src={heroImage!} width={1200} height={800} alt={title}  />
-				<div class="prose prose-sm my-12">
+				<div class="prose prose-md my-12">
 					<slot />
 				</div>
 			</article>
