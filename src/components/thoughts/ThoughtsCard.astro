@@ -1,0 +1,20 @@
+---
+import FormattedDate from '../../components/misc/FormattedDate.astro';
+import { clsx, getCategoryColor } from '../../utils/utils';
+
+const {category, content, pubDate, index} = Astro.props;
+---
+
+<article id={category} class={clsx('flex flex-col w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out',
+getCategoryColor(category), // set the background color based on category
+index % 2 === 0 ? 'rotate-1 hover:rotate-0' : '-rotate-1 hover:-rotate-0' // rotate the card
+)}>
+    <span class="absolute top-3 right-3 text-5xl text-gray-700">"</span> 
+    <h5 class="text-gray-900 dark:text-gray-900 w-full font-medium text-md">Sanju on
+         <span class="underline decoration-wavy">{category}</span>
+    </h5> 
+    <h1 class="text-black dark:text-black w-full text-2xl indent-9">{content}</h1> 
+    <p class="text-black w-full text-end">
+        <FormattedDate date={pubDate} />
+    </p>
+</article>

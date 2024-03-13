@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseHead from '../../components/seo/BaseHead.astro';
 import Header from '../../components/misc/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import ThoughtsCard from '../../components/thoughts/ThoughtsCard.astro';
 
 const thoughts = (await getCollection('thought')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -18,6 +19,12 @@ const thoughts = (await getCollection('thought')).sort(
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<Header/>
 			<h1 class="w-full text-7xl font-medium tracking-tight">Thoughts</h1>
+
+			{
+				thoughts.map((thought, i) => (
+					<ThoughtsCard category={thought.data.category} content={thought.body} pubDate={thought.data.pubDate} index={i} />
+				))
+			}
 		</div>
 	</body>
 </html>

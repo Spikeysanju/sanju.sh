@@ -1,5 +1,5 @@
 ---
-category: 'ai-doesnt-get-tired-or-bored'
+category: 'ai'
 pubDate: 'Jul 08 2022'
 ---
 
