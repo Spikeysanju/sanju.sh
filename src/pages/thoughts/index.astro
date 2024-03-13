@@ -4,7 +4,7 @@ import BaseHead from '../../components/seo/BaseHead.astro';
 import Header from '../../components/misc/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 
-const writings = (await getCollection('writing')).sort(
+const thoughts = (await getCollection('thought')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
@@ -17,7 +17,7 @@ const writings = (await getCollection('writing')).sort(
 	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<Header/>
-			<h1 class="w-full text-7xl font-medium tracking-tight">Ventures</h1>
+			<h1 class="w-full text-7xl font-medium tracking-tight">Thoughts</h1>
 		</div>
 	</body>
 </html>
