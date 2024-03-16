@@ -18,7 +18,7 @@ const thoughts = (await getCollection('thought')).sort(
 	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<Header/>
-			<h1 class="w-full text-7xl font-medium tracking-tight">Thoughts</h1>
+			<h1 class="w-full text-7xl font-medium tracking-tight mb-6">Thoughts</h1>
 
 			{
 				thoughts.map((thought, i) => (
