@@ -2,13 +2,21 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
-
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://www.sanju.sh',
   integrations: [mdx(), sitemap(), tailwind()],
   output: "server",
-  adapter: cloudflare()
+  adapter: cloudflare(),
+  buildOptions: {
+    alias: {
+      '@components': './src/components',
+      '@pages': './src/pages',
+      '@layouts': './src/layouts',
+      '@utils': './src/utils',
+      '@const': './src/const',
+    },
+  },
 });
