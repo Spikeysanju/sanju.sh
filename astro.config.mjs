@@ -9,14 +9,5 @@ export default defineConfig({
   site: 'https://www.sanju.sh',
   integrations: [mdx(), sitemap(), tailwind()],
   output: "server",
-  adapter: cloudflare(),
-  buildOptions: {
-    alias: {
-      '@components': './src/components',
-      '@pages': './src/pages',
-      '@layouts': './src/layouts',
-      '@utils': './src/utils',
-      '@const': './src/const',
-    },
-  },
+  adapter: cloudflare()
 });

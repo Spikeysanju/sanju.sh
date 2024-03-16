@@ -1,9 +1,9 @@
 ---
-import Header from '../components/misc/Header.astro';
-import BaseHead from '../components/seo/BaseHead.astro';
-import WritingCard from '../components/writings/WritingCard.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import WritingCard from '../components/writings/WritingCard.astro';
+import BaseHead from '../components/seo/BaseHead.astro';
+import Header from '../components/misc/Header.astro';
 
 const writings = (await getCollection('writing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
