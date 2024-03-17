@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 import WritingCard from '../components/writings/WritingCard.astro';
 import BaseHead from '../components/seo/BaseHead.astro';
 import Header from '../components/misc/Header.astro';
+import Analytics from '../components/misc/Analytics.astro';
 
 const writings = (await getCollection('writing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -26,6 +27,7 @@ const writings = (await getCollection('writing')).sort(
 			}
 		</div>
 
-		<script src="https://popscdn.spikeysanju.workers.dev/announcement.js"></script>
+		<!-- <script src="https://popscdn.spikeysanju.workers.dev/announcement.js"></script> -->
+		<Analytics />
 	</body>
 </html>
