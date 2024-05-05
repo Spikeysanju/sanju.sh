@@ -1,13 +1,14 @@
 ---
-import FormattedDate from "../misc/formatted-date.astro";
+import FormattedDate from '../misc/formatted-date.astro';
 
 const { title, date, slug } = Astro.props;
 ---
+
 <a href={`/writings/${slug}`}>
-<article class="flex flex-row items-center justify-between w-full">
-    <h3 class="text-base text-black">{title}</h3>
-    <p class="text-gray-500">
-        <FormattedDate date={date} />
-    </p>
-</article>
+	<article class='flex flex-row items-center justify-between w-full'>
+		<h3 class='text-base text-black font-medium'>{title}</h3>
+		<p class='text-gray-500'>
+			<FormattedDate date={date} />
+		</p>
+	</article>
 </a>

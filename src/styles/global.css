@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    font-family: 'UncutSans', sans-serif;
+    @apply bg-white text-black dark:bg-black dark:text-white;
+  }
+
+
+  @font-face {
+    font-family: 'UncutSans';
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff2/UncutSans-Bold.woff2') format('woff2');
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff/UncutSans-Bold.woff') format('woff');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'UncutSans';
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff2/UncutSans-Semibold.woff2') format('woff2');
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff/UncutSans-Semibold.woff') format('woff');
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: 'UncutSans';
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff2/UncutSans-Medium.woff2') format('woff2');
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff/UncutSans-Medium.woff') format('woff');
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: 'UncutSans';
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff2/UncutSans-Regular.woff2') format('woff2');
+    src:
+      local('UncutSans'),
+      url('/fonts/uncut/woff/UncutSans-Regular.woff') format('woff');
+    font-weight: 400;
+  }
+}
