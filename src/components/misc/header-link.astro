@@ -11,6 +11,6 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === `/${subpath?.[0]}`;
 ---
 
-<a href={href} class={clsx('hover:text-black hover:font-medium hover:cursor-pointer transition-all duration-100 ease-in-out',isActive ? 'text-black font-medium' : 'text-gray-400 font-medium')} {...props}>
+<a href={href} class={clsx('hover:text-black dark:text-white dark:hover:text-white hover:font-medium hover:cursor-pointer transition-all duration-100 ease-in-out',isActive ? 'text-black dark:text-white font-medium' : 'text-gray-400 dark:text-gray-500 font-medium')} {...props}>
 	<slot />
 </a>
