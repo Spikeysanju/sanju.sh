@@ -16,21 +16,19 @@ interface Ship {
 	};
 	slug: string;
 }
-const ships = (await getCollection('ship')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const groupedShips = (await getCollection('ship'))
+	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+	.reduce<{ [key: string]: Ship[] }>((acc, ship) => {
+		const year = ship.data.pubDate.getFullYear();
+		const month = ship.data.pubDate.getMonth() + 1; // getMonth() returns 0-11
+		const yearMonth = `${year}-${month.toString().padStart(2, '0')}`; // Format as "YYYY-MM"
 
-const groupedShips = ships.reduce<{ [key: string]: Ship[] }>((acc, ship) => {
-	const year = ship.data.pubDate.getFullYear();
-	const month = ship.data.pubDate.getMonth() + 1; // getMonth() returns 0-11
-	const yearMonth = `${year}-${month.toString().padStart(2, '0')}`; // Format as "YYYY-MM"
-
-	if (!acc[yearMonth]) {
-		acc[yearMonth] = [];
-	}
-	acc[yearMonth].push(ship as Ship);
-	return acc;
-}, {});
+		if (!acc[yearMonth]) {
+			acc[yearMonth] = [];
+		}
+		acc[yearMonth].push(ship as Ship);
+		return acc;
+	}, {});
 ---
 
 <!doctype html>
