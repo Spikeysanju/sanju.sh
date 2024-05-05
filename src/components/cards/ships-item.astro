@@ -1,14 +1,11 @@
 ---
-import FormattedDate from '@components/misc/formatted-date.astro';
+import { Dots } from '@components/misc';
 
-const { title, date, slug } = Astro.props;
+const { slug, ship_count } = Astro.props;
 ---
 
-<a href={`/ships/${slug}`}>
-	<article class='flex flex-row items-center justify-between w-full'>
-		<h3 class='text-base font-medium'>{title}</h3>
-		<p class='text-gray-500'>
-			<FormattedDate date={date} />
-		</p>
-	</article>
+<a
+	href={`/ships/${slug}`}
+	class='mb-4'>
+	<Dots count={ship_count} />
 </a>

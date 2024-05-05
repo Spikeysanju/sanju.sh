@@ -1,0 +1,14 @@
+---
+import { clsx } from '@utils/utils';
+
+const { count = 0 } = Astro.props;
+---
+
+<div
+	class={clsx(
+		'size-9',
+		count <= 2 && 'bg-green-500',
+		count > 2 && count <= 4 && 'bg-green-900',
+		count > 4 && 'bg-red-500'
+	)}>
+</div>

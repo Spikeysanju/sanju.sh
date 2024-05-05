@@ -27,15 +27,17 @@ const ships = (await getCollection('ship')).sort(
 			<Headers />
 			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>Ships</h1>
 
-			{
-				ships.map((ship) => (
-					<ShipsItem
-						title={ship.data.title}
-						date={ship.data.pubDate}
-						slug={ship.slug}
-					/>
-				))
-			}
+			<div class='columns-7 h-screen'>
+				{
+					ships.map((ship) => (
+						<ShipsItem
+							title={ship.data.title}
+							date={ship.data.pubDate}
+							slug={ship.slug}
+						/>
+					))
+				}
+			</div>
 		</div>
 	</body>
 </html>
