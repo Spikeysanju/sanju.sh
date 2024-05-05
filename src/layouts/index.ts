@@ -1,1 +1,1 @@
-export {default as WritingLayout} from "./writing-layout.astro";
+export { default as WritingLayout } from "./writing-layout.astro";

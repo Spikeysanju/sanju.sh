@@ -1,12 +1,12 @@
 ---
-import { WritingItem } from '@components/cards';
-import { Header } from '@components/misc';
-import { BaseHead } from '@components/seo';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
-import { getCollection } from 'astro:content'; 
+import { WritingItem } from "@components/cards";
+import { Header } from "@components/misc";
+import { BaseHead } from "@components/seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import { getCollection } from "astro:content";
 
-const writings = (await getCollection('writing')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+const writings = (await getCollection("writing")).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 ---
 

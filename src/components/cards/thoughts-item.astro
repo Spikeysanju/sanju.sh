@@ -1,8 +1,8 @@
 ---
-import FormattedDate from '../misc/formatted-date.astro';
-import { clsx, getCategoryColor } from '../../utils/utils';
+import FormattedDate from "../misc/formatted-date.astro";
+import { clsx, getCategoryColor } from "../../utils/utils";
 
-const {category, content, pubDate, index} = Astro.props;
+const { category, content, pubDate, index } = Astro.props;
 ---
 
 <article id={category} class={clsx('flex flex-col w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out',

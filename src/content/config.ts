@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const writing = defineCollection({
-	type: 'content',
+	type: "content",
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		title: z.string(),
@@ -14,7 +14,7 @@ const writing = defineCollection({
 });
 
 const thought = defineCollection({
-	type: 'content',
+	type: "content",
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		category: z.string(),
@@ -23,6 +23,5 @@ const thought = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 	}),
 });
-
 
 export const collections = { writing, thought };
