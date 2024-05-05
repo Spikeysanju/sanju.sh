@@ -4,8 +4,6 @@ import { Dots } from '@components/misc';
 const { slug, ship_count } = Astro.props;
 ---
 
-<a
-	href={`/ships/${slug}`}
-	class='mb-4'>
-	<Dots count={ship_count} />
+<a href={`/ships/${slug}`}>
+	<Dots ship_count={ship_count} />
 </a>

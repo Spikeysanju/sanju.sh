@@ -1,14 +1,15 @@
 ---
 import { clsx } from '@utils/utils';
 
-const { count = 0 } = Astro.props;
+const { ship_count } = Astro.props;
 ---
 
 <div
 	class={clsx(
-		'size-9',
-		count <= 2 && 'bg-green-500',
-		count > 2 && count <= 4 && 'bg-green-900',
-		count > 4 && 'bg-red-500'
+		'size-9 mb-4 rounded-full',
+		ship_count === 0 && 'bg-gray-100',
+		ship_count <= 2 && 'bg-[#D2FF50]',
+		ship_count > 2 && ship_count <= 4 && 'bg-[#A0B91E]',
+		ship_count > 4 && 'bg-[#FF7A50]'
 	)}>
 </div>
