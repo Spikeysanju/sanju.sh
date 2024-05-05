@@ -3,32 +3,9 @@ import { ShipsItem } from '@components/cards';
 import Headers from '@components/misc/headers.astro';
 import { BaseHead } from '@components/seo';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
-import { getCollection } from 'astro:content';
+import { groupShipsByYearMonth, type Ship } from '@utils/index';
 
-interface Ship {
-	data: {
-		title: string;
-		description: string;
-		category: string;
-		ship_count: number;
-		pubDate: Date;
-		updatedDate: Date;
-	};
-	slug: string;
-}
-const groupedShips = (await getCollection('ship'))
-	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-	.reduce<{ [key: string]: Ship[] }>((acc, ship) => {
-		const year = ship.data.pubDate.getFullYear();
-		const month = ship.data.pubDate.getMonth() + 1; // getMonth() returns 0-11
-		const yearMonth = `${year}-${month.toString().padStart(2, '0')}`; // Format as "YYYY-MM"
-
-		if (!acc[yearMonth]) {
-			acc[yearMonth] = [];
-		}
-		acc[yearMonth].push(ship as Ship);
-		return acc;
-	}, {});
+const groupedShips = await groupShipsByYearMonth();
 ---
 
 <!doctype html>
@@ -47,42 +24,36 @@ const groupedShips = (await getCollection('ship'))
 			class='flex flex-col w-full gap-6 max-w-xl'>
 			<Headers />
 			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>Ships</h1>
-
 			<div
 				id='grouped-ships'
 				class='grid grid-cols-10 gap-3'>
 				{
 					Object.entries(groupedShips).map(([yearMonth, ships]) => {
-						const [month, year] = yearMonth.split('-');
+						const [year, month] = yearMonth.split('-');
 						const date = new Date(Number(year), Number(month) - 1);
 						const monthName = date.toLocaleString('default', { month: 'long' });
-						const shipCount = ships.length || 0;
+						const shipCount = ships.length;
 						return (
 							<div class='col-span-10 mb-6'>
 								<div class='flex flex-row items-center justify-between font-medium'>
 									<h2 class='text-lg tracking-tight mb-6'>
-										{monthName}, {month}
+										{monthName} {year}
 									</h2>
 									<span class='text-gray-500'>{shipCount} ships</span>
 								</div>
 								<div class='grid grid-cols-10 gap-3'>
-									{ships.map((ship: any) => {
-										const shipDate = new Date(ship.data.pubDate);
-										const formattedDate = shipDate.toLocaleDateString('en-US', {
-											year: 'numeric',
-											month: 'long',
-											day: 'numeric',
-										});
-
-										return (
-											<ShipsItem
-												title={ship.data.title}
-												date={formattedDate}
-												slug={ship.slug}
-												ship_count={ship.data.ship_count}
-											/>
-										);
-									})}
+									{ships.map((ship: Ship) => (
+										<ShipsItem
+											title={ship.data.title}
+											date={ship.data.pubDate.toLocaleDateString('en-US', {
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
+											})}
+											slug={ship.slug}
+											ship_count={ship.data.ship_count}
+										/>
+									))}
 								</div>
 							</div>
 						);
