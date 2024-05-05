@@ -8,6 +8,18 @@ import { getCollection } from 'astro:content';
 const ships = (await getCollection('ship')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
+
+const groupedShips = ships.reduce<any>((acc, ship) => {
+	const year = ship.data.pubDate.getFullYear();
+	const month = ship.data.pubDate.getMonth() + 1; // getMonth() returns 0-11
+	const yearMonth = `${year}-${month.toString().padStart(2, '0')}`; // Format as "YYYY-MM"
+
+	if (!acc[yearMonth]) {
+		acc[yearMonth] = [];
+	}
+	acc[yearMonth].push(ship);
+	return acc;
+}, {});
 ---
 
 <!doctype html>
@@ -27,16 +39,40 @@ const ships = (await getCollection('ship')).sort(
 			<Headers />
 			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>Ships</h1>
 
-			<div class='grid grid-cols-10 gap-3'>
+			<div
+				id='grouped-ships'
+				class='grid grid-cols-10 gap-3'>
 				{
-					ships.map((ship) => (
-						<ShipsItem
-							title={ship.data.title}
-							date={ship.data.pubDate}
-							slug={ship.slug}
-							ship_count={ship.data.ship_count}
-						/>
-					))
+					Object.entries(groupedShips).map(([yearMonth, ships]) => {
+						const [month, year] = yearMonth.split('-');
+						const date = new Date(Number(year), Number(month) - 1);
+						const monthName = date.toLocaleString('default', { month: 'long' });
+						const shipCount = ships.length || 0;
+						return (
+							<div class='col-span-10 mb-6'>
+								<h2 class='text-4xl font-medium tracking-tight mb-6'>{`${monthName}, ${month} – ${shipCount} ships`}</h2>
+								<div class='grid grid-cols-10 gap-3'>
+									{ships.map((ship: any) => {
+										const shipDate = new Date(ship.data.pubDate);
+										const formattedDate = shipDate.toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric',
+										});
+
+										return (
+											<ShipsItem
+												title={ship.data.title}
+												date={formattedDate}
+												slug={ship.slug}
+												ship_count={ship.data.ship_count}
+											/>
+										);
+									})}
+								</div>
+							</div>
+						);
+					})
 				}
 			</div>
 		</div>

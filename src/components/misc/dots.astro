@@ -6,10 +6,10 @@ const { ship_count } = Astro.props;
 
 <div
 	class={clsx(
-		'size-9 mb-4 rounded-full',
+		'size-9 mb-4',
 		ship_count === 0 && 'bg-gray-100',
 		ship_count <= 2 && 'bg-[#D2FF50]',
 		ship_count > 2 && ship_count <= 4 && 'bg-[#A0B91E]',
-		ship_count > 4 && 'bg-[#FF7A50]'
+		ship_count > 4 && 'bg-[#647D00]'
 	)}>
 </div>
