@@ -1,9 +1,9 @@
 ---
+import { ThoughtsItem } from '@components/cards';
+import { Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/seo/BaseHead.astro';
-import Header from '../../components/misc/Header.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import ThoughtsCard from '../../components/thoughts/ThoughtsCard.astro';
 
 const thoughts = (await getCollection('thought')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -22,7 +22,7 @@ const thoughts = (await getCollection('thought')).sort(
 
 			{
 				thoughts.map((thought, i) => (
-					<ThoughtsCard category={thought.data.category} content={thought.body} pubDate={thought.data.pubDate} index={i} />
+					<ThoughtsItem category={thought.data.category} content={thought.body} pubDate={thought.data.pubDate} index={i} />
 				))
 			}
 		</div>

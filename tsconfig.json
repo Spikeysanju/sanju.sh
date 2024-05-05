@@ -1,9 +1,17 @@
-// src/consts.ts
-// consts.ts is a file that exports a bunch of constants that are used throughout the app. This is a good place to put things like API keys, or other values that are used in multiple places throughout the app.
-// module "/Users/sanjays/Downloads/THISUX/2024/startups/orbital-orbit/src/consts"
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "strictNullChecks": true,
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@contents": ["./src/contents/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@data/*": ["./src/data/*"]
+    }
   }
 }

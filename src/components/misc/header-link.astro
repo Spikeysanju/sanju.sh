@@ -1,6 +1,6 @@
 ---
+import { clsx } from '@utils/utils';
 import type { HTMLAttributes } from 'astro/types';
-import { clsx } from '../../utils/utils.ts';
 
 type Props = HTMLAttributes<'a'>;
 
@@ -8,7 +8,7 @@ const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + subpath?.[0];
+const isActive = href === pathname || href === `/${subpath?.[0]}`;
 ---
 
 <a href={href} class={clsx('hover:text-black hover:font-medium hover:cursor-pointer transition-all duration-100 ease-in-out',isActive ? 'text-black font-medium' : 'text-gray-400 font-medium')} {...props}>

@@ -1,10 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
-import WritingCard from '../components/writings/WritingCard.astro';
-import BaseHead from '../components/seo/BaseHead.astro';
-import Header from '../components/misc/Header.astro';
-import Analytics from '../components/misc/Analytics.astro';
+import { Analytics, Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { WritingItem } from '@components/cards';
+import { SITE_TITLE } from '@data/index';
+import { SITE_DESCRIPTION } from '@data/index';
 
 const writings = (await getCollection('writing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -15,6 +15,7 @@ const writings = (await getCollection('writing')).sort(
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<Analytics />
 	</head>
 	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
@@ -22,12 +23,9 @@ const writings = (await getCollection('writing')).sort(
 			<h1 class="w-full text-start text-[min(12vw,80px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">hey i’m sanju, designer, engineer &amp; developer</h1>
 			{
 				writings.map((writing) => (
-					<WritingCard title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
+					<WritingItem title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
 				))
 			}
 		</div>
-
-		<!-- <script src="https://popscdn.spikeysanju.workers.dev/announcement.js"></script> -->
-		<Analytics />
 	</body>
 </html>

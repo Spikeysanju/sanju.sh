@@ -1,9 +1,9 @@
 ---
-import BaseHead from '../../components/seo/BaseHead.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { WritingItem } from '@components/cards';
+import { Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
 import { getCollection } from 'astro:content'; 
-import WritingCard from '../../components/writings/WritingCard.astro';
-import Header from '../../components/misc/Header.astro';
 
 const writings = (await getCollection('writing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -22,7 +22,7 @@ const writings = (await getCollection('writing')).sort(
 			
 			{
 				writings.map((writing) => (
-					<WritingCard title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
+					<WritingItem title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
 				))
 			}
 		</div>

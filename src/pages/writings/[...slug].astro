@@ -1,16 +1,18 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import WritingPostLayout from '../../layouts/WritingPost.astro';
+import WritingLayout from "@layouts/writing-layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
 
-const posts = await getCollection('writing');
-type Props = CollectionEntry<'writing'>;
+const posts = await getCollection("writing");
+type Props = CollectionEntry<"writing">;
 
 const { slug } = Astro.params;
 const post = posts.find((page) => page.slug === slug);
+
 if (!post) return Astro.redirect("/404");
+
 const { Content } = await post.render();
 ---
 
-<WritingPostLayout {...post.data}>
+<WritingLayout {...post.data}>
 	<Content />
-</WritingPostLayout>
+</WritingLayout>
