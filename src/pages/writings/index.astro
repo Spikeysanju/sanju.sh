@@ -1,28 +1,39 @@
 ---
-import { WritingItem } from "@components/cards";
-import { Header } from "@components/misc";
-import { BaseHead } from "@components/seo";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
-import { getCollection } from "astro:content";
+import { WritingItem } from '@components/cards';
+import { Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
+import { getCollection } from 'astro:content';
 
-const writings = (await getCollection("writing")).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+const writings = (await getCollection('writing')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+		/>
 	</head>
-	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4">
-		<div id="Header+title" class="flex flex-col w-full gap-6 max-w-xl">
-			<Header/>
-			<h1 class="w-full text-7xl font-medium tracking-tight">Writings</h1>
-			
+	<body
+		id='root'
+		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+		<div
+			id='Header+title'
+			class='flex flex-col w-full gap-6 max-w-xl'>
+			<Header />
+			<h1 class='w-full text-7xl font-medium tracking-tight'>Writings</h1>
+
 			{
 				writings.map((writing) => (
-					<WritingItem title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
+					<WritingItem
+						title={writing.data.title}
+						date={writing.data.pubDate}
+						slug={writing.slug}
+					/>
 				))
 			}
 		</div>
