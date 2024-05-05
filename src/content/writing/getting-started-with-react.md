@@ -39,6 +39,8 @@ Before you start working with React, you need to set up your development environ
 
 This will open your new React app in your default web browser.
 
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">We tell a story with our design ❤️ <a href="https://twitter.com/hashtag/buildinpublic?src=hash&amp;ref_src=twsrc%5Etfw">#buildinpublic</a> <a href="https://t.co/wQ09Fl6MxK">pic.twitter.com/wQ09Fl6MxK</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1775899324591005847?ref_src=twsrc%5Etfw">April 4, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ## Understanding React Components
 
 In React, everything is a component. Components are the building blocks of a React application. They encapsulate the UI and its logic, making it easier to manage and reuse code. Here's a simple example of a React component:

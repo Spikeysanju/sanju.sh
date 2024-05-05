@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Header } from '@components/misc';
+import FormattedDate from '@components/misc/formatted-date.astro';
+import { BaseHead } from '@components/seo';
+
+type Props = CollectionEntry<'writing'>['data'];
+
+const { title, description, pubDate } = Astro.props;
+---
+
+<html lang='en'>
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+		/>
+	</head>
+
+	<body
+		id='root'
+		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+		<div
+			id='navbar+title'
+			class='flex flex-col w-full gap-6 max-w-xl'>
+			<Header />
+
+			<article
+				id='blog-content'
+				class='w-full flex flex-col gap-6 items-center justify-center'>
+				<h1
+					class='w-full text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight'>
+					{title}
+				</h1>
+				<p class='w-full text-start text-gray-500'>
+					<FormattedDate date={pubDate.toString()} />
+				</p>
+				<p class='w-full text-start font-medium'>{description}</p>
+
+				<div
+					class='prose prose-md my-12 prose-p:font-medium text-base dark:prose-invert'>
+					<slot />
+				</div>
+			</article>
+		</div>
+	</body>
+</html>

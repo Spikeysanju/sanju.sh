@@ -1,0 +1,14 @@
+---
+import FormattedDate from '@components/misc/formatted-date.astro';
+
+const { title, date, slug } = Astro.props;
+---
+
+<a href={`/ships/${slug}`}>
+	<article class='flex flex-row items-center justify-between w-full'>
+		<h3 class='text-base font-medium'>{title}</h3>
+		<p class='text-gray-500'>
+			<FormattedDate date={date} />
+		</p>
+	</article>
+</a>

@@ -1,5 +1,5 @@
 ---
-import { ThoughtsItem } from '@components/cards';
+import { ShipsItem } from '@components/cards';
 import Headers from '@components/misc/headers.astro';
 import { BaseHead } from '@components/seo';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
@@ -28,12 +28,11 @@ const ships = (await getCollection('ship')).sort(
 			<h1 class='w-full text-7xl font-medium tracking-tight mb-6'>Ships</h1>
 
 			{
-				ships.map((thought, i) => (
-					<ThoughtsItem
-						category={thought.data.category}
-						content={thought.body}
-						pubDate={thought.data.pubDate}
-						index={i}
+				ships.map((ship) => (
+					<ShipsItem
+						title={ship.data.title}
+						date={ship.data.pubDate}
+						slug={ship.slug}
 					/>
 				))
 			}
