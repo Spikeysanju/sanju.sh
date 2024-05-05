@@ -1,8 +1,8 @@
 ---
-import { clsx } from "@utils/utils";
-import type { HTMLAttributes } from "astro/types";
+import { clsx } from '@utils/utils';
+import type { HTMLAttributes } from 'astro/types';
 
-type Props = HTMLAttributes<"a">;
+type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
 
@@ -11,6 +11,15 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === `/${subpath?.[0]}`;
 ---
 
-<a href={href} class={clsx('hover:text-black dark:text-white dark:hover:text-white hover:font-medium hover:cursor-pointer transition-all duration-100 ease-in-out',isActive ? 'text-black dark:text-white font-medium' : 'text-gray-400 dark:text-gray-500 font-medium')} {...props}>
+<a
+	href={href}
+	class={clsx(
+		'hover:text-black dark:hover:text-white',
+		'hover:font-medium hover:cursor-pointer transition-all duration-100 ease-in-out',
+		isActive
+			? 'text-black dark:text-white font-medium'
+			: 'text-gray-400 dark:text-gray-500 font-medium'
+	)}
+	{...props}>
 	<slot />
 </a>

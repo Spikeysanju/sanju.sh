@@ -44,7 +44,8 @@ const { title, description, pubDate, heroImage } = Astro.props;
 					height={800}
 					alt={title}
 				/>
-				<div class='prose prose-md my-12 prose-p:font-medium text-base prose-invert'>
+				<div
+					class='prose prose-md my-12 prose-p:font-medium text-base dark:prose-invert'>
 					<slot />
 				</div>
 			</article>
