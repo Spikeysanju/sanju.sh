@@ -50,7 +50,12 @@ const groupedShips = ships.reduce<any>((acc, ship) => {
 						const shipCount = ships.length || 0;
 						return (
 							<div class='col-span-10 mb-6'>
-								<h2 class='text-4xl font-medium tracking-tight mb-6'>{`${monthName}, ${month} – ${shipCount} ships`}</h2>
+								<div class='flex flex-row items-center justify-between font-medium'>
+									<h2 class='text-lg tracking-tight mb-6'>
+										{monthName}, {month}
+									</h2>
+									<span class='text-gray-500'>{shipCount} ships</span>
+								</div>
 								<div class='grid grid-cols-10 gap-3'>
 									{ships.map((ship: any) => {
 										const shipDate = new Date(ship.data.pubDate);
