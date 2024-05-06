@@ -3,9 +3,9 @@ import { ShipsItem } from '@components/cards';
 import Headers from '@components/misc/headers.astro';
 import { BaseHead } from '@components/seo';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
-import { groupShipsByYearMonth, type Ship } from '@utils/index';
+import { groupShipsByYearMonthSorted, type Ship } from '@utils/index';
 
-const groupedShips = await groupShipsByYearMonth();
+const groupedShips = await groupShipsByYearMonthSorted();
 ---
 
 <!doctype html>

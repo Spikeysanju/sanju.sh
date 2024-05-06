@@ -3,7 +3,7 @@ title: Shipping faster with AI
 description: AI doesn't get tired or bored. It can work on a problem for a long time. This can lead to some amazing discoveries.
 category: 'ai'
 ship_count: 2
-pubDate: 'Jul 08 2024'
+pubDate: 'Jul 08 2029'
 updatedDate: 'Jul 08 2024'
 ---
 

@@ -44,15 +44,37 @@ export function formatYearMonth(date: Date): string {
 	return `${year}-${month.toString().padStart(2, "0")}`; // Format as "YYYY-MM"
 }
 
-// Function to group ships by year and month
-export async function groupShipsByYearMonth(): Promise<{
-	[key: string]: Ship[];
-}> {
+// Utility function to group ships by year and month
+export async function groupShipsByYearMonthSorted(): Promise<
+	Record<string, Ship[]>
+> {
+	// Fetch ships collection
 	const ships = await getCollection("ship");
-	return ships.reduce<{ [key: string]: Ship[] }>((acc, ship) => {
-		const yearMonth = formatYearMonth(ship.data.pubDate);
-		acc[yearMonth] = acc[yearMonth] || [];
-		acc[yearMonth].push(ship as Ship);
-		return acc;
-	}, {});
+
+	// Group ships by year and month
+	const groupedShips = ships.reduce<Record<string, Ship[]>>(
+		(accumulator, ship) => {
+			const yearMonthKey = formatYearMonth(ship.data.pubDate);
+			accumulator[yearMonthKey] = accumulator[yearMonthKey] || [];
+			accumulator[yearMonthKey].push(ship as Ship);
+			return accumulator;
+		},
+		{},
+	);
+
+	// Sort the yearMonth keys in descending order
+	const sortedYearMonthKeys = Object.keys(groupedShips).sort((a, b) =>
+		b.localeCompare(a),
+	);
+
+	// Reconstruct the groupedShips object with sorted keys
+	const sortedGroupedShips = sortedYearMonthKeys.reduce<Record<string, Ship[]>>(
+		(sortedAccumulator, key) => {
+			sortedAccumulator[key] = groupedShips[key];
+			return sortedAccumulator;
+		},
+		{},
+	);
+
+	return sortedGroupedShips;
 }
