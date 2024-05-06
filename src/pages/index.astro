@@ -20,7 +20,7 @@ const writings = (await getCollection("writing")).sort(
 	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased">
 		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
 			<Header/>
-			<h1 class="w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">hey i’m sanju, designer, engineer &amp; developer</h1>
+			<h1 class="w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">meet sanju, designer founder</h1>
 			{
 				writings.map((writing) => (
 					<WritingItem title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
