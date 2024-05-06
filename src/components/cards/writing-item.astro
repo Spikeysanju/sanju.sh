@@ -7,7 +7,7 @@ const { title, date, slug } = Astro.props;
 <a href={`/writings/${slug}`}>
 	<article class='flex flex-row items-center justify-between w-full'>
 		<h3 class='text-base font-medium'>{title}</h3>
-		<p class='text-gray-500'>
+		<p class='text-gray-500 font-medium'>
 			<FormattedDate date={date} />
 		</p>
 	</article>
