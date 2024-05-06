@@ -36,7 +36,10 @@ const { title, description, pubDate, heroImage } = Astro.props;
 				<p class='w-full text-start text-gray-500 font-medium'>
 					<FormattedDate date={pubDate.toString()} />
 				</p>
-				<p class='w-full text-start font-medium text-gray-700'>{description}</p>
+				<p
+					class='w-full text-start font-medium text-gray-700 dark:text-gray-300'>
+					{description}
+				</p>
 				<!-- we're using the Image component from Astro to handle the image optimization -->
 				<Image
 					src={heroImage!}
