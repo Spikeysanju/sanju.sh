@@ -1,5 +1,5 @@
 ---
-title: Experimented Svelte 5's new Runes API
+title: Experimenting with Svelte 5's New Runes API
 description: Create a simple todo app with Svelte 5's Runes new API to see how it works.
 category: 'personal'
 ship_count: 1
@@ -7,7 +7,7 @@ pubDate: 'May 11 2024'
 updatedDate: 'May 11 2024'
 ---
 
-# Experimented Svelte 5's Runes new API
+# Experimenting with Svelte 5's New Runes API
 
 Hey all! I've been keeping an eye on the development of Svelte 5, and I'm super excited about the new Runes API. I decided to give it a try and build a simple todo app to see how it works.
 
