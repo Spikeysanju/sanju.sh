@@ -1,22 +1,23 @@
 ---
-title: Shipping faster with AI 
-description: AI doesn't get tired or bored. It can work on a problem for a long time. This can lead to some amazing discoveries.
-category: 'ai'
-ship_count: 0
-pubDate: 'Jul 08 2022'
-updatedDate: 'Jul 08 2022'
+title: Experimented Svelte 5's Runes new API
+description: Create a simple todo app with Svelte 5's Runes new API to see how it works.
+category: 'personal'
+ship_count: 1
+pubDate: 'May 11 2024'
+updatedDate: 'May 11 2024'
 ---
 
-AI doesn't get tired or bored. It can work on a problem for a long time. This can lead to some amazing discoveries.
+# Experimented Svelte 5's Runes new API
 
-AI can help you ship faster. It can help you find bugs in your code. It can help you find ways to make your code faster. It can help you find ways to make your code more secure.
+I've been following the development of Svelte 5 and I'm excited to see the new API for creating components. I decided to create a simple todo app with the new Runes API to see how it works.
 
-<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">We tell a story with our design ❤️ <a href="https://twitter.com/hashtag/buildinpublic?src=hash&amp;ref_src=twsrc%5Etfw">#buildinpublic</a> <a href="https://t.co/wQ09Fl6MxK">pic.twitter.com/wQ09Fl6MxK</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1775899324591005847?ref_src=twsrc%5Etfw">April 4, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+[Link to website](https://todo.sanju.sh)
 
-AI can help you ship faster. It can help you find bugs in your code. It can help you find ways to make your code faster. It can help you find ways to make your code more secure.
+I'm impressed with how thoughtfull the new API is. It's easier to create/manage states easily. Initially, I was skeptical about the new API, but after using it, I can see the benefits. The new API is more intuitive and makes it easier to write clean and maintainable code.
 
-<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Sticky note user stories are DEAD! ⚰️<br><br>Introducing Uiino – it lets you map stories with plain text &amp; tags. Designers, PMs, devs all SPEAK THE SAME LANGUAGE.<br><br>try → <a href="https://t.co/glP876ZHaM">https://t.co/glP876ZHaM</a> <a href="https://t.co/rAokllufz4">pic.twitter.com/rAokllufz4</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1781945273977032929?ref_src=twsrc%5Etfw">April 21, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+I'm looking forward to using the new API in [SticAi](https://sticai.com) and [Uiino](https://uiino.com) to improve the performance and maintainability of the codebase.
 
-AI can help you ship faster. It can help you find bugs in your code. It can help you find ways to make your code faster. It can help you find ways to make your code more secure.
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Built an open-source app using <a href="https://twitter.com/sveltejs?ref_src=twsrc%5Etfw">@sveltejs</a> 5&#39;s Runes API. <a href="https://t.co/M6jPhsXY7i">https://t.co/M6jPhsXY7i</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1789115868884111719?ref_src=twsrc%5Etfw">May 11, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Multi–edit feature from <a href="https://twitter.com/figma?ref_src=twsrc%5Etfw">@figma</a> is a game-changer. <a href="https://t.co/0jq9v6Tffl">pic.twitter.com/0jq9v6Tffl</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1781511669216362744?ref_src=twsrc%5Etfw">April 20, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+That's all for now. I'll be sharing more updates soon. Stay tuned!
+

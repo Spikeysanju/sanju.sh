@@ -1,4 +1,4 @@
-export const SITE_TITLE = "Sanju";
+export const SITE_TITLE = "Sanju's Space";
 export const SITE_DESCRIPTION = "A internet space for Sanju.";
 
 export interface MenuItem {
