@@ -11,7 +11,7 @@ updatedDate: 'May 11 2024'
 
 I've been following the development of Svelte 5 and I'm excited to see the new API for creating components. I decided to create a simple todo app with the new Runes API to see how it works.
 
-[Link to website](https://todo.sanju.sh)
+[Link to the app](https://todo.sanju.sh)
 
 Here's quick overview of the new API:
 
