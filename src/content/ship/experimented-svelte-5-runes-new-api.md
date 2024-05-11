@@ -1,5 +1,5 @@
 ---
-title: Experimented Svelte 5's Runes new API
+title: Experimented Svelte 5's new Runes API
 description: Create a simple todo app with Svelte 5's Runes new API to see how it works.
 category: 'personal'
 ship_count: 1
