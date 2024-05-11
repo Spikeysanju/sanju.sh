@@ -1,0 +1,19 @@
+---
+import ThoughtsLayout from '@layouts/thoughts-layout.astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { ThoughtsItem } from '@components/cards';
+
+const posts = await getCollection('thought');
+type Props = CollectionEntry<'thought'>;
+
+const { slug } = Astro.params;
+const post = posts.find((page) => page.slug === slug);
+
+if (!post) return Astro.redirect('/404');
+
+const { Content } = await post.render();
+---
+
+<ThoughtsLayout {...post.data}>
+	<Content />
+</ThoughtsLayout>

@@ -34,6 +34,7 @@ const thoughts = (await getCollection('thought')).sort(
 						category={thought.data.category}
 						content={thought.body}
 						pubDate={thought.data.pubDate}
+						slug={thought.slug}
 						index={i}
 					/>
 				))

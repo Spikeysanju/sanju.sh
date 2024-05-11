@@ -1,4 +1,6 @@
 ---
+title: AI is more dangerous
+description: Ai doesn't get tired or bored.
 category: 'ai'
 pubDate: 'Jul 08 2022'
 ---

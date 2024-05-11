@@ -1,4 +1,6 @@
 ---
+title: Unpopular bond in open source
+description: Building together with strangers. That's the beauty of open source.
 category: 'opensource'
 pubDate: 'Jul 08 2022'
 ---
