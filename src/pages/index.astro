@@ -1,29 +1,44 @@
 ---
-import { getCollection } from "astro:content";
-import { Analytics, Header } from "@components/misc";
-import { BaseHead } from "@components/seo";
-import { WritingItem } from "@components/cards";
-import { SITE_TITLE } from "@data/index";
-import { SITE_DESCRIPTION } from "@data/index";
+import { getCollection } from 'astro:content';
+import { Analytics, Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { WritingItem } from '@components/cards';
+import { SITE_TITLE } from '@data/index';
+import { SITE_DESCRIPTION } from '@data/index';
 
-const writings = (await getCollection("writing")).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+const writings = (await getCollection('writing')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+			image='/images/og-image.png'
+		/>
 		<Analytics />
 	</head>
-	<body id="root" class="w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased">
-		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
-			<Header/>
-			<h1 class="w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">meet sanju, designer founder</h1>
+	<body
+		id='root'
+		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+		<div
+			id='navbar+title'
+			class='flex flex-col w-full gap-6 max-w-xl'>
+			<Header />
+			<h1
+				class='w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]'>
+				meet sanju, designer founder
+			</h1>
 			{
 				writings.map((writing) => (
-					<WritingItem title={writing.data.title} date={writing.data.pubDate} slug={writing.slug} />
+					<WritingItem
+						title={writing.data.title}
+						date={writing.data.pubDate}
+						slug={writing.slug}
+					/>
 				))
 			}
 		</div>
