@@ -7,7 +7,7 @@ pubDate: 'May 11 2024'
 updatedDate: 'May 11 2024'
 ---
 
-You can check out the app here arrow → [todo.sanju.sh](https://todo.sanju.sh)
+You can check out the app here → [todo.sanju.sh](https://todo.sanju.sh)
 
 Here's quick overview of the new API:
 
