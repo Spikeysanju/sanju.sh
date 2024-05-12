@@ -31,7 +31,7 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
 
 ## contact
-you can reach me at [hey@sanju.sh](mailto:hey@sanju.sh) or on [twitter](https://twitter.com/spikeysanju). don't hesitate to get in touch!
+you can reach me at [hello@sanju.sh](mailto:hello@sanju.sh) or on [twitter](https://twitter.com/spikeysanju). don't hesitate to get in touch!
 
 ## license
 this project is open source under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). you're welcome to use the code for your own projects. if you do, a shoutout would be appreciated but it's not required.
