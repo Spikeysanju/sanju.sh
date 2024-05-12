@@ -1,6 +1,6 @@
 ---
 title: Launching sanju.sh – new personal website
-description: 'hey! this is my personal corner on the web where I share my thoughts ideas, and projects.'
+description: 'After countless hours, numerous cups of coffee, and a few existential crises, I finally decided to launch my personal website.'
 category: 'personal'
 ship_count: 3
 pubDate: 'May 12 2024'
