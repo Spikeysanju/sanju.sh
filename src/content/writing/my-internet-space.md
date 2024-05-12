@@ -1,13 +1,11 @@
 ---
 title: 'Sanju – internet space'
 description: 'hey! this is my personal corner on the web where I share my thoughts ideas, and projects.'
-heroImage: '/images/ogimage.png'
 pubDate: 'May 12 2024'
 ---
 
 ![ A website with the title "Sanju's internet space" and navigation links for "home", "writing", "thoughts", and "ships".](https://github.com/Spikeysanju/sanju.sh/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Built with love, <br>Open sourced with pride. <br>My portfolio&#39;s live! <a href="https://t.co/6RGZU6ZNeO">https://t.co/6RGZU6ZNeO</a> <a href="https://t.co/ZvaPQmB4Wx">pic.twitter.com/ZvaPQmB4Wx</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1789721861846090145?ref_src=twsrc%5Etfw">May 12, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## about project
 this is a simple personal website i built using [astro](https://astro.build/), a static site generator. i chose Astro for its speed, flexibility, and ease of use. i hope you like the site!
