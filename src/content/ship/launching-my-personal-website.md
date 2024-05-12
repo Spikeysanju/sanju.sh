@@ -1,0 +1,19 @@
+---
+title: Launching sanju.sh – new personal website
+description: 'hey! this is my personal corner on the web where I share my thoughts ideas, and projects.'
+category: 'personal'
+ship_count: 3
+pubDate: 'May 12 2024'
+updatedDate: 'May 12 2024'
+---
+
+After countless hours, numerous cups of coffee, and a few existential crises, I finally decided to launch my personal website. It's been a journey of many personal sites that never saw the light of the day, but this time, I decided to ship it. Yes, you heard it right!
+
+here's tweet i shared about the site:
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Built with love, <br>Open sourced with pride. <br>My portfolio&#39;s live! <a href="https://t.co/6RGZU6ZNeO">https://t.co/6RGZU6ZNeO</a> <a href="https://t.co/ZvaPQmB4Wx">pic.twitter.com/ZvaPQmB4Wx</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1789721861846090145?ref_src=twsrc%5Etfw">May 12, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+From now on, without any procrastination (fingers crossed), I can share my thoughts, ideas, and projects with the world. 
+
+It's like a fresh start, a new beginning, a blank canvas waiting to be painted. I'm excited to see where this journey takes me and what new adventures await.
+
+And remember, it's still a work in progress, just like me!
