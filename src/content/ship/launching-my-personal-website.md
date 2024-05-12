@@ -1,6 +1,6 @@
 ---
 title: Launching sanju.sh – new personal website
-description: 'After countless hours, numerous cups of coffee, and a few existential crises, I finally decided to launch my personal website. It's been a journey of many personal sites that never saw the light of the day, but this time, I decided to ship it. Yes, you heard it right!'
+description: 'After countless hours, numerous cups of coffee, and a few existential crises, I finally decided to launch my personal website. Its been a journey of many personal sites that never saw the light of the day, but this time, I decided to ship it. Yes, you heard it right!'
 category: 'personal'
 ship_count: 3
 pubDate: 'May 12 2024'
