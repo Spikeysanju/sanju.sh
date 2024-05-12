@@ -4,7 +4,7 @@
 hey all, welcome to my personal space on the internet. this is where i share my thoughts, ideas, and projects. feel free to look around and reach out to me if you have any questions or just want to chat. i'm always open to meeting new people and learning new things. thanks for stopping by! 
 
 ## about project
-this project is a simple personal website that i built using [astro](https://astro.build/). it's a static site generator that allows you to build modern websites with the power of react. i chose astro because it's fast, flexible, and easy to use. i also wanted to learn more about static site generators and how they work. i'm really happy with how the site turned out and i hope you like it too!
+this project is a simple personal website that i built using [astro](https://astro.build/). it's a static site generator that allows you to build modern websites. i chose astro because it's fast, flexible, and easy to use. i'm really happy with how the site turned out and i hope you like it too!
 
 ## features
 - **writings**: a collection of my blog posts and articles
