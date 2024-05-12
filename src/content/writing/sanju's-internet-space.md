@@ -1,5 +1,5 @@
 ---
-title: 'Sanju – internet space'
+title: "Sanju's – internet space"
 description: 'hey! this is my personal corner on the web where I share my thoughts ideas, and projects.'
 pubDate: 'May 12 2024'
 ---
