@@ -1,6 +1,6 @@
 ---
 title: 'Sanju\'s – internet space'
-description: 'hey! this is my personal corner on the web where I share my thoughts ideas, and projects. feel free to explore and contact me if you have any questions or just want to chat.'
+description: 'hey! this is my personal corner on the web where I share my thoughts ideas, and projects.'
 heroImage: '/images/ogimage.png'
 pubDate: 'May 12 2024'
 ---
