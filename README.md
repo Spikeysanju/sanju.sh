@@ -1,4 +1,4 @@
-![ A website with the title "Sanju's internet space" and navigation  links for "home", "writing", "thoughts", and "ships".](https://sanju.sh/public/images/cover.png)
+![ A website with the title "Sanju's internet space" and navigation links for "home", "writing", "thoughts", and "ships".](https://sanju.sh/public/images/cover.png)
 
 # sanju's – personal space on the internet
 hey all, welcome to my personal space on the internet. this is where i share my thoughts, ideas, and projects. feel free to look around and reach out to me if you have any questions or just want to chat. i'm always open to meeting new people and learning new things. thanks for stopping by! 
