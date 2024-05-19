@@ -2,9 +2,9 @@
 title: 'Fresh look for SticAI prompts page'
 description: 'Worked on redesigning the prompts page for SticAI. The new design is more dead simple, visually appealing, and provides a better user experience.'
 category: 'personal'
-ship_count: 3
-pubDate: 'May 12 2024'
-updatedDate: 'May 12 2024'
+ship_count: 2
+pubDate: 'May 17 2024'
+updatedDate: 'May 17 2024'
 ---
 
 SticAI prompts page is one of the most important pages on the SticAI. It's where users can find all the prompts to start their AI journey. The old design was cluttered, confusing, and not visually appealing. So, I decided to redesign it.
