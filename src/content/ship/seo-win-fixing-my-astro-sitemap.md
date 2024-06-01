@@ -7,8 +7,6 @@ pubDate: 'June 1 2024'
 updatedDate: 'June 1 2024'
 ---
 
-I completed everything, but forgot to add sitemaps to my website hehe. I added them now, so search engines can index my content more effectively.
-
 Astro has a built-in sitemap generator, so I just had to add the following to my `astro.config.mjs`:
 
 ```ts
