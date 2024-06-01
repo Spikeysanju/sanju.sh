@@ -7,7 +7,11 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://www.sanju.sh",
-	integrations: [mdx(), sitemap(), tailwind()],
+	integrations: [mdx(), sitemap({
+		changefreq: 'daily',
+		priority: 0.7,
+		lastmod: new Date('2024-06-01'),
+	}), tailwind()],
 	output: "server",
 	adapter: cloudflare(),
 });
