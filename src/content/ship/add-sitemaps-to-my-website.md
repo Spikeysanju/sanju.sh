@@ -1,0 +1,67 @@
+---
+title: I added sitemaps to my website
+description: I added sitemaps to my website to help search engines index my content more effectively.
+category: 'personal'
+ship_count: 1
+pubDate: 'June 1 2024'
+updatedDate: 'June 1 2024'
+---
+
+I completed everything, but forgot to add sitemaps to my website hehe. I added them now, so search engines can index my content more effectively.
+
+Astro has a built-in sitemap generator, so I just had to add the following to my `astro.config.mjs`:
+
+```ts
+export default defineConfig({
+	site: "https://www.sanju.sh",
+	integrations: [
+        mdx(), 
+        sitemap({
+            changefreq: 'daily',
+            priority: 0.7,
+            lastmod: new Date('2024-06-01'),
+        }), 
+        tailwind()
+    ],
+	output: "server",
+	adapter: cloudflare(),
+});
+```
+
+I also added a `robots.txt` file to my website. I created a new file `src/pages/robots.txt.ts` with the following content:
+
+```ts
+import type { APIRoute } from 'astro';
+
+const robotsTxt = `
+User-agent: *
+Allow: /
+
+Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
+`.trim();
+
+export const GET: APIRoute = () => {
+  return new Response(robotsTxt, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+    },
+  });
+};
+```
+
+I also added the following to my `package.json`:
+
+```json
+{
+  "scripts": {
+    "build": "astro build && astro sitemap"
+  }
+}
+```
+
+Now, whenever I run `npm run build`, Astro will generate a sitemap for me. I also submitted the sitemap to Google Search Console to help them index my content faster.
+
+See you in the next ship!, follow me on [Twitter](https://x.com/spikeysanju) for more updates.
+
+```
+
