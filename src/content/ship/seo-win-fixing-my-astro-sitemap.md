@@ -1,6 +1,6 @@
 ---
-title: I added sitemaps to my website
-description: I added sitemaps to my website to help search engines index my content more effectively.
+title: Oops! I Forgot My Website Sitemap (But Now It's Fixed!)
+description: So, guess what? I totally spaced on adding a sitemap to my website. A sitemap helps search engines find all my awesome content, which is kind of important!  This post will show you how I easily set it up with Astro, so you don't make the same mistake I did.
 category: 'personal'
 ship_count: 1
 pubDate: 'June 1 2024'
