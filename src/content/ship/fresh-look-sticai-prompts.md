@@ -1,7 +1,7 @@
 ---
 title: 'Fresh look for SticAI prompts page'
 description: 'Worked on redesigning the prompts page for SticAI. The new design is more dead simple, visually appealing, and provides a better user experience.'
-category: 'personal'
+category: 'sticai'
 ship_count: 2
 pubDate: 'May 17 2024'
 updatedDate: 'May 17 2024'
