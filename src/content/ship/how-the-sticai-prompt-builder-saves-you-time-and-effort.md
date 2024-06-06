@@ -1,5 +1,5 @@
 ---
-title: Built a killer prompt builder for SticAI.com
+title: How the SticAI Prompt Builder Saves You Time and Effort!
 description: After 19 hrs of coding, I shipped a prompt builder for SticAI.com. It's a tool that helps users create prompts in a few clicks.
 category: 'sticai'
 ship_count: 3
@@ -13,7 +13,9 @@ So, I decided to build a prompt builder tool that would make it easier for users
 
 After 19 hours of coding, I'm excited to announce that the prompt builder is live on [600+ high quality prompts](https://sticai.com/prompts).
 
-See you in the next ship!, follow me on [Twitter](https://x.com/spikeysanju) for more updates.
+See you in the next ship!, 
+
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.
 
 
 
