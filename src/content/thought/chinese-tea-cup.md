@@ -15,7 +15,6 @@ We always want to complicate things and add more layers, don't we? A sleeve, a w
 
 It's not that we're oblivious to the warnings. We just instinctively build up more barriers between us and the obvious answer staring us in the face. The tea cup strips all that away and lays bare the elegant truth.
 
-
 That's the true genius of it! Simplifying until the solution is undeniable. No distractions, no gimmicks, just letting the pure function shine through. Makes you appreciate the beauty in such a humble, ancient design. Definitely gives me a new admiration for the creativity of constraints.
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/Chinese_tea_cup) 
