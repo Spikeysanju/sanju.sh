@@ -13,8 +13,6 @@ So, I decided to build a prompt builder tool that would make it easier for users
 
 After 19 hours of coding, I'm excited to announce that the prompt builder is live on [600+ high quality prompts](https://sticai.com/prompts).
 
-
-
 See you in the next ship!, follow me on [Twitter](https://x.com/spikeysanju) for more updates.
 
 
