@@ -7,7 +7,7 @@ pubDate: 'June 7 2024'
 updatedDate: 'June 7 2024'
 ---
 
-Ok prompts are one of the most important features of SticAI.com. I usually spend good amount of time crafting them. But, I always felt that the process could be more streamlined. 
+Ok prompts are one of the most important features of [SticAI](https://sticai.com). I usually spend good amount of time crafting them. But, I always felt that the process could be more streamlined. 
 
 So, I decided to build a prompt builder tool that would make it easier for users to create prompts in a few clicks.
 
