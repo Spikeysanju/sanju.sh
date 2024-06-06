@@ -20,3 +20,5 @@ The new design is more dead simple, visually appealing, and provides a better us
 If you want to check out the new design, head over to [SticAI prompts page](https://app.sticai.com/prompts)
 
 And remember, it's still a work in progress, just like me!
+
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.

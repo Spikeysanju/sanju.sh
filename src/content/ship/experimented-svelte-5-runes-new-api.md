@@ -23,4 +23,4 @@ Here's link to the tweet I shared about the app:
 
 That's it for now! I'll be sharing more updates soon. Stay tuned!
 
-
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.

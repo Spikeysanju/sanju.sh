@@ -59,7 +59,7 @@ I also added the following to my `package.json`:
 
 Now, whenever I run `npm run build`, Astro will generate a sitemap for me. I also submitted the sitemap to Google Search Console to help them index my content faster.
 
-See you in the next ship!, follow me on [Twitter](https://x.com/spikeysanju) for more updates.
+See you in the next ship!, 
 
-
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.
 

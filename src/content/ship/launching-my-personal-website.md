@@ -15,3 +15,5 @@ From now on, without any procrastination (fingers crossed), I can share my thoug
 It's like a fresh start, a new beginning, a blank canvas waiting to be painted. I'm excited to see where this journey takes me and what new adventures await.
 
 And remember, it's still a work in progress, just like me!
+
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.
