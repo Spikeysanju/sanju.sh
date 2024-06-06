@@ -3,8 +3,8 @@ title: Built a killer prompt builder for SticAI.com
 description: After 19 hrs of coding, I shipped a prompt builder for SticAI.com. It's a tool that helps users create prompts in a few clicks.
 category: 'sticai'
 ship_count: 3
-pubDate: 'June 1 2024'
-updatedDate: 'June 1 2024'
+pubDate: 'June 7 2024'
+updatedDate: 'June 17 2024'
 ---
 
 Ok prompts are one of the most important features of SticAI.com. I usually spend good amount of time crafting them. But, I always felt that the process could be more streamlined. 
