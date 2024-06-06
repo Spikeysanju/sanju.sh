@@ -8,7 +8,7 @@ pubDate: 'Jun 07 2024'
 Today I learned about the brilliant simplicity of the Chinese tea cup:
 You know, I can't get over how brilliant the design of the Chinese tea cup is. It's such an elegant solution, really makes you appreciate the wisdom behind it.
 
-![Chinese Tea Cup](https://lh3.googleusercontent.com/gg/ANIJZFEJRpptWu_aTXUVyQFNP49fWfDIOOMLyA7LGmyy1Y_0L3YzNWVLQv75_erDZ2Py82dUBtgvPj7G-ZeWOKINdB9YvBqRTPgjoDquJkkacq0ueVkrNtfgTDITCtpFnU9IUGCLKzZbHuE-SQgCwE2zB895BNvI8BwIUsAb4-WOVaTHu1FS6z8BqSUTxW4T318VdGZIiYFz2G9AH6ysg7WdWOle6wrGBzSrSJkVG63m6F9nX3NBggjexxq7fsUd7B0bB8GSrmMQKgg8ivSQKpGyUN10KCMcg2SWMQPJmfvuHyViTXKSolkJYZikjk9hfRZK7y66aQNDi_NcP31nqmya9iop)
+![Chinese Tea Cup](https://i.pinimg.com/474x/24/9b/6d/249b6da562549e784ed3b1ab3606b68b.jpg)
 
 Think about it - no handles, right? At first you're like "Wait, how am I supposed to pick this up?" But then it hits you - if it's too hot to hold directly, then the tea inside is way too hot to drink anyway! Such a simple concept, but it just clicks.
 We always want to complicate things and add more layers, don't we? A sleeve, a warning label, sure let's slap a handle on there too! But none of that changes the fundamental issue. You'll still scald your mouth if you drink too soon after steeping.
