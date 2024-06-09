@@ -3,6 +3,7 @@ title: Chinese Tea Cup
 description: The Chinese tea cup is a brilliant example of elegant design that simplifies the user experience.
 category: 'design'
 pubDate: 'Jun 07 2024'
+updatedDate: 'Jun 10 2024'
 ---
 
 ### Less is More – The Brilliance of the Handleless Cup
