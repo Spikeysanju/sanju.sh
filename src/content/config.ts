@@ -31,6 +31,7 @@ const ship = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		title: z.string(),
+		description: z.string(),
 		ship_count: z.number(),
 		category: z.string(),
 		// Transform string to Date object
