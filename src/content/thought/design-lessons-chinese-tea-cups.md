@@ -6,17 +6,19 @@ pubDate: 'Jun 07 2024'
 updatedDate: 'Jun 10 2024'
 ---
 
-![Chinese Tea Cup](https://i.pinimg.com/474x/24/9b/6d/249b6da562549e784ed3b1ab3606b68b.jpg)
+![Chinese Tea Cup](/images/thoughts/chinese-tea-cup-landscape.png)
 
-You know those Chinese tea cups without handles? They’re a great example of smart design. The reason they’re handle-free is because if the cup is too hot to hold, it’s probably too hot to drink safely.
+You know those Chinese tea cups without handles? They’re a great example of smart design. The reason they’re handle-free is because 
 
-But what do we do? We humans tend to complicate things. We add cardboard sleeves, slap warnings all over the cup, or even attach handles. Yet, none of these extras actually cool down the tea inside. So, if you’re not patient and take a sip too early, you’ll still end up burning your mouth.
+> if the cup is too hot to hold, it’s probably too hot to drink safely.
+
+But what do we do? We humans tend to complicate things. We add **cardboard** **sleeves**, **slap warnings all over the cup**, or even **attach handles**. Yet, none of these extras actually cool down the tea inside. So, if you’re not patient and take a sip too early, you’ll still end up burning your mouth.
 
 The takeaway here is that good design isn’t about piling on more features or warnings. It’s about simplifying until the solution is clear and effective. 
 
 When designers strip away the unnecessary stuff and focus on solving the core problem, they can create solutions that are both simple and really work.
 
-So, next time you see a Chinese tea cup, remember: no handle, no problem. It’s just good design at work.
+So, next time you see a Chinese tea cup, remember – no handle, no problem. It’s just good design at work.
 
 **P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.
 
