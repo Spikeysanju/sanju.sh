@@ -37,6 +37,12 @@ const { title, description, pubDate } = Astro.props;
 					<FormattedDate date={pubDate.toString()} />
 				</p>
 
+				<p
+					class='w-full text-start font-medium text-gray-700 dark:text-gray-300'>
+					<span class='font-semibold'>tl;dr: </span>
+					{description}
+				</p>
+
 				<div
 					class='prose prose-md my-4 prose-p:font-medium text-base dark:prose-invert prose-a:underline prose-a:bg-red-50 prose-a:decoration-red-500
 					dark:prose-a:bg-red-950 dark:prose-a:decoration-red-400 dark:prose-a:underline'>

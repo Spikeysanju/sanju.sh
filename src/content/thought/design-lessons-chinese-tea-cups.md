@@ -1,5 +1,5 @@
 ---
-title: Chinese Tea Cup
+title: Design Lessons from Chinese Tea Cups
 description: "Ever seen those cool tiny teacups from China? No handle? Don't worry, it's genius! Too hot to hold = too hot to drink. Simple, elegant, makes you wait and appreciate the good stuff."
 category: 'design'
 pubDate: 'Jun 07 2024'
@@ -7,7 +7,6 @@ updatedDate: 'Jun 10 2024'
 ---
 
 ![Chinese Tea Cup](https://i.pinimg.com/474x/24/9b/6d/249b6da562549e784ed3b1ab3606b68b.jpg)
-
 
 You know those Chinese tea cups without handles? They’re a great example of smart design. The reason they’re handle-free is because if the cup is too hot to hold, it’s probably too hot to drink safely.
 
