@@ -20,7 +20,9 @@ When designers strip away the unnecessary stuff and focus on solving the core pr
 
 So, next time you see a Chinese tea cup, remember – no handle, no problem. It’s just good design at work.
 
-**P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer and startup founder.
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer and startup founder!
+
+
 
 
 
