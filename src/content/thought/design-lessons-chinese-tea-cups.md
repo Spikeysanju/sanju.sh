@@ -6,7 +6,7 @@ pubDate: 'Jun 07 2024'
 updatedDate: 'Jun 26 2024'
 ---
 
-![Chinese Tea Cup](/images/thoughts/chinese-tea-cup-landscape.png)
+![Chinese Tea Cup](https://assets.sanju.sh/thoughts%2Fchinese-tea-cup.png)
 
 You know those Chinese tea cups without handles? They’re a great example of smart design. The reason they’re handle-free is because 
 
