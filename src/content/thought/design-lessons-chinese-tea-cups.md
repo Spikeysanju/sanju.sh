@@ -3,7 +3,7 @@ title: Design Lessons from Chinese Tea Cups
 description: "Ever seen those cool tiny teacups from China? No handle? Don't worry, it's genius! Too hot to hold = too hot to drink. Simple, elegant, makes you wait and appreciate the good stuff."
 category: 'design'
 pubDate: 'Jun 07 2024'
-updatedDate: 'Jun 10 2024'
+updatedDate: 'Jun 26 2024'
 ---
 
 ![Chinese Tea Cup](/images/thoughts/chinese-tea-cup-landscape.png)
