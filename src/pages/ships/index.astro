@@ -4,6 +4,7 @@ import Headers from '@components/misc/headers.astro';
 import { BaseHead } from '@components/seo';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
 import { groupShipsByYearMonthSorted, type Ship } from '@utils/index';
+import RootLayout from '@layouts/root-layout.astro';
 
 const groupedShips = await groupShipsByYearMonthSorted();
 ---
@@ -17,9 +18,7 @@ const groupedShips = await groupShipsByYearMonthSorted();
 			image='/images/ogimage.png'
 		/>
 	</head>
-	<body
-		id='root'
-		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+	<RootLayout>
 		<div
 			id='navbar+title'
 			class='flex flex-col w-full gap-6 max-w-xl'>
@@ -62,5 +61,5 @@ const groupedShips = await groupShipsByYearMonthSorted();
 				}
 			</div>
 		</div>
-	</body>
+	</RootLayout>
 </html>
