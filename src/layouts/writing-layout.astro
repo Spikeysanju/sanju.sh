@@ -4,6 +4,7 @@ import Image from 'astro/components/Image.astro';
 import { Header } from '@components/misc';
 import FormattedDate from '@components/misc/formatted-date.astro';
 import { BaseHead } from '@components/seo';
+import RootLayout from '@layouts/root-layout.astro';
 
 type Props = CollectionEntry<'writing'>['data'];
 
@@ -19,9 +20,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
 		/>
 	</head>
 
-	<body
-		id='root'
-		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+	<RootLayout>
 		<div
 			id='navbar+title'
 			class='flex flex-col w-full gap-6 max-w-xl'>
@@ -58,5 +57,5 @@ const { title, description, pubDate, heroImage } = Astro.props;
 				</div>
 			</article>
 		</div>
-	</body>
+	</RootLayout>
 </html>

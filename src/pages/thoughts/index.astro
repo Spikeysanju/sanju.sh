@@ -4,6 +4,7 @@ import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
 import { getCollection } from 'astro:content';
+import RootLayout from '@layouts/root-layout.astro';
 
 const thoughts = (await getCollection('thought')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -19,9 +20,7 @@ const thoughts = (await getCollection('thought')).sort(
 			image='/images/ogimage.png'
 		/>
 	</head>
-	<body
-		id='root'
-		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+	<RootLayout>
 		<div
 			id='navbar+title'
 			class='flex flex-col w-full gap-6 max-w-xl'>
@@ -40,5 +39,5 @@ const thoughts = (await getCollection('thought')).sort(
 				))
 			}
 		</div>
-	</body>
+	</RootLayout>
 </html>

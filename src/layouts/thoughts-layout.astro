@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { Header } from '@components/misc';
 import FormattedDate from '@components/misc/formatted-date.astro';
 import { BaseHead } from '@components/seo';
+import RootLayout from '@layouts/root-layout.astro';
 
 type Props = CollectionEntry<'thought'>['data'];
 
@@ -18,9 +19,7 @@ const { title, description, pubDate } = Astro.props;
 		/>
 	</head>
 
-	<body
-		id='root'
-		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+	<RootLayout>
 		<div
 			id='navbar+title'
 			class='flex flex-col w-full gap-6 max-w-xl'>
@@ -50,5 +49,5 @@ const { title, description, pubDate } = Astro.props;
 				</div>
 			</article>
 		</div>
-	</body>
+	</RootLayout>
 </html>

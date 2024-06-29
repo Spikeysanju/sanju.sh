@@ -5,6 +5,7 @@ import { BaseHead } from '@components/seo';
 import { WritingItem } from '@components/cards';
 import { SITE_TITLE } from '@data/index';
 import { SITE_DESCRIPTION } from '@data/index';
+import RootLayout from '@layouts/root-layout.astro';
 
 const writings = (await getCollection('writing')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -20,11 +21,9 @@ const writings = (await getCollection('writing')).sort(
 			image='/images/ogimage.png'
 		/>
 		<Analytics />
-
 	</head>
-	<body
-		id='root'
-		class='w-full flex flex-col h-screen items-center justify-start my-6 p-4 antialiased'>
+
+	<RootLayout>
 		<div
 			id='navbar+title'
 			class='flex flex-col w-full gap-6 max-w-xl'>
@@ -43,5 +42,5 @@ const writings = (await getCollection('writing')).sort(
 				))
 			}
 		</div>
-	</body>
+	</RootLayout>
 </html>
