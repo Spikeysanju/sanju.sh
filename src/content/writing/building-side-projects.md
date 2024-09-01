@@ -1,8 +1,6 @@
 ---
 title: "Building Side Projects"
-description: 'My secret weapon for growth and innovation.
-More than just hobbies, they're my playground for learning and staying ahead.
-heroImage: '/images/ogimage.png'
+description: "My secret weapon for growth and innovation. More than just hobbies, they're my playground for learning and staying ahead"
 pubDate: 'May 12 2024'
 ---
 
