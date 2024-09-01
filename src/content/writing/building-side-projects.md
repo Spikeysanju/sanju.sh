@@ -75,7 +75,7 @@ That's the power of building. It's not just about the product. It's about you.
 - **Appreciate good work.** Saw a great design? Tweeted about it. Made friends. Learned from them.
 - **Passion needs money.** Loved building. No money. Burned out. Now? Charge what I'm worth.
 - **Don't buy domains.** Bought ~65 domains. Never used them. Now? Buy only when needed. (bit personal haha)
-- **Reddit is a goldmine.** Found clients, friends, tools. Daily lurker. Always learning. (Read the comments too)
+- **Reddit is a goldmine.** Found clients, friends, tools. Always learning. (Read the comments too)
 - **Bringin traffic to your site is easy.** Built a site. No visitors. Now? share on Reddit, Twitter, HackerNews. Boom. Traffic spike in hours. (This is a secret sauce)
 - **Give talks.** First one? Nervous as hell. Now? Regular speaker. Helps me learn better. 
 - **Give feedback.** First PR? Got roasted. Now? Give constructive feedback. Help others grow.
@@ -86,3 +86,4 @@ Each lesson? A story. A struggle. A breakthrough. They shape how I build today.
 
 Find your playground. Build. Learn. Grow. Innovate. Stay ahead.
 
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer and startup founder!
