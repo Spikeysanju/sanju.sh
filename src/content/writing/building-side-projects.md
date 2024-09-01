@@ -10,7 +10,7 @@ I'm a builder. Always have been. Started at 18. Self-taught dev. Learn by doing.
 
 First, iOS. No iPhone though. Switched to Android.
 
-Found MIT App Inventor. Drag-and-drop stuff. Got bored. Moved to Android Studio.
+Found [MIT App Inventor](https://appinventor.mit.edu). Drag-and-drop stuff. Got bored. Moved to Android Studio.
 
 No mentor. Skipped class. Stayed late. 21km commute home.
 
@@ -52,21 +52,21 @@ Won't stop. Build. Share. Do it forever.
 
 That's the power of building. It's not just about the product. It's about you.
 
-Few things I've learned:
-- **Start small.** Don't overthink. Just start.
-- **Learn by doing.** Tutorials are good. But build something.
-- **Stay curious.** Always try new things.
-- **Share your work.** Get feedback. Improve.
-- **Don't stop.** Keep building. Keep growing.
-- **Have fun.** It's your playground. Enjoy it.
-- **Connect the dots.** Everything you learn is useful.
-- **Stay ahead.** Keep learning. Stay updated.
-- **Build for yourself.** Scratch your own itch.
-- **Don't give up.** It's hard. But worth it.
-- **Build with love.** It shows in your work.
-- **Build for others.** Make their lives better.
-- **Build for the future.** Innovate. Stay ahead.
+## Few things I've learned:
 
+- **Embrace failure.** First hackathon? Dead last. Next one? First place.
+- **Collaborate.** Solo for years. Joined a team. Mind-blowing growth.
+- **Document everything.** Future you will thank you. Trust me.
+- **Sleep on it.** Stuck on a bug for hours. Slept. Solved it at breakfast.
+- **Take breaks.** Coded 16 hours straight. Burned out. Now? Regular walks. Better code.
+- **Read the docs.** Struggled with an API. RTFM saved days of work.
+- **Give back.** Answered StackOverflow questions. Learned more than I taught.
+- **Version control.** Lost a week's work once. Now? Git is my best friend.
+- **Accessibility matters.** Made apps for everyone. Opened new markets.
+- **Security first.** Got hacked once (). Never again. Now it's built-in from day one.
+- **Optimize later.** Premature optimization killed my first big project. Now I make it work, then make it fast.
+
+Each lesson? A story. A struggle. A breakthrough. They shape how I build today.
 
 Find your playground. Build. Learn. Grow. Innovate. Stay ahead.
 
