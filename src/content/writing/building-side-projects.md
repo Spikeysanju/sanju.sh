@@ -61,8 +61,18 @@ That's the power of building. It's not just about the product. It's about you.
 - **Take breaks.** Coded 16 hours straight. Burned out. Now? Regular walks. Better code.
 - **Read the docs.** Struggled with an API. RTFM saved days of work.
 - **Give back.** Answered StackOverflow questions. Learned more than I taught.
-- **Version control.** Lost a week's work once. Now? Git is my best friend.
+- **Version control.** Lost a week's work once. Now? [Git](https://github.com/Spikeysanju) is my best friend.
 - **Accessibility matters.** Made apps for everyone. Opened new markets.
+- **Design with care.** First app? Ugly as hell. Now? Pixel-perfect every time.
+- **Build Templates.** Repeated code? Made a template. Saved hours.
+- **Invest in tools.** Bought a Mac. Design improved. Bought a new monitor. Productivity doubled. Bought a new chair. Back pain gone. Invest in yourself.
+- **Follow peers.** Twitter, GitHub, Reddit. Found new tools, new ideas, new friends.
+- **Ignore community drama.** Wasted time on Twitter fights. Now? Mute, block, move on.
+- **Say no.** Overcommitted once. Burned out. Now? Prioritize. Focus on what matters.
+- **Watch people closely.** Learned from the best. Copied their habits. Got better.
+- **Imitate, then innovate.** Copied designs. Learned the why. Made my own. Better than before.
+- **Give talks.** First one? Nervous as hell. Now? Regular speaker. Helps me learn better.
+- **Give feedback.** First PR? Got roasted. Now? Give constructive feedback. Help others grow.
 - **Security first.** Got hacked once (). Never again. Now it's built-in from day one.
 - **Optimize later.** Premature optimization killed my first big project. Now I make it work, then make it fast.
 
