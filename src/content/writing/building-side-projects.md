@@ -28,7 +28,7 @@ Joined open source. Learned tons from bright minds.
 
 Started YouTube. Reduced my inferiority complex. Made mistakes. Got traction.
 
-Founded a [dev community](https://github.com/TheCodeMonks). The Code Monks. Learned from others' experiences.
+Founded a [dev community](https://github.com/TheCodeMonks). Learned from others' experiences.
 
 Got design jobs. Improved products from scratch.
 
