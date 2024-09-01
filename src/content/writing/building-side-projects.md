@@ -1,12 +1,12 @@
 ---
-title: "building side projects"
-description: 'my secret weapon for growth and innovation.
+title: "Building Side Projects"
+description: 'My secret weapon for growth and innovation.
 More than just hobbies, they're my playground for learning and staying ahead.
 heroImage: '/images/ogimage.png'
 pubDate: 'May 12 2024'
 ---
 
-## building side projects changed my life. here's how:
+## Building side projects changed my life. here's how:
 
 I'm a builder. Always have been. Started at 18. Self-taught dev. Learn by doing.
 
