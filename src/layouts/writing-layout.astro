@@ -1,13 +1,13 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import Image from "astro/components/Image.astro";
-import { Header } from "@components/misc";
-import FormattedDate from "@components/misc/formatted-date.astro";
-import { BaseHead } from "@components/seo";
-import RootLayout from "@layouts/root-layout.astro";
-import { clsx } from "@utils/index";
+import type { CollectionEntry } from 'astro:content';
+import Image from 'astro/components/Image.astro';
+import { Header } from '@components/misc';
+import FormattedDate from '@components/misc/formatted-date.astro';
+import { BaseHead } from '@components/seo';
+import RootLayout from '@layouts/root-layout.astro';
+import { clsx } from '@utils/index';
 
-type Props = CollectionEntry<"writing">["data"];
+type Props = CollectionEntry<'writing'>['data'];
 
 const { title, description, pubDate, heroImage } = Astro.props;
 ---
@@ -47,11 +47,9 @@ const { title, description, pubDate, heroImage } = Astro.props;
 				<!-- we're using the Image component from Astro to handle the image optimization -->
 				{
 					heroImage && (
-						<Image
-							src={heroImage.src}
-							alt={heroImage.alt}
-							width={heroImage.width}
-							height={heroImage.height}
+						<img
+							src={heroImage}
+							alt={title}
 							class='w-full rounded-lg'
 						/>
 					)
