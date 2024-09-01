@@ -1,14 +1,14 @@
 ---
-import ShipsLayout from '@layouts/ships-layout.astro';
-import { type CollectionEntry, getCollection } from 'astro:content';
+import ShipsLayout from "@layouts/ships-layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
 
-const posts = await getCollection('ship');
-type Props = CollectionEntry<'ship'>;
+const posts = await getCollection("ship");
+type Props = CollectionEntry<"ship">;
 
 const { slug } = Astro.params;
 const post = posts.find((page) => page.slug === slug);
 
-if (!post) return Astro.redirect('/404');
+if (!post) return Astro.redirect("/404");
 
 const { Content } = await post.render();
 ---

@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
-import { SITE_DESCRIPTION, SITE_TITLE } from '@data/index';
+import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
 import { getCollection } from "astro:content";
 
 export async function GET(context) {
-	const [ posts , thoughts, ships ] = await Promise.all([
+	const [posts, thoughts, ships] = await Promise.all([
 		getCollection("writing"),
 		getCollection("thought"),
 		getCollection("ship"),
