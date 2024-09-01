@@ -1,30 +1,30 @@
 {
-	"name": "sanju.sh",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro check && astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"check": "biome check ./src",
-		"lint": "biome lint ./src",
-		"format": "biome format --write ."
-	},
-	"dependencies": {
-		"@astrojs/check": "^0.5.7",
-		"@astrojs/cloudflare": "^9.1.0",
-		"@astrojs/mdx": "^2.2.0",
-		"@astrojs/rss": "^4.0.5",
-		"@astrojs/sitemap": "^3.1.1",
-		"@astrojs/tailwind": "^5.1.0",
-		"astro": "^4.5.1",
-		"tailwindcss": "^3.4.1",
-		"typescript": "^5.4.2"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.7.2",
-		"@tailwindcss/typography": "^0.5.10"
-	}
+  "name": "sanju.sh",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "biome check ./src",
+    "lint": "biome lint ./src",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.7",
+    "@astrojs/cloudflare": "^9.1.0",
+    "@astrojs/mdx": "^2.2.0",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.5.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.2",
+    "@tailwindcss/typography": "^0.5.10"
+  }
 }
