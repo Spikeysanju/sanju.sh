@@ -24,14 +24,49 @@ Already knew art. Painting, sketching. Helped a bit.
 
 Copied Dribbble designs. Daily practice. Got decent after a few months.
 
-Worked for others. Gained experience. Started my own thing.
+Joined open source. Learned tons from bright minds.
 
-Still build side projects. For fun. Keeps me sharp.
+Started YouTube. Reduced my inferiority complex. Made mistakes. Got traction.
 
-It's addictive. In a good way. Always learning. Always improving.
+Founded a [dev community](https://github.com/TheCodeMonks). The Code Monks. Learned from others' experiences.
 
-Side projects aren't just hobbies. They're my lab. My playground. My school.
+Got design jobs. Improved products from scratch.
 
-They keep me ahead. In tech. In business. In life.
+Worked at companies. Gained experience. Got bored. Quit.
+
+Started my own [ThisUX – Design Led Product studio](https://thisux.com). Tough at first. Got better.
+
+Became full-stack. Tried all frameworks. Fell in love with [Svelte/Kit](svelte.dev).
+
+Built client products. Made my own too. Always top-notch design.
+
+Still build side projects. For fun. Keeps me curious.
+
+It's not wasting time. It's connecting dots.
+
+You become what you consume. I believe that.
+
+Building keeps me proactive. Gets things done.
+
+Won't stop. Build. Share. Do it forever.
 
 That's the power of building. It's not just about the product. It's about you.
+
+Few things I've learned:
+- **Start small.** Don't overthink. Just start.
+- **Learn by doing.** Tutorials are good. But build something.
+- **Stay curious.** Always try new things.
+- **Share your work.** Get feedback. Improve.
+- **Don't stop.** Keep building. Keep growing.
+- **Have fun.** It's your playground. Enjoy it.
+- **Connect the dots.** Everything you learn is useful.
+- **Stay ahead.** Keep learning. Stay updated.
+- **Build for yourself.** Scratch your own itch.
+- **Don't give up.** It's hard. But worth it.
+- **Build with love.** It shows in your work.
+- **Build for others.** Make their lives better.
+- **Build for the future.** Innovate. Stay ahead.
+
+
+Find your playground. Build. Learn. Grow. Innovate. Stay ahead.
+
