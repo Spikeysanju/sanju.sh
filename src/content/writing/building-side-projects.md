@@ -54,7 +54,7 @@ That's the power of building. It's not just about the product. It's about you.
 
 ## Few things I've learned:
 
-- **Embrace failure.** First hackathon? Dead last. Next one? First place.
+- **Ok to failure.** First hackathon? Dead last. Next one? First place.
 - **Collaborate.** Solo for years. Joined a team. Mind-blowing growth.
 - **Document everything.** Future you will thank you. Trust me.
 - **Sleep on it.** Stuck on a bug for hours. Slept. Solved it at breakfast.
@@ -73,7 +73,7 @@ That's the power of building. It's not just about the product. It's about you.
 - **Imitate, then innovate.** Copied designs. Learned the why. Made my own. Better than before.
 - **Give talks.** First one? Nervous as hell. Now? Regular speaker. Helps me learn better.
 - **Give feedback.** First PR? Got roasted. Now? Give constructive feedback. Help others grow.
-- **Security first.** Got hacked once (). Never again. Now it's built-in from day one.
+- **Security first.** Got hacked once. Never again. Now it's built-in from day one.
 - **Optimize later.** Premature optimization killed my first big project. Now I make it work, then make it fast.
 
 Each lesson? A story. A struggle. A breakthrough. They shape how I build today.
