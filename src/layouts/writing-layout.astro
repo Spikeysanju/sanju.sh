@@ -60,7 +60,9 @@ const { title, description, pubDate, heroImage } = Astro.props;
 						'dark:prose-a:bg-orange-950 dark:prose-a:decoration-orange-400 dark:prose-a:underline',
 						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
 						'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
-						'prose-ul:font-medium prose-ol:font-medium prose-li:font-medium'
+						'prose-ul:font-medium prose-ol:font-medium prose-li:font-medium',
+						// add spacing between list items
+						'prose-ul:space-y-2 prose-ol:space-y-2 prose-li:space-y-2',
 					)}>
 					<slot />
 				</div>
