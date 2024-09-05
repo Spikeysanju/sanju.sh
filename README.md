@@ -44,7 +44,7 @@ if you don't want to use analytics, you can remove the analytics code from the `
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
 
 ## contact
-you can reach me at [hello@sanju.sh](mailto:hello@sanju.sh) or on [twitter](https://twitter.com/spikeysanju). don't hesitate to get in touch!
+you can reach me at [work@sanju.sh](mailto:work@sanju.sh) or on [twitter](https://twitter.com/spikeysanju). don't hesitate to get in touch!
 
 
 ## license
