@@ -2,7 +2,8 @@
 title: "How AI Never Sleeps"
 description: "AI doesn't get tired or bored. It can work on a problem for a long time. This can lead to some amazing discoveries."
 category: 'ai'
-pubDate: 'Sept 05 2024',
+pubDate: 'Sept 05 2024'
+updatedDate: 'Sept 05 2024'
 ---
 
 Humans get sleepy. AI doesn't. We work 8 hours. AI? 24/7.
@@ -32,6 +33,6 @@ AI isn't magic. It's a tool. A really patient, tireless tool…
 
 AI's stamina opens new doors. We're just starting to see what's possible.
 
-AI doesn't sleep. That's powerful. And a bit scary 😶‍🌫️...
+Annnnd, AI doesn't sleep. That's powerful. And a bit scary 😶‍🌫️...
 
 **P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer & startup founder!
