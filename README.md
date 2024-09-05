@@ -26,6 +26,20 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 - i'm a big fan of minimalism and KISS (keep it simple, stupid) and i think it works well for a personal website like this. 
 - i hope you like the design as much as i do!
 
+## environment variables
+To add analytics to your site, you can use Umami and Clarity. you will need to add the following environment variables to your `.env` file:
+
+```plaintext
+# Umami Analytics
+UMAMI_WEBSITE_ID=your_umami_website_id
+UMAMI_TRACKING_URL=your_umami_tracking_url
+
+# Clarity Analytics
+CLARITY_TRACKING_ID=your_clarity_tracking_id
+```
+
+if you don't want to use analytics, you can remove the analytics code from the `src/components/seo/base-head.astro` file and remove the umami and clarity scripts.
+
 ## contributing
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
 
