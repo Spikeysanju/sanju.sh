@@ -1,0 +1,38 @@
+---
+title: "Don't Ask 'What to Learn'"
+description: "Don't start by asking 'what to learn.' It's the wrong approach. If you don't know where you're going, how will you know when you get there?"
+pubDate: 'Sept 5 2024'
+---
+
+Don't start by asking 'what to learn.' It's the wrong approach.
+If you don't know where you're going, how will you know when you get there?
+
+Think about it:
+- iOS or Android? They're just tools.
+- Full stack or web dev? More tools.
+
+The real question is – What do you want to build?
+
+Start there. Figure out what excites you. What problem do you want to solve?
+
+Maybe it's:
+- An app to help people exercise more
+- A website to connect local farmers with customers
+- A game that teaches kids math
+
+Once you know that, the tech choices become clearer.
+
+Plus, motivation matters. Learning is hard. If you're not pumped about the end goal, you'll quit.
+
+I've seen it happen.
+
+A student spent months learning React because it was "hot".
+He hated it. Gave up coding entirely.
+
+Don't be that guy.
+
+Pick a project you care about. The right tools will follow.
+
+Remember – Tech changes fast. Your passion? That lasts.
+
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer and startup founder!
