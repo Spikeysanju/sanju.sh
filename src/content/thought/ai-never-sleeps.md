@@ -1,0 +1,38 @@
+---
+title: "How AI Never Sleeps"
+description: "AI doesn't get tired or bored. It can work on a problem for a long time. This can lead to some amazing discoveries."
+category: 'ai'
+pubDate: 'Jul 08 2024',
+updatedAt: 'Sept 05 2024'
+---
+
+Humans get sleepy. AI doesn't. We work 8 hours. AI? 24/7.
+
+Our brains wander. AI stays focused. I lose track after an hour. AI? Always on task.
+
+We need breaks. AI doesn't. Lunch, coffee, bathroom - we pause a lot. AI keeps going.
+
+**This non-stop work leads to:**
+- More data crunched
+- Deeper analysis
+- Faster results
+- Instant learnings
+- Personal companion etc…
+
+**Fyi, I can make a whole short film with AI:**
+- Write a script with Claude or Gemini
+- Break it into scenes
+- Use Elevenlabs for voices and sounds
+- Make videos with Runwayml
+
+Humans might quit after 100 tries. AI will do 10,000. Or a million.
+
+This persistence matters. It's changing problem-solving.
+
+AI isn't magic. It's a tool. A really patient, tireless tool…
+
+AI's stamina opens new doors. We're just starting to see what's possible.
+
+AI doesn't sleep. That's powerful. And a bit scary 😶‍🌫️...
+
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer & startup founder!
