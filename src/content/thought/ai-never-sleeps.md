@@ -2,8 +2,7 @@
 title: "How AI Never Sleeps"
 description: "AI doesn't get tired or bored. It can work on a problem for a long time. This can lead to some amazing discoveries."
 category: 'ai'
-pubDate: 'Jul 08 2024',
-updatedAt: 'Sept 05 2024'
+pubDate: 'Sept 05 2024',
 ---
 
 Humans get sleepy. AI doesn't. We work 8 hours. AI? 24/7.

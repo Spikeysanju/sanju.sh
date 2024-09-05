@@ -6,6 +6,7 @@ export interface MenuItem {
 	url: string;
 }
 
+// Menu items
 export const menuItems: MenuItem[] = [
 	{
 		label: "home",
