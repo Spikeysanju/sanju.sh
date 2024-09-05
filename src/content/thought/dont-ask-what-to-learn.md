@@ -1,11 +1,9 @@
 ---
 title: "Don't Ask 'What to Learn'"
 description: "Don't start by asking 'what to learn.' It's the wrong approach. If you don't know where you're going, how will you know when you get there?"
+category: 'learning'
 pubDate: 'Sept 5 2024'
 ---
-
-Don't start by asking 'what to learn.' It's the wrong approach.
-If you don't know where you're going, how will you know when you get there?
 
 Think about it:
 - iOS or Android? They're just tools.
