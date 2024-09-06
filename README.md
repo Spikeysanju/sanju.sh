@@ -38,7 +38,7 @@ UMAMI_TRACKING_URL=your_umami_tracking_url
 CLARITY_TRACKING_ID=your_clarity_tracking_id
 ```
 
-if you don't want to use analytics, you can remove the analytics code from the src/components/seo/base-head.astro file and remove the umami and clarity scripts.
+if you don't want to use analytics, you can remove the analytics code from the [src/components/seo/base-head.astro](https://github.com/Spikeysanju/sanju.sh/blob/main/src/components/seo/base-head.astro) file and remove the umami and clarity scripts.
 
 ## 🤝 contributing
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
