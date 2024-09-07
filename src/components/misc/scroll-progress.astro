@@ -1,0 +1,94 @@
+<div id='progress-container'>
+	<svg
+		id='progress-circle'
+		viewBox='0 0 36 36'>
+		<path
+			class='circle-bg'
+			d='M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831'
+		></path>
+		<path
+			id='progress'
+			class='circle'
+			stroke-dasharray='0, 100'
+			d='M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831'
+		></path>
+	</svg>
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='24'
+		height='24'
+		viewBox='0 0 24 24'
+		fill='none'
+		stroke='currentColor'
+		stroke-width='2'
+		stroke-linecap='round'
+		stroke-linejoin='round'
+		class='lucide lucide-chevron-up'>
+		<path d='m18 15-6-6-6 6'></path>
+	</svg>
+</div>
+
+<style>
+	#progress-container {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		width: 50px;
+		height: 50px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#progress-circle {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		transform: rotate(-90deg);
+	}
+
+	.circle-bg {
+		fill: none;
+		stroke: #eee;
+		stroke-width: 3.8;
+	}
+
+	.circle {
+		fill: none;
+		stroke: #4caf50;
+		stroke-width: 2.8;
+		stroke-linecap: round;
+		transition: stroke-dasharray 0.3s;
+	}
+
+	.lucide-chevron-up {
+		position: relative;
+		z-index: 1;
+	}
+</style>
+
+<script>
+	document.addEventListener('scroll', () => {
+		const scrollTop = document.documentElement.scrollTop;
+		const scrollHeight =
+			document.documentElement.scrollHeight -
+			document.documentElement.clientHeight;
+		const scrollPercent = (scrollTop / scrollHeight) * 100;
+		const progress = document.getElementById('progress');
+		if (progress) {
+			progress.style.strokeDasharray = `${scrollPercent}, 100`;
+		}
+	});
+
+	const progressContainer = document.getElementById('progress-container');
+	if (progressContainer) {
+		progressContainer.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	}
+</script>
