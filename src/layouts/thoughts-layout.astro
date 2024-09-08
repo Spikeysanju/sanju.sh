@@ -38,14 +38,14 @@ const { title, description, pubDate } = Astro.props;
 				</p>
 
 				<p
-					class='w-full text-start font-medium text-gray-700 dark:text-gray-300'>
+					class='w-full text-start font-medium text-gray-700 dark:text-gray-300 text-lg'>
 					<span class='font-semibold'>tl;dr: </span>
 					{description}
 				</p>
 
 				<div
 					class={clsx(
-						'w-full prose prose-md my-3 prose-p:font-medium text-base dark:prose-invert prose-a:underline  items-center justify-center',
+						'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline  items-center justify-center',
 						'dark:prose-a:bg-red-950 dark:prose-a:decoration-red-400 dark:prose-a:underline prose-a:bg-red-50 prose-a:decoration-red-500',
 						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
 						'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
