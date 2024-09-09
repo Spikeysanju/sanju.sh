@@ -2,7 +2,7 @@
 title: Spotlight – Discover Great Links
 description: I made a tool that finds cool links from Reddit, Hacker News, and Wikipedia. Launched it on Twitter and Discord. Got 1,000 visitors in 24 hours.
 category: 'fun'
-ship_count: 1
+ship_count: 5
 pubDate: 'Sept 9 2024'
 updatedDate: 'Sept 9 2024'
 ---
