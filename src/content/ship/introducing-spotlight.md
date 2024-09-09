@@ -14,9 +14,9 @@ Last night, on Saturday, August 24th, we at [GDG Chennai](https://gdg.community.
 
 > One of the members asked me how I curate so many links. 
 
-I explained that I used to read Hacker News and the "internet is beautiful" subreddit as my source of information for curating these links.
+I explained that I used to read Hacker News and the "internet is beautiful" sub as my source of info.
 
-We then explored those subreddits and ended our meeting. Later that night, while browsing through the "internet is beautiful" subreddit, I got curious about creating a website that would display random Hacker News and Reddit posts with their URLs whenever I clicked a button.
+We then explored those subreddits and ended our meeting. Later that night, while browsing through the "internet is beautiful" sub, I got curious about creating a website that would display random Hacker News and Reddit posts with their URLs whenever I clicked a button.
 
 I quickly opened my terminal, created a new SvelteKit project, and started working on the API first.
 
