@@ -27,12 +27,13 @@ const { title, cta_label, bg_colour } = Astro.props;
 		</h5>
 
 		<div class='w-full flex-row gap-3'>
-			<button
-				class={clsx(
-					'bg-gray-900 text-white font-medium py-2 px-4 rounded-full w-fit'
-				)}>
-				{cta_label}
-			</button>
+            <button
+                class={clsx(
+                    'bg-gray-900 text-white font-medium py-2 px-4 rounded-full w-fit'
+                )}
+                onclick="window.open('https://cal.com/imsanju/15min', '_blank')">
+                {cta_label}
+            </button>
 
 			<button
 				class='text-black font-medium py-2 px-4 rounded-full w-fit underline underline-offset-2'
