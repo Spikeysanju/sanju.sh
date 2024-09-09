@@ -82,3 +82,31 @@ export async function groupShipsByYearMonthSorted(): Promise<
 }
 
 
+export function getBackgroundColorClass(bg_colour: string): string {
+			switch (bg_colour) {
+				case 'yellow':
+					return 'bg-yellow-400';
+				case 'red':
+					return 'bg-red-400';
+				case 'orange':
+					return 'bg-orange-400';
+				case 'pink':
+					return 'bg-pink-400';
+				case 'indigo':
+					return 'bg-indigo-400';
+				case 'teal':
+					return 'bg-teal-400';
+				case 'cyan':
+					return 'bg-cyan-400';
+				case 'lime':
+					return 'bg-lime-400';
+				case 'blue':
+					return 'bg-blue-400';
+				case 'green':
+					return 'bg-green-400';
+				case 'purple':
+					return 'bg-purple-400';
+				default:
+					return 'bg-gray-100';
+			}
+}
