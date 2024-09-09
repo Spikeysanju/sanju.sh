@@ -31,10 +31,13 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
 
 ## contact
-you can reach me at [hello@sanju.sh](mailto:hello@sanju.sh) or on [twitter](https://twitter.com/spikeysanju). don't hesitate to get in touch!
+i'm always looking for new opportunities and challenges.
+
+feel free to reach out to me via [email](mailto:work@sanju.sh?subject=Let's%20Build%20Something%20Remarkable&body=Hi%20Sanju%2C%0A%0AI%20came%20across%20your%20projects%20and%20was%20impressed%20by%20it.%20I%20would%20love%20to%20discuss%20the%20possibility%20of%20collaborating%20on%20a%20new%20project.%20Looking%20forward%20to%20hearing%20from%20you.%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D) if you want to build something remarkable together.
+
+**P.S.** follow me on [Twitter](https://x.com/spikeysanju) i document my journey as a designer, developer and startup founder!
 
 ## license
 this project is open source under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). you're welcome to use the code for your own projects. if you do, a shoutout would be appreciated but it's not required.
-
 
 
