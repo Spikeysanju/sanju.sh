@@ -62,9 +62,8 @@ You can also try [spotlight.thisux.com](http://spotlight.thisux.com) and let me 
 
 It's open-source [Spotlight Repository](https://github.com/thisuxhq/spotlight).
 
-Feel free to reach out to me [email](work@sanju.sh) if you want to build something remarkable together.
+Feel free to reach out to me via [email](mailto:work@sanju.sh?subject=Let's%20Build%20Something%20Remarkable&body=Hi%20Sanju%2C%0A%0AI%20came%20across%20your%20project%20Spotlight%20and%20was%20impressed%20by%20it.%20I%20would%20love%20to%20discuss%20the%20possibility%20of%20collaborating%20on%20a%20new%20project.%20Looking%20forward%20to%20hearing%20from%20you.%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D) if you want to build something remarkable together.
 
 See you in the next ship!, 
 
 **P.S.** follow me on [Twitter](https://x.com/spikeysanju) for more updates.
-
