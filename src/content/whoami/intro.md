@@ -10,7 +10,7 @@ For years, I wore many hats. Now I'm doing my own thing.
 
 I'm working on ideas like:
 
-- [Uiino](https://uiino.com) 
+- [Uiino](https://uiino.com)
 - [SticAi](https://sticai.com) 
 - [aboGrow](https://abogrow.com) 
 - [ffmpeg info](https://ffmpeg.info)
@@ -27,4 +27,4 @@ Our secret? We create systems that work, no matter the tech or problem.
 
 I'm big on [open source](https://github.com/spikeysanju) too. I contribute code and speak at conferences.
 
-Want to chat? [Drop me a line](mailto:work@sanju.sh).
+Want to chat? [Drop me a line](mailto:work@sanju.sh?subject=Let's%20Collaborate&body=Hi%20Sanju,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20a%20potential%20collaboration%20with%20you.%0D%0A%0D%0ABest%20regards,%0D%0A%5BYour%20Name%5D).
