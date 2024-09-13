@@ -2,14 +2,15 @@
 import { getCollection } from 'astro:content';
 import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
-import { WritingItem } from '@components/cards';
 import { SITE_TITLE } from '@data/index';
 import { SITE_DESCRIPTION } from '@data/index';
 import RootLayout from '@layouts/root-layout.astro';
+import { clsx } from '@utils/index';
 
-const writings = (await getCollection('writing')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const whoami = await getCollection('whoami');
+const whoamiData = whoami[0].data; // Get the first item from the collection
+const { title, description } = whoamiData;
+const { Content } = await whoami[0].render();
 ---
 
 <!doctype html>
@@ -29,17 +30,20 @@ const writings = (await getCollection('writing')).sort(
 			<Header />
 			<h1
 				class='w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]'>
-				meet sanju, designer founder
+				{title}
 			</h1>
-			{
-				writings.map((writing) => (
-					<WritingItem
-						title={writing.data.title}
-						date={writing.data.pubDate}
-						slug={writing.slug}
-					/>
-				))
-			}
+			<span class='sr-only'> {description} </span>
+			<div
+				class={clsx(
+					'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-amber-50 prose-a:decoration-amber-500 items-center justify-center',
+					'dark:prose-a:bg-amber-950 dark:prose-a:decoration-amber-400 dark:prose-a:underline',
+					'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
+					'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
+					'prose-ul:font-medium prose-ol:font-medium prose-li:font-medium',
+					'prose-ul:space-y-2 prose-ol:space-y-3 prose-li:space-y-3'
+				)}>
+				<Content />
+			</div>
 		</div>
 	</RootLayout>
 </html>
