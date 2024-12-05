@@ -34,6 +34,8 @@ export function getCategoryColor(category: string): string {
 			return "bg-blue-300";
 		case "opensource":
 			return "bg-orange-400";
+		case "thoughts":
+		  return "bg-red-400";
 		default:
 			return "bg-gray-300";
 	}

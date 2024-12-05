@@ -8,7 +8,7 @@ import RootLayout from '@layouts/root-layout.astro';
 import { clsx } from '@utils/index';
 
 const whoami = await getCollection('whoami');
-const whoamiData = whoami[0].data; // Get the first item from the collection
+const whoamiData = whoami[0].data;
 const { title, description } = whoamiData;
 const { Content } = await whoami[0].render();
 ---

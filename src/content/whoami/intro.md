@@ -10,13 +10,15 @@ For years, I wore many hats. Now I'm doing my own thing.
 
 I'm working on ideas like:
 
+- [Dun](https://dunsuite.com)
+- [Fli](https://fli.so)
 - [Uiino](https://uiino.com)
 - [SticAi](https://sticai.com) 
 - [aboGrow](https://abogrow.com) 
 - [ffmpeg info](https://ffmpeg.info)
 - [Glance](https://glance.sticai.com)
 - [Spotlight](https://spotlight.thisux.com)
-- [Supaprompts](https://supaprompts.com)
+
 
 
 And more. Always tinkering.
