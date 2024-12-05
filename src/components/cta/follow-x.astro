@@ -1,0 +1,26 @@
+---
+interface Props {
+	xHandle: string;
+	label: string;
+}
+
+const { xHandle, label }: Props = Astro.props;
+---
+
+<div
+	class='flex flex-row w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out rounded-2xl bg-blue-500'>
+	<div class='w-full flex flex-col gap-3'>
+		<h5
+			class='text-white font-medium w-full sm:text-xl md:text-2xl leading-tight'>
+			{label}
+		</h5>
+
+		<button
+			id='button-follow-twitter'
+			class='bg-white text-blue-500 font-medium py-2 px-4 rounded-full w-fit'
+			onclick={`window.open('https://x.com/${xHandle}', '_blank')`}>
+			@{xHandle}
+		</button>
+	</div>
+</div>
+
