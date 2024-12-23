@@ -108,6 +108,10 @@ export function getBackgroundColorClass(bg_colour: string): string {
 					return 'bg-green-400';
 				case 'purple':
 					return 'bg-purple-400';
+					case 'gray':
+					return 'bg-gray-400';
+					case 'amber':
+					return 'bg-amber-300';
 				default:
 					return 'bg-gray-100';
 			}
