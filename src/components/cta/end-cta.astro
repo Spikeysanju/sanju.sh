@@ -6,9 +6,10 @@ interface Props {
 	cta_label: string;
 	bg_colour: string;
 	xHandle?: string;
+	link?: string;
 }
 
-const { title, cta_label, bg_colour, xHandle }: Props = Astro.props;
+const { title, cta_label, bg_colour, xHandle, link }: Props = Astro.props;
 ---
 
 <div
@@ -22,16 +23,16 @@ const { title, cta_label, bg_colour, xHandle }: Props = Astro.props;
 			{title}
 		</h5>
 
-		<div class='w-full flex-row gap-2'>
-			<button
-				id='button-schedule-meeting'
-				data-umami-event='cta-schedule-meeting'
-				class={clsx(
-					'bg-gray-900 text-white font-medium py-2 px-4 rounded-full w-fit'
-				)}
-				onclick="window.open('https://cal.com/imsanju/15min', '_blank')">
-				{cta_label}
-			</button>
+		<div class='w-full flex flex-row gap-2'>
+		<button
+			id='button-schedule-meeting'
+			data-umami-event={link ? `cta-custom-link-${cta_label}` : 'cta-schedule-meeting'}
+			class={clsx(
+				'bg-gray-900 text-white font-medium py-2 px-4 rounded-full w-fit'
+			)}
+			onclick={`window.open('${link || 'https://cal.com/imsanju/15min'}', '_blank')`}>
+			{cta_label}
+		</button>
 
 			<button
 				id='button-email-me'
@@ -42,10 +43,10 @@ const { title, cta_label, bg_colour, xHandle }: Props = Astro.props;
 			</button>
 
 			<button
-				id='button-email-me'
-				data-umami-event='cta-email-me'
+				id='button-x'
+				data-umami-event='cta-x'
 				class='text-black font-medium py-2 px-4 rounded-full w-fit underline underline-offset-2'
-				onclick="window.open('https://x.com/spikeysanju', '_blank')">
+				onclick={`window.open('https://x.com/${xHandle || 'spikeysanju'}', '_blank')`}>
 				Follow on X
 			</button>
 		</div>
