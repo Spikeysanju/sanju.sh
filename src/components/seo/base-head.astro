@@ -204,3 +204,10 @@ const { title, description, image = '/images/ogimage.png' } = Astro.props;
 	property='twitter:image'
 	content={new URL(image, Astro.url)}
 />
+
+<link
+	rel='alternate'
+	type='application/rss+xml'
+	title={`${title} RSS Feed`}
+	href='/rss.xml'
+/>
