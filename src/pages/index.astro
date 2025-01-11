@@ -2,15 +2,12 @@
 import { getCollection } from 'astro:content';
 import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
-import { SITE_TITLE } from '@data/index';
+import { products, SITE_TITLE } from '@data/index';
 import { SITE_DESCRIPTION } from '@data/index';
 import RootLayout from '@layouts/root-layout.astro';
-import { clsx } from '@utils/index';
 
 const whoami = await getCollection('whoami');
 const whoamiData = whoami[0].data;
-const { title, description } = whoamiData;
-const { Content } = await whoami[0].render();
 ---
 
 <!doctype html>
@@ -26,23 +23,58 @@ const { Content } = await whoami[0].render();
 	<RootLayout>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
+			class='flex flex-col w-full gap-6 max-w-xl lowercase'>
 			<Header />
 			<h1
 				class='w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]'>
-				{title}
+				meet sanju
+				<span class='text-gray-500'>designer founder</span>
 			</h1>
-			<span class='sr-only'> {description} </span>
-			<div
-				class={clsx(
-					'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-amber-50 prose-a:decoration-amber-500 items-center justify-center',
-					'dark:prose-a:bg-amber-950 dark:prose-a:decoration-amber-400 dark:prose-a:underline',
-					'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
-					'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
-					'prose-ul:font-medium prose-ol:font-medium prose-li:font-medium',
-					'prose-ul:space-y-2 prose-ol:space-y-3 prose-li:space-y-3'
-				)}>
-				<Content />
+
+			<div class='font-medium text-lg'>
+				I run <a
+					href='https://thisux.com'
+					target='_blank'
+					class='underline underline-offset-2'
+					>ThisUX</a
+				>, a design-led product studio. We make things that work. For years, I
+				wore many hats. Now I’m doing my own thing.
+			</div>
+
+			<div class='font-medium text-lg'>
+				I work on ideas like
+				<div class='flex flex-wrap gap-2 mt-5'>
+					{
+						products.map((product) => (
+							<a
+								href={product.url}
+								target='_blank'
+								class='p-2 bg-gray-100 rounded-full gap-2 flex-wrap hover:bg-gray-200 flex items-center justify-center hover:rotate-1 hover:scale-105 transition-all duration-300'>
+								<img
+									src={product.image}
+									alt={product.name}
+									class='size-9'
+								/>
+								<span class='mr-2'>{product.name}</span>
+							</a>
+						))
+					}
+				</div>
+			</div>
+
+			<div class='font-medium text-lg'>
+				I team up with founders and business owners. We build MVPs, full
+				products, or fix broken experiences. Design to code, we do it all.
+			</div>
+
+			<div class='font-medium text-lg'>
+				Want to chat?
+				<a
+					href='https://cal.com/imsanju/15min'
+					target='_blank'
+					class='underline underline-offset-2'>
+					schedule a call
+				</a>
 			</div>
 		</div>
 	</RootLayout>
