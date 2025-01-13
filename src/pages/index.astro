@@ -1,13 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
 import { products, SITE_TITLE } from '@data/index';
 import { SITE_DESCRIPTION } from '@data/index';
 import RootLayout from '@layouts/root-layout.astro';
-
-const whoami = await getCollection('whoami');
-const whoamiData = whoami[0].data;
 ---
 
 <!doctype html>
@@ -31,7 +27,7 @@ const whoamiData = whoami[0].data;
 				<span class='text-gray-500'>designer founder</span>
 			</h1>
 
-			<div class='font-medium text-lg'>
+			<div class='font-medium text-lg text-gray-700'>
 				I run <a
 					href='https://thisux.com'
 					target='_blank'
@@ -41,7 +37,7 @@ const whoamiData = whoami[0].data;
 				wore many hats. Now I’m doing my own thing.
 			</div>
 
-			<div class='font-medium text-lg'>
+			<div class='font-medium text-lg text-gray-700'>
 				I work on ideas like
 				<div class='flex flex-wrap gap-2 mt-5'>
 					{
@@ -62,12 +58,12 @@ const whoamiData = whoami[0].data;
 				</div>
 			</div>
 
-			<div class='font-medium text-lg'>
+			<div class='font-medium text-lg text-gray-700'>
 				I team up with founders and business owners. We build MVPs, full
 				products, or fix broken experiences. Design to code, we do it all.
 			</div>
 
-			<div class='font-medium text-lg'>
+			<div class='font-medium text-lg text-gray-700'>
 				Want to chat?
 				<a
 					href='https://cal.com/imsanju/15min'
