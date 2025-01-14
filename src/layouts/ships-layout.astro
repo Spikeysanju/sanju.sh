@@ -8,7 +8,7 @@ import { clsx } from '@utils/index';
 
 type Props = CollectionEntry<'writing'>['data'];
 
-const { title, description, pubDate } = Astro.props;
+const { title, description, pubDate, readingTime } = Astro.props;
 ---
 
 <html lang='en'>
@@ -33,9 +33,15 @@ const { title, description, pubDate } = Astro.props;
 					class='w-full text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight'>
 					{title}
 				</h1>
-				<p class='w-full text-start text-gray-500 font-medium'>
-					<FormattedDate date={pubDate.toString()} />
-				</p>
+				<div class='flex flex-row gap-2 w-full'>
+					<p class='text-start text-gray-500 font-medium'>
+						<FormattedDate date={pubDate.toString()} />
+					</p>
+					<span class='text-gray-500 font-medium'>·</span>
+					<p class='text-start text-gray-500 font-medium'>
+						{readingTime} min read
+					</p>
+				</div>
 				<p
 					class='w-full text-start font-medium text-gray-700 dark:text-gray-300 text-lg'>
 					<span class='font-semibold'>tl;dr: </span>

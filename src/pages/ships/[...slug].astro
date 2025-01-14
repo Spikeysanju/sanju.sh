@@ -2,6 +2,7 @@
 import ShipsLayout from '@layouts/ships-layout.astro';
 import { ScrollProgress } from '@components/misc';
 import { type CollectionEntry, getCollection } from 'astro:content';
+import { getReadingTime } from '@utils/index';
 
 const posts = await getCollection('ship');
 type Props = CollectionEntry<'ship'>;
@@ -12,9 +13,10 @@ const post = posts.find((page) => page.slug === slug);
 if (!post) return Astro.redirect('/404');
 
 const { Content } = await post.render();
----
+const readingTime = getReadingTime(post.body);
 
-<ShipsLayout {...post.data}>
+---
+<ShipsLayout {...post.data} readingTime={readingTime}>
 	<Content />
 	<ScrollProgress />
 </ShipsLayout>

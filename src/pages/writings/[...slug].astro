@@ -2,7 +2,7 @@
 import WritingLayout from '@layouts/writing-layout.astro';
 import { ScrollProgress } from '@components/misc';
 import { type CollectionEntry, getCollection } from 'astro:content';
-
+import { getReadingTime } from '@utils/index';
 const posts = await getCollection('writing');
 type Props = CollectionEntry<'writing'>;
 
@@ -12,9 +12,11 @@ const post = posts.find((page) => page.slug === slug);
 if (!post) return Astro.redirect('/404');
 
 const { Content } = await post.render();
+
+const readingTime = getReadingTime(post.body);
 ---
 
-<WritingLayout {...post.data}>
+<WritingLayout {...post.data} readingTime={readingTime}>
 	<Content />
 	<ScrollProgress />
 </WritingLayout>

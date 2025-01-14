@@ -116,3 +116,10 @@ export function getBackgroundColorClass(bg_colour: string): string {
 					return 'bg-gray-100';
 			}
 }
+
+export function getReadingTime(text: string) {
+	const wordsPerMinute = 200;
+	const words = text.trim().split(/\s+/).length;
+	const minutes = Math.ceil(words / wordsPerMinute);
+	return minutes;
+}

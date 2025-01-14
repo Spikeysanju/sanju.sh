@@ -10,6 +10,7 @@ const whoami = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
+		readingTime: z.number().optional(),
 	}),
 });
 
@@ -23,6 +24,7 @@ const writing = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
+		readingTime: z.number().optional(),
 	}),
 });
 
@@ -36,6 +38,7 @@ const thought = defineCollection({
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
+		readingTime: z.number().optional(),
 	}),
 });
 
@@ -50,6 +53,7 @@ const ship = defineCollection({
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
+		readingTime: z.number().optional(),
 	}),
 });
 
