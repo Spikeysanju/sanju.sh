@@ -13,6 +13,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/images/ogimage.png' } = Astro.props;
 ---
 
+<!-- Add this before other head content -->
+<script is:inline>
+	const theme = (() => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme') || 'light';
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark';
+		}
+		return 'light';
+	})();
+
+	if (theme === 'dark') {
+		document.documentElement.classList.add('dark');
+	} else {
+		document.documentElement.classList.remove('dark');
+	}
+</script>
+
 <!-- umami analytics -->{
 	import.meta.env.PROD && (
 		<script
