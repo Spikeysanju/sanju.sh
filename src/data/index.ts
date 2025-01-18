@@ -63,3 +63,22 @@ export const products = [
 		image: "/products/duntasks.png",
 	},
 ];
+
+export const socialLinks = [
+	{
+		label: "@x",
+		url: "https://x.com/sanjus",
+	},
+	{
+		label: "github",
+		url: "https://github.com/spikeysanju",
+	},
+	{
+		label: "linkedin",
+		url: "https://www.linkedin.com/in/imsanju",
+	},
+	{
+		label: "email",
+		url: "mailto:work@sanju.sh",
+	},
+];

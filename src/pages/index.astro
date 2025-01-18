@@ -2,7 +2,7 @@
 import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
 import { products, SITE_TITLE } from '@data/index';
-import { SITE_DESCRIPTION } from '@data/index';
+import { SITE_DESCRIPTION, socialLinks } from '@data/index';
 import RootLayout from '@layouts/root-layout.astro';
 ---
 
@@ -19,7 +19,7 @@ import RootLayout from '@layouts/root-layout.astro';
 	<RootLayout>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl lowercase'>
+			class='flex flex-col w-full gap-6 max-w-xl lowercase items-center justify-between'>
 			<Header />
 			<h1
 				class='w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]'>
@@ -27,51 +27,71 @@ import RootLayout from '@layouts/root-layout.astro';
 				<span class='text-gray-500 dark:text-gray-400'>designer founder</span>
 			</h1>
 
-			<div class='flex flex-col gap-4'>
-				<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>
-					I run <a
-						href='https://thisux.com'
-						target='_blank'
-						class='underline underline-offset-2'
-						>ThisUX</a
-					>, a design-led product studio. We make things that work. For years, I
-					wore many hats. Now I’m doing my own thing.
-				</div>
+			<div
+				id='content'
+				class='flex flex-col gap-4 w-full min-h-[calc(100vh-200px)] justify-between'>
+				<div
+					id='about'
+					class='flex flex-col gap-4'>
+					<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>
+						I run <a
+							href='https://thisux.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>ThisUX</a
+						>, a design-led product studio. We make things that work. For years,
+						I wore many hats. Now I’m doing my own thing.
+					</div>
 
-				<div class='font-medium text-lg text-gray-700 dark:text-gray-300'>
-					I work on ideas like
-					<div class='flex flex-wrap gap-2 mt-5'>
-						{
-							products.map((product) => (
-								<a
-									href={product.url}
-									target='_blank'
-									class='p-2 rounded-full gap-2 flex-wrap hover:rotate-1 hover:scale-105 transition-all duration-300 flex items-center justify-center bg-gray-100 hover:bg-gray-200 dark:bg-[#1F1F1F] dark:hover:bg-[#2F2F2F]'>
-									<img
-										src={product.image}
-										alt={product.name}
-										class='size-9'
-									/>
-									<span class='mr-2'>{product.name}</span>
-								</a>
-							))
-						}
+					<div class='font-medium text-lg text-gray-700 dark:text-gray-300'>
+						I work on ideas like
+						<div class='flex flex-wrap gap-2 mt-5'>
+							{
+								products.map((product) => (
+									<a
+										href={product.url}
+										target='_blank'
+										class='p-2 rounded-full gap-2 flex-wrap hover:rotate-1 hover:scale-105 transition-all duration-300 flex items-center justify-center bg-gray-100 hover:bg-gray-200 dark:bg-[#1F1F1F] dark:hover:bg-[#2F2F2F]'>
+										<img
+											src={product.image}
+											alt={product.name}
+											class='size-9'
+										/>
+										<span class='mr-2'>{product.name}</span>
+									</a>
+								))
+							}
+						</div>
+					</div>
+
+					<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>
+						I team up with founders and business owners. We build MVPs, full
+						products, or fix broken experiences. Design to code, we do it all.
+					</div>
+
+					<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>
+						Want to chat?
+						<a
+							href='https://cal.com/imsanju/15min'
+							target='_blank'
+							class='underline underline-offset-2'>
+							schedule a call
+						</a>
 					</div>
 				</div>
 
-				<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>
-					I team up with founders and business owners. We build MVPs, full
-					products, or fix broken experiences. Design to code, we do it all.
-				</div>
-
-				<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>
-					Want to chat?
-					<a
-						href='https://cal.com/imsanju/15min'
-						target='_blank'
-						class='underline underline-offset-2'>
-						schedule a call
-					</a>
+				<div
+					id='social-links'
+					class='flex flex-row gap-4 justify-center w-full pb-12'>
+					{
+						socialLinks.map((link) => (
+							<a
+								href={link.url}
+								class='text-lg font-medium hover:underline underline-offset-2 text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'>
+								{link.label}
+							</a>
+						))
+					}
 				</div>
 			</div>
 		</div>
