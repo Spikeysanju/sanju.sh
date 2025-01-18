@@ -67,7 +67,7 @@ export const products = [
 export const socialLinks = [
 	{
 		label: "@x",
-		url: "https://x.com/sanjus",
+		url: "https://x.com/spikeysanju",
 	},
 	{
 		label: "email",
