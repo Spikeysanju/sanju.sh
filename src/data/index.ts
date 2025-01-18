@@ -70,15 +70,15 @@ export const socialLinks = [
 		url: "https://x.com/sanjus",
 	},
 	{
+		label: "email",
+		url: "mailto:work@sanju.sh",
+	},
+	{
 		label: "github",
 		url: "https://github.com/spikeysanju",
 	},
 	{
 		label: "linkedin",
 		url: "https://www.linkedin.com/in/imsanju",
-	},
-	{
-		label: "email",
-		url: "mailto:work@sanju.sh",
 	},
 ];
