@@ -8,7 +8,7 @@ export interface MenuItem {
 
 export const menuItems: MenuItem[] = [
 	{
-		label: "home",
+		label: "sanju",
 		url: "/",
 	},
 	{

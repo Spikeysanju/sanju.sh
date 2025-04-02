@@ -19,7 +19,7 @@ const { title, cta_label, bg_colour, xHandle, link }: Props = Astro.props;
 	)}>
 	<div class='w-full flex flex-col gap-3'>
 		<h5
-			class='text-[#333333] dark:text-[#333333] font-medium w-full sm:text-xl md:text-2xl leading-tight'>
+			class='text-gray-950 dark:text-gray-950 font-medium w-full sm:text-xl md:text-2xl leading-tight'>
 			{title}
 		</h5>
 
@@ -28,7 +28,7 @@ const { title, cta_label, bg_colour, xHandle, link }: Props = Astro.props;
 			id='button-schedule-meeting'
 			data-umami-event={link ? `cta-custom-link-${cta_label}` : 'cta-schedule-meeting'}
 			class={clsx(
-				'bg-gray-900 text-white font-medium py-2 px-4 rounded-full w-fit'
+				'bg-gray-950 text-white font-medium py-2 px-4 rounded-full w-fit'
 			)}
 			onclick={`window.open('${link || 'https://cal.com/imsanju/15min'}', '_blank')`}>
 			{cta_label}
@@ -42,13 +42,6 @@ const { title, cta_label, bg_colour, xHandle, link }: Props = Astro.props;
 				Email me
 			</button>
 
-			<!-- <button
-				id='button-x'
-				data-umami-event='cta-x'
-				class='text-black font-medium py-2 px-4 rounded-full w-fit underline underline-offset-2'
-				onclick={`window.open('https://x.com/${xHandle || 'spikeysanju'}', '_blank')`}>
-				Follow on X
-			</button> -->
 		</div>
 	</div>
 </div>

@@ -8,7 +8,7 @@ import { clsx } from '@utils/index';
 
 type Props = CollectionEntry<'thought'>['data'];
 
-const { title, description, pubDate, readingTime } = Astro.props;
+const { title, description, showTldr, pubDate, readingTime } = Astro.props;
 ---
 
 <html lang='en'>
@@ -43,12 +43,15 @@ const { title, description, pubDate, readingTime } = Astro.props;
 					</p>
 				</div>
 
-				<p
-					class='w-full text-start font-medium text-gray-700 dark:text-gray-300 text-lg leading-relaxed'>
-					<span class='font-semibold'>tl;dr: </span>
-					{description}
-				</p>
-
+				{
+				showTldr && (
+					<p
+						class='w-full text-start font-medium text-gray-700 dark:text-gray-300 text-lg leading-relaxed'>
+						<span class='font-semibold'>tl;dr: </span>
+						{description}
+					</p>
+				)
+				}
 				<div
 					class={clsx(
 						'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline  items-center justify-center',

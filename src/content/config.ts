@@ -35,6 +35,7 @@ const thought = defineCollection({
 		title: z.string(),
 		description: z.string(),
 		category: z.string(),
+		showTldr: z.boolean().optional(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
