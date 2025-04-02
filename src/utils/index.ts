@@ -38,6 +38,8 @@ export function getCategoryColor(category: string): string {
       return "bg-red-400";
     case "tools":
       return "bg-cyan-300";
+    case "work":
+      return "bg-teal-300";
     default:
       return "bg-gray-300";
   }
