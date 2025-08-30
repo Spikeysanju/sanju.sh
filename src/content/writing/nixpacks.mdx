@@ -1,0 +1,116 @@
+---
+title: "Nixpacks is godsent"
+description: "Nixpacks automatically builds Docker images for your projects without any configuration. No more Dockerfile headaches or build debugging. It just works."
+pubDate: 'Aug 30 2025'
+updatedDate: 'Aug 30 2025'
+---
+
+I don't usually get excited about development tools, but Nixpacks has completely changed how I work with containers.
+
+For years, I've been writing Dockerfiles by hand for every project - figuring out dependencies, setting up build steps, and fixing cache problems at the worst possible times. Every new project meant starting over with a fresh Dockerfile, and managing multiple apps in one repository became a nightmare.
+
+Last week, I finally gave Nixpacks a try. The results were amazing.
+
+## What is Nixpacks?
+
+Nixpacks is a smart tool that builds Docker images for your projects without you having to write any Dockerfile code. It looks at your code, figures out what technology you're using, and creates the right container image automatically.
+
+## How I used it
+
+The setup was incredibly simple. I just pointed Nixpacks at my code and ran this command:
+
+```bash
+nixpacks build . --name duntasks
+```
+
+That's it. No Dockerfile to write, no dependencies to configure, no build problems to solve.
+
+The tool saw I was using Node.js, found all the right packages, ran the install and build steps, and gave me a working image. It was that straightforward.
+
+## The "plan" feature is brilliant
+
+What really impressed me was how transparent it is. Instead of just creating a Dockerfile, I could see exactly what it was going to do first by running:
+
+```bash
+nixpacks plan . 
+```
+
+This showed me the complete build strategy. For my personal website project, it gave me this detailed plan:
+
+```bash
+{
+  "providers": [],
+  "buildImage": "ghcr.io/railwayapp/nixpacks:ubuntu-1716249803",
+  "variables": {
+    "CI": "true",
+    "NIXPACKS_METADATA": "node",
+    "NODE_ENV": "production",
+    "NPM_CONFIG_PRODUCTION": "false"
+  },
+  "phases": {
+    "build": {
+      "dependsOn": [
+        "install"
+      ],
+      "cmds": [
+        "bun run build"
+      ],
+      "cacheDirectories": [
+        "node_modules/.cache"
+      ]
+    },
+    "install": {
+      "dependsOn": [
+        "setup"
+      ],
+      "cmds": [
+        "npm ci"
+      ],
+      "cacheDirectories": [
+        "/root/.bun"
+      ],
+      "paths": [
+        "/app/node_modules/.bin"
+      ]
+    },
+    "setup": {
+      "nixPkgs": [
+        "nodejs_18",
+        "bun"
+      ],
+      "nixLibs": [
+        "gcc-unwrapped"
+      ],
+      "nixOverlays": [
+        "https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz"
+      ],
+      "nixpkgsArchive": "bf446f08bff6814b569265bef8374cfdd3d8f0e0"
+    }
+  },
+  "start": {
+    "cmd": "bun run start"
+  }
+}
+```
+
+It showed me every step it planned to take - setup, install, build, and start - with complete clarity. No surprises, no hidden steps, just clear and predictable execution.
+
+## Monorepo optimization
+
+This is where Nixpacks really shines. I have both client and server apps in one repository, which usually means managing multiple Dockerfiles and keeping them in sync.
+
+With Nixpacks, it's just two commands:
+
+```bash
+nixpacks build apps/client --name web
+nixpacks build apps/server --name api
+```
+
+Two separate Docker images, each built for their specific needs, created independently without any configuration copying or sync issues.
+
+## My take
+
+Nixpacks solved problems I didn't even realize I had. No more Dockerfile headaches, no more build debugging sessions, no more "works on my machine" issues.
+
+Now I can focus on what matters. Shipping faster, building POCs, and helping teams move fast. It just works. And that's exactly what I needed.
+
