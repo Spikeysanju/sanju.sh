@@ -1,0 +1,56 @@
+---
+import { Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { tools } from '@data/index';
+import RootLayout from '@layouts/root-layout.astro';
+import GhostUrl from '@components/tools/ghost-url.astro';
+
+const { slug } = Astro.params;
+const tool = tools.find((t) => t.slug === slug);
+
+if (!tool) return Astro.redirect('/404');
+
+// Map slug to component
+const toolComponents: Record<string, any> = {
+	ghosturl: GhostUrl,
+};
+
+const ToolComponent = toolComponents[tool.slug];
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<BaseHead
+			title={tool.name}
+			description={tool.description}
+			image='/images/ogimage.png'
+		/>
+	</head>
+
+	<RootLayout>
+		<div
+			id='navbar+title'
+			class='flex flex-col w-full gap-6 max-w-xl'>
+			<Header />
+
+			<article
+				id='tool-content'
+				class='w-full flex flex-col gap-6 items-center justify-center'>
+				<h1
+					class='w-full text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight'>
+					{tool.name}
+				</h1>
+				<p
+					class='w-full text-start font-medium text-gray-700 dark:text-gray-300 text-lg'>
+					{tool.description}
+				</p>
+
+				<div class='w-full'>
+					<ToolComponent />
+				</div>
+			</article>
+		</div>
+	</RootLayout>
+</html>
+

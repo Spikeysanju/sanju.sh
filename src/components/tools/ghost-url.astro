@@ -1,0 +1,95 @@
+<script>
+	const inputUrl = document.getElementById('input-url') as HTMLInputElement;
+	const convertBtn = document.getElementById(
+		'convert-btn'
+	) as HTMLButtonElement;
+	const outputContainer = document.getElementById(
+		'output-container'
+	) as HTMLDivElement;
+	const outputUrl = document.getElementById('output-url') as HTMLDivElement;
+	const copyStatus = document.getElementById('copy-status') as HTMLSpanElement;
+
+	function insertZeroWidthSpaces(text: string): string {
+		// Insert zero-width space (U+200B) between each character
+		return text.split('').join('\u200B');
+	}
+
+	convertBtn?.addEventListener('click', () => {
+		const input = inputUrl?.value.trim();
+		if (!input) {
+			alert('Please enter a URL');
+			return;
+		}
+
+		const ghostUrl = insertZeroWidthSpaces(input);
+		outputUrl.textContent = ghostUrl;
+		outputContainer?.classList.remove('hidden');
+		outputContainer?.classList.add('flex');
+	});
+
+	outputUrl?.addEventListener('click', async () => {
+		const text = outputUrl.textContent || '';
+		try {
+			await navigator.clipboard.writeText(text);
+			copyStatus?.classList.remove('hidden');
+			setTimeout(() => {
+				copyStatus?.classList.add('hidden');
+			}, 2000);
+		} catch (err) {
+			console.error('Failed to copy:', err);
+			alert('Failed to copy to clipboard');
+		}
+	});
+
+	// Also allow pressing Enter in the input field
+	inputUrl?.addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') {
+			convertBtn?.click();
+		}
+	});
+</script>
+
+<div class='flex flex-col gap-6 w-full'>
+	<div class='flex flex-col gap-2'>
+		<label
+			for='input-url'
+			class='text-sm font-medium text-gray-700 dark:text-gray-300'>
+			Paste your URL
+		</label>
+		<input
+			type='text'
+			id='input-url'
+			placeholder='https://example.com'
+			class='w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400'
+		/>
+	</div>
+
+	<button
+		id='convert-btn'
+		class='w-full px-4 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white font-medium transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400'>
+		Convert to Ghost URL
+	</button>
+
+	<div
+		id='output-container'
+		class='hidden flex-col gap-2'>
+		<div class='flex flex-row items-center justify-between'>
+			<label class='text-sm font-medium text-gray-700 dark:text-gray-300'>
+				Ghost URL (click to copy)
+			</label>
+			<span
+				id='copy-status'
+				class='text-sm font-medium text-green-600 dark:text-green-400 hidden'>
+				Copied!
+			</span>
+		</div>
+		<div
+			id='output-url'
+			class='w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-medium cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-150 break-all'>
+		</div>
+		<p class='text-xs text-gray-500 dark:text-gray-400'>
+			The URL now contains zero-width spaces (U+200B) between each character. It
+			looks the same but won't auto-link on most platforms.
+		</p>
+	</div>
+</div>

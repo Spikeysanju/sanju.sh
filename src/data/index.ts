@@ -20,8 +20,8 @@ export const menuItems: MenuItem[] = [
 		url: "/thoughts",
 	},
 	{
-		label: "ships",
-		url: "/ships",
+		label: "tools",
+		url: "/tools",
 	},
 ];
 
@@ -80,5 +80,21 @@ export const socialLinks = [
 	{
 		label: "linkedin",
 		url: "https://www.linkedin.com/in/imsanju",
+	},
+];
+
+export interface Tool {
+	id: string;
+	name: string;
+	description: string;
+	slug: string;
+}
+
+export const tools: Tool[] = [
+	{
+		id: "ghosturl",
+		name: "GhostURL",
+		description: "Zero-width link de-punisher. Paste a link, get the same-looking text with zero-width spaces added.",
+		slug: "ghosturl",
 	},
 ];

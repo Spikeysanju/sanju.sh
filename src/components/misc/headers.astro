@@ -5,10 +5,7 @@ import { menuItems } from '@data/index';
 ---
 
 <div class='flex flex-row justify-between items-center w-full'>
-
-
-
-<div class='flex flex-row gap-3 font-medium text-black items-start'>
+	<div class='flex flex-row gap-3 font-medium text-black items-start'>
 		{
 			menuItems.map((item) => (
 				<HeaderLink href={item.url}>{item.label}</HeaderLink>

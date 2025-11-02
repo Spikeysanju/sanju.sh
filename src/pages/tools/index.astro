@@ -1,0 +1,36 @@
+---
+import { ToolItem } from '@components/cards';
+import { Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { tools } from '@data/index';
+import RootLayout from '@layouts/root-layout.astro';
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<BaseHead
+			title='Tools'
+			description='Interactive tools and utilities I built to solve everyday problems'
+			image='/images/ogimage.png'
+		/>
+	</head>
+	<RootLayout>
+		<div
+			id='Header+title'
+			class='flex flex-col w-full gap-6 max-w-xl'>
+			<Header />
+			<h1 class='w-full text-7xl font-medium tracking-tight'>tools</h1>
+
+			{
+				tools.map((tool) => (
+					<ToolItem
+						name={tool.name}
+						description={tool.description}
+						slug={tool.slug}
+					/>
+				))
+			}
+		</div>
+	</RootLayout>
+</html>
