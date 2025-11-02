@@ -94,7 +94,7 @@ export const tools: Tool[] = [
 	{
 		id: "ghosturl",
 		name: "GhostURL",
-		description: "Zero-width link de-punisher. Paste a link, get the same-looking text with zero-width spaces added.",
+		description: "Paste a link, get the same-looking text with invisible zero-width spaces. It looks normal, but it’s not clickable or detectable.",
 		slug: "ghosturl",
 	},
 ];
