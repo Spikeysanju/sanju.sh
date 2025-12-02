@@ -23,7 +23,6 @@ export const menuItems: MenuItem[] = [
 		label: "tools",
 		url: "/tools",
 	},
-	
 ];
 
 export const title = "Sanju's Space";
