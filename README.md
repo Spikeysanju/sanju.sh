@@ -11,6 +11,7 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 - **writings**: a collection of my blog posts and articles
 - **thoughts**: a place for me to share my random thoughts and ideas (more like tweets or quotes)
 - **ships**: a list of projects that i've worked on or contributed to (github style commit graph will be generated based on the things i've worked on)
+- **og**: a resource page for event organizers with speaker bio, extended bio, and downloadable headshot image
 
 ## 🛠️ tech stack
 - **astro**: static site generator
