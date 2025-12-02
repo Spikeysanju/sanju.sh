@@ -16,15 +16,15 @@
 		"@astrojs/check": "^0.5.10",
 		"@astrojs/cloudflare": "^9.2.1",
 		"@astrojs/mdx": "^2.3.1",
-		"@astrojs/rss": "^4.0.12",
-		"@astrojs/sitemap": "^3.5.1",
+		"@astrojs/rss": "^4.0.14",
+		"@astrojs/sitemap": "^3.6.0",
 		"@astrojs/tailwind": "^5.1.5",
 		"astro": "^4.16.19",
-		"tailwindcss": "^3.4.17",
-		"typescript": "^5.9.2"
+		"tailwindcss": "^3.4.18",
+		"typescript": "^5.9.3"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.2",
-		"@tailwindcss/typography": "^0.5.16"
+		"@tailwindcss/typography": "^0.5.19"
 	}
 }

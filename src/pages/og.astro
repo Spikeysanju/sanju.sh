@@ -1,0 +1,250 @@
+---
+import { Header } from '@components/misc';
+import { BaseHead } from '@components/seo';
+import { SITE_TITLE, SITE_DESCRIPTION, socialLinks } from '@data/index';
+import RootLayout from '@layouts/root-layout.astro';
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<BaseHead
+			title={`${SITE_TITLE} - About`}
+			description={SITE_DESCRIPTION}
+			image='/images/ogimage.png'
+		/>
+	</head>
+
+	<RootLayout>
+		<div
+			id='og-page'
+			class='flex flex-col w-full gap-12 max-w-xl lowercase'>
+			<Header />
+			
+			<!-- Hero Section -->
+			<div
+				id='hero'
+				class='flex flex-col gap-6'>
+				<div class='flex flex-col sm:flex-row items-start sm:items-center gap-6'>
+					<div class='relative group'>
+						<img
+							id='headshot-image'
+							src='https://github.com/spikeysanju.png'
+							alt='Sanju Sivalingam headshot'
+							class='w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-2 border-white flex-shrink-0 transition-opacity duration-300 group-hover:opacity-75'
+						/>
+						<button
+							id='download-headshot'
+							class='absolute inset-0 flex items-center justify-center rounded-full bg-black/60 dark:bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer'>
+							<span class='text-white font-medium text-sm px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm'>
+								download
+							</span>
+						</button>
+					</div>
+					<div class='flex flex-col gap-2'>
+						<h1
+							class='text-[min(10vw,64px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-3px]'>
+							sanju sivalingam
+						</h1>
+						<p class='text-xl font-medium text-gray-500 dark:text-gray-400'>
+							designer · founder
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Bio Section -->
+			<div
+				id='bio'
+				class='flex flex-col gap-6'>
+				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+					bio
+				</h2>
+				<div class='flex flex-col gap-4'>
+					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+						Sanju Sivalingam is a designer and founder who runs <a
+							href='https://thisux.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>ThisUX</a
+						>, a design-led product studio. He builds products that actually work and helps other founders turn their ideas into reality. He's also big on open source and loves sharing what he learns along the way.
+					</p>
+				</div>
+			</div>
+
+			<!-- Extended Bio Section -->
+			<div
+				id='extended-bio'
+				class='flex flex-col gap-6'>
+				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+					extended bio
+				</h2>
+				<div class='flex flex-col gap-4'>
+					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+						Sanju Sivalingam is the founder of ThisUX, a design-led product studio that helps startups and businesses build products that actually work. He's been in the game for a while, wearing many hats along the way, and now he's focused on building his own thing.
+					</p>
+					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+						He works with founders and business owners to build everything from MVPs to full products, or sometimes just fixes what's broken. The approach is simple: design to code, he handles it all. The secret? Creating systems that work, no matter what technology or problem you're dealing with.
+					</p>
+					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+						When he's not building products, he's contributing to <a
+							href='https://github.com/spikeysanju'
+							target='_blank'
+							class='underline underline-offset-2'
+							>open source projects</a
+						> and speaking at conferences. He believes in sharing knowledge and helping others learn from his experiences.
+					</p>
+					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+						He's currently working on several projects including <a
+							href='https://dunsuite.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>Dun</a
+						>, <a
+							href='https://fli.so'
+							target='_blank'
+							class='underline underline-offset-2'
+							>Fli</a
+						>, <a
+							href='https://uiino.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>Uiino</a
+						>, <a
+							href='https://sticai.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>SticAI</a
+						>, <a
+							href='https://abogrow.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>aboGrow</a
+						>, <a
+							href='https://ffmpeg.info'
+							target='_blank'
+							class='underline underline-offset-2'
+							>ffmpeg info</a
+						>, <a
+							href='https://glance.sticai.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>Glance</a
+						>, and <a
+							href='https://spotlight.thisux.com'
+							target='_blank'
+							class='underline underline-offset-2'
+							>Spotlight</a
+						>. He's always tinkering with new ideas and building things.
+					</p>
+				</div>
+			</div>
+
+			<!-- Contact Section -->
+			<div
+				id='contact'
+				class='flex flex-col gap-6'>
+				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+					contact
+				</h2>
+				<p class='font-medium text-xl text-gray-700 dark:text-gray-300'>
+					Want to chat?
+					<a
+						href='https://cal.com/imsanju/15min'
+						target='_blank'
+						class='underline underline-offset-2'>
+						schedule a call
+					</a>
+					or
+					<a
+						href='mailto:work@sanju.sh?subject=Let\'s%20Collaborate&body=Hi%20Sanju,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20a%20potential%20collaboration%20with%20you.%0D%0A%0D%0ABest%20regards,%0D%0A%5BYour%20Name%5D'
+						class='underline underline-offset-2'>
+						drop me a line
+					</a>
+				</p>
+			</div>
+
+			<!-- Social Links Section -->
+			<div
+				id='social-links'
+				class='flex flex-col gap-6 pt-6 border-t border-gray-200 dark:border-gray-800'>
+				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+					find me
+				</h2>
+				<div class='flex flex-row gap-6 flex-wrap'>
+					{
+						socialLinks.map((link) => (
+							<a
+								href={link.url}
+								target={link.url.startsWith('mailto:') ? undefined : '_blank'}
+								class='text-xl font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:underline underline-offset-2 transition-colors'>
+								{link.label}
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</RootLayout>
+
+	<script is:inline>
+		document.addEventListener('DOMContentLoaded', () => {
+			const downloadButton = document.getElementById('download-headshot');
+			const headshotImage = document.getElementById('headshot-image');
+			
+			if (downloadButton && headshotImage && headshotImage instanceof HTMLImageElement) {
+				downloadButton.addEventListener('click', async (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					
+					try {
+						const imageUrl = headshotImage.src;
+						
+						// Create a canvas to handle the image download
+						const canvas = document.createElement('canvas');
+						const ctx = canvas.getContext('2d');
+						
+						if (!ctx) {
+							throw new Error('Could not get canvas context');
+						}
+						
+						// Set canvas dimensions to match image
+						canvas.width = headshotImage.naturalWidth || headshotImage.width;
+						canvas.height = headshotImage.naturalHeight || headshotImage.height;
+						
+						// Draw the image onto canvas
+						ctx.drawImage(headshotImage, 0, 0);
+						
+						// Convert canvas to blob and download
+						canvas.toBlob((blob) => {
+							if (blob) {
+								const url = window.URL.createObjectURL(blob);
+								const a = document.createElement('a');
+								a.href = url;
+								a.download = 'sanju-sivalingam-headshot.jpg';
+								document.body.appendChild(a);
+								a.click();
+								document.body.removeChild(a);
+								window.URL.revokeObjectURL(url);
+							} else {
+								// Fallback: try direct download if canvas fails
+								const a = document.createElement('a');
+								a.href = imageUrl;
+								a.download = 'sanju-sivalingam-headshot.jpg';
+								a.target = '_blank';
+								document.body.appendChild(a);
+								a.click();
+								document.body.removeChild(a);
+							}
+						}, 'image/jpeg', 0.95);
+					} catch (error) {
+						console.error('Error downloading image:', error);
+						// Fallback: open image in new tab
+						window.open(headshotImage.src, '_blank');
+					}
+				});
+			}
+		});
+	</script>
+</html>
+
