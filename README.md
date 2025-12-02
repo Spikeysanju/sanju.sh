@@ -1,6 +1,6 @@
 ![ A website with the title "Sanju's internet space" and navigation links for "home", "writing", "thoughts", and "ships".](https://github.com/Spikeysanju/sanju.sh/assets/23400022/ff3120ee-281b-4607-995e-bc2e8f9edef6)
 
-# 🌐 sanju's – internet space
+# 🌐 sanju.sh – internet space
 hey! this is my personal corner on the web where I share my thoughts, ideas, and projects. feel free to explore and contact me if you have any questions or just want to chat. 
 
 ## 📖 about project
