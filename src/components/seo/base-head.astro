@@ -35,10 +35,9 @@ const { title, description, image = '/images/ogimage.png' } = Astro.props;
 <!-- umami analytics -->{
 	import.meta.env.PROD && (
 		<script
-			async
 			defer
-			data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
 			src={import.meta.env.UMAMI_TRACKING_URL}
+			data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
 		/>
 	)
 }
