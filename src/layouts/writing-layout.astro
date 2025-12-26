@@ -9,8 +9,6 @@ import { clsx } from '@utils/index';
 type Props = CollectionEntry<'writing'>['data'];
 
 const { title, description, pubDate, heroImage, readingTime } = Astro.props;
-
-const ogImageUrl = `/api/og.png?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
 ---
 
 <html lang='en'>
@@ -18,7 +16,7 @@ const ogImageUrl = `/api/og.png?title=${encodeURIComponent(title)}&description=$
 		<BaseHead
 			title={title}
 			description={description}
-			image={ogImageUrl}
+			image='/images/ogimage.png'
 		/>
 	</head>
 
