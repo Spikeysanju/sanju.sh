@@ -1,0 +1,86 @@
+---
+
+---
+
+<div class="commit-compare-wrapper my-8 not-prose">
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+		<!-- Bad Commit -->
+		<div class="bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden">
+			<div class="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600">
+				<div class="flex gap-1.5">
+					<div class="w-3 h-3 rounded-full bg-red-400"></div>
+					<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+					<div class="w-3 h-3 rounded-full bg-green-400"></div>
+				</div>
+				<span class="text-xs text-gray-500 dark:text-gray-400 ml-2">commit message</span>
+			</div>
+			<div class="p-4">
+				<div class="flex items-center gap-2 mb-3">
+					<img src="https://avatars.githubusercontent.com/u/23400022?v=4" alt="sanju" class="w-6 h-6 rounded-full" />
+					<span class="text-xs text-gray-500 dark:text-gray-400">sanju committed 3 hours ago</span>
+				</div>
+				<div class="font-mono text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
+					Fixed bug
+				</div>
+				<div class="mt-3 flex items-center gap-4 text-xs text-gray-400">
+					<span class="flex items-center gap-1">
+						<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+						</svg>
+						1 file changed
+					</span>
+					<span class="text-green-500">+2</span>
+					<span class="text-red-500">-1</span>
+				</div>
+			</div>
+			<div class="px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-700">
+				<p class="text-xs text-gray-400">6 months later: "Why did we change this?"</p>
+				<p class="text-xs text-red-400 mt-1">Good luck figuring that out.</p>
+			</div>
+		</div>
+
+		<!-- Good Commit -->
+		<div class="bg-gray-900 dark:bg-gray-950 rounded-xl overflow-hidden">
+			<div class="flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
+				<div class="flex gap-1.5">
+					<div class="w-3 h-3 rounded-full bg-red-400"></div>
+					<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+					<div class="w-3 h-3 rounded-full bg-green-400"></div>
+				</div>
+				<span class="text-xs text-gray-500 ml-2">commit message</span>
+			</div>
+			<div class="p-4">
+				<div class="flex items-center gap-2 mb-3">
+					<img src="https://avatars.githubusercontent.com/u/23400022?v=4" alt="sanju" class="w-6 h-6 rounded-full" />
+					<span class="text-xs text-gray-500">sanju committed 3 hours ago</span>
+				</div>
+				<div class="font-mono text-sm text-gray-200 bg-gray-800 rounded-lg p-3 border border-gray-700">
+					<p class="text-green-400 font-medium">fix(auth): increase session timeout to 60min</p>
+					<p class="text-gray-400 mt-2 text-xs leading-relaxed">
+						Users on slow connections were getting dropped at 30min.
+						<br />Support tickets up 23% this month from timeout issues.
+						<br />
+						<br />Discussed with security team - low risk given we
+						<br />already have refresh token rotation.
+						<br />
+						<br />Closes #234
+					</p>
+				</div>
+				<div class="mt-3 flex items-center gap-4 text-xs text-gray-500">
+					<span class="flex items-center gap-1">
+						<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+						</svg>
+						1 file changed
+					</span>
+					<span class="text-green-500">+2</span>
+					<span class="text-red-500">-1</span>
+				</div>
+			</div>
+			<div class="px-4 py-3 bg-gray-950 border-t border-gray-800">
+				<p class="text-xs text-gray-500">6 months later: "Why did we change this?"</p>
+				<p class="text-xs text-green-400 mt-1">You already know.</p>
+			</div>
+		</div>
+	</div>
+</div>

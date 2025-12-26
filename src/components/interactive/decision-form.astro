@@ -1,0 +1,160 @@
+---
+
+---
+
+<div class="decision-form-wrapper my-8 not-prose">
+	<div class="bg-gray-100 dark:bg-neutral-800 rounded-xl p-6">
+		<h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Try it yourself</h4>
+
+		<div class="space-y-4">
+			<div>
+				<label for="what-happened" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+					What happened
+				</label>
+				<input
+					type="text"
+					id="what-happened"
+					placeholder="e.g., Gave 20% discount"
+					class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-neutral-300"
+				/>
+			</div>
+
+			<div>
+				<label for="why" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+					Why
+				</label>
+				<textarea
+					id="why"
+					rows="2"
+					placeholder="e.g., Customer had 3 open critical tickets, VP approved"
+					class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-neutral-300 resize-none"
+				></textarea>
+			</div>
+
+			<div>
+				<label for="approved-by" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+					Approved by
+				</label>
+				<input
+					type="text"
+					id="approved-by"
+					placeholder="e.g., VP Sales"
+					class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-neutral-300"
+				/>
+			</div>
+
+			<button
+				id="generate-trace"
+				class="w-full bg-gray-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-medium py-2.5 px-4 rounded-full hover:bg-gray-800 dark:hover:bg-neutral-200 transition-colors"
+			>
+				Generate Decision Trace
+			</button>
+		</div>
+
+		<div id="output-wrapper" class="hidden mt-6">
+			<div class="flex items-center justify-between mb-2">
+				<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Your decision trace</span>
+				<button id="copy-trace" class="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 underline">
+					Copy
+				</button>
+			</div>
+			<div id="trace-output" class="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-lg p-4 text-sm text-gray-800 dark:text-gray-200">
+			</div>
+			<p class="text-xs text-gray-500 dark:text-neutral-400 mt-3 text-center">
+				Save this somewhere. You'll thank yourself in 6 months.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script>
+	const whatInput = document.getElementById('what-happened') as HTMLInputElement;
+	const whyInput = document.getElementById('why') as HTMLTextAreaElement;
+	const approvedInput = document.getElementById('approved-by') as HTMLInputElement;
+	const generateBtn = document.getElementById('generate-trace');
+	const outputWrapper = document.getElementById('output-wrapper');
+	const traceOutput = document.getElementById('trace-output');
+	const copyBtn = document.getElementById('copy-trace');
+
+	const exampleData = {
+		what: "Gave 20% discount to Acme Corp",
+		why: "3 critical tickets open for 2 weeks, similar deal got exception last quarter",
+		approved: "VP Sales"
+	};
+
+	if (generateBtn && outputWrapper && traceOutput && whatInput && whyInput && approvedInput) {
+		generateBtn.addEventListener('click', () => {
+			let what = whatInput.value.trim();
+			let why = whyInput.value.trim();
+			let approved = approvedInput.value.trim();
+
+			// If empty, tease and fill with example
+			if (!what && !why && !approved) {
+				whatInput.value = exampleData.what;
+				whyInput.value = exampleData.why;
+				approvedInput.value = exampleData.approved;
+
+				what = exampleData.what;
+				why = exampleData.why;
+				approved = exampleData.approved;
+
+				// Show teasing message first
+				traceOutput.innerHTML = `<span class="text-pink-400 font-medium">See? You skipped it. Just like everyone else.</span><br/><span class="text-gray-500 text-xs font-medium">Here's an example instead:</span>`;
+				outputWrapper.classList.remove('hidden');
+
+				setTimeout(() => {
+					const now = new Date();
+					const timestamp = now.toLocaleDateString('en-US', {
+						month: 'short',
+						day: 'numeric',
+						year: 'numeric',
+						hour: '2-digit',
+						minute: '2-digit'
+					});
+					let trace = `[${timestamp}] ${what}. ${why}. Approved by: ${approved}`;
+					traceOutput.textContent = trace;
+				}, 2000);
+
+				outputWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				return;
+			}
+
+			if (!what) {
+				whatInput.focus();
+				return;
+			}
+
+			const now = new Date();
+			const timestamp = now.toLocaleDateString('en-US', {
+				month: 'short',
+				day: 'numeric',
+				year: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit'
+			});
+
+			let trace = `[${timestamp}] ${what}`;
+			if (why) trace += `. ${why}`;
+			if (approved) trace += `. Approved by: ${approved}`;
+
+			traceOutput.textContent = trace;
+			outputWrapper.classList.remove('hidden');
+
+			outputWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		});
+
+		copyBtn?.addEventListener('click', async () => {
+			const text = traceOutput.textContent || '';
+			try {
+				await navigator.clipboard.writeText(text);
+				const originalText = copyBtn.textContent;
+				copyBtn.textContent = 'Copied!';
+				setTimeout(() => {
+					copyBtn.textContent = originalText;
+				}, 2000);
+			} catch (err) {
+				console.error('Failed to copy:', err);
+			}
+		});
+	}
+</script>

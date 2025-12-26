@@ -1,0 +1,61 @@
+---
+interface Props {
+	teaser: string;
+	button?: string;
+	quote: string;
+	subtitle?: string;
+}
+
+const { teaser, button = "Show me", quote, subtitle } = Astro.props;
+const uniqueId = Math.random().toString(36).slice(2, 9);
+---
+
+<div class="reveal-quote-wrapper my-10 not-prose" data-id={uniqueId}>
+	<div class="bg-gray-900 dark:bg-gray-950 p-8 text-center rounded-xl">
+		<p class="text-white text-2xl font-bold mb-6">{teaser}</p>
+
+		<div class="reveal-container">
+			<button
+				class="reveal-btn bg-white dark:bg-gray-100 text-gray-900 font-medium px-6 py-3 rounded-full hover:bg-gray-200 transition-colors"
+			>
+				{button}
+			</button>
+		</div>
+
+		<div class="insight-reveal hidden">
+			<p class="text-3xl md:text-4xl font-bold text-white leading-tight" set:html={quote} />
+			{subtitle && <p class="text-gray-500 text-sm mt-6">{subtitle}</p>}
+		</div>
+	</div>
+</div>
+
+<script>
+	document.querySelectorAll('.reveal-quote-wrapper').forEach(wrapper => {
+		const btn = wrapper.querySelector('.reveal-btn');
+		const container = wrapper.querySelector('.reveal-container');
+		const reveal = wrapper.querySelector('.insight-reveal');
+
+		btn?.addEventListener('click', () => {
+			container?.classList.add('hidden');
+			reveal?.classList.remove('hidden');
+			reveal?.classList.add('animate-fade-in');
+		});
+	});
+</script>
+
+<style>
+	.animate-fade-in {
+		animation: fadeIn 0.5s ease-out forwards;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

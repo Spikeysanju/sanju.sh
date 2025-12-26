@@ -1,0 +1,99 @@
+---
+interface CardData {
+	label: string;
+	front: string;
+	back: string;
+	color: string;
+}
+
+const cards: CardData[] = [
+	{
+		label: "Sales",
+		front: "Gave 20% discount",
+		back: "Gave 20% discount. Customer had 3 unresolved critical tickets, similar deal got exception last quarter, VP approved citing churn risk",
+		color: "bg-yellow-400"
+	},
+	{
+		label: "Design",
+		front: "Changed button color to blue",
+		back: "Changed to blue. A/B test showed 12% higher clicks, client approved in Figma comment, aligns with new brand guidelines v2",
+		color: "bg-blue-400"
+	},
+	{
+		label: "Hiring",
+		front: "Rejected candidate",
+		back: "Rejected. Strong technical skills but culture fit concerns raised by 2 of 3 interviewers, similar profile didn't work out last quarter",
+		color: "bg-pink-400"
+	},
+	{
+		label: "Product",
+		front: "Removed feature X",
+		back: "Removed feature X. 2% usage, 10hrs/week maintenance cost, team voted 4-1, CEO approved, migrated 12 affected users to workaround",
+		color: "bg-green-400"
+	}
+];
+---
+
+<div class="flip-cards-wrapper my-8 not-prose">
+	<p class="text-center text-sm text-gray-500 dark:text-gray-400 mb-4">Click cards to flip</p>
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+		{cards.map((card, index) => (
+			<div class="flip-card cursor-pointer" data-index={index}>
+				<div class="flip-card-inner">
+					<div class={`flip-card-front ${card.color} rounded-xl p-5 flex flex-col justify-between`}>
+						<span class="text-xs font-semibold text-black/60 uppercase tracking-wide">{card.label}</span>
+						<p class="text-black font-medium mt-2">{card.front}</p>
+						<span class="text-xs text-black/40 mt-3">tap to see the why</span>
+					</div>
+					<div class="flip-card-back bg-gray-900 dark:bg-gray-800 rounded-xl p-5 flex flex-col justify-between">
+						<span class="text-xs font-semibold text-white/60 uppercase tracking-wide">{card.label}</span>
+						<p class="text-white text-sm mt-2 leading-relaxed">{card.back}</p>
+						<span class="text-xs text-white/40 mt-3">tap to flip back</span>
+					</div>
+				</div>
+			</div>
+		))}
+	</div>
+</div>
+
+<style>
+	.flip-card {
+		perspective: 1000px;
+		height: 160px;
+	}
+
+	.flip-card-inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		transition: transform 0.6s;
+		transform-style: preserve-3d;
+	}
+
+	.flip-card.flipped .flip-card-inner {
+		transform: rotateY(180deg);
+	}
+
+	.flip-card-front,
+	.flip-card-back {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+
+	.flip-card-back {
+		transform: rotateY(180deg);
+	}
+</style>
+
+<script>
+	const flipCards = document.querySelectorAll('.flip-card');
+
+	flipCards.forEach(card => {
+		card.addEventListener('click', () => {
+			card.classList.toggle('flipped');
+		});
+	});
+</script>

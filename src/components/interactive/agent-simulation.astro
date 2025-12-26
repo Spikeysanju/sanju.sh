@@ -1,0 +1,205 @@
+---
+
+---
+
+<div class="agent-simulation-wrapper my-8 not-prose">
+	<div class="bg-gray-900 dark:bg-gray-950 rounded-xl p-6 overflow-hidden">
+		<div class="flex items-center justify-between mb-4">
+			<div class="flex items-center gap-2">
+				<div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+				<span class="text-xs font-medium text-gray-400 uppercase tracking-wide">AI Agent</span>
+			</div>
+			<button
+				id="agent-start"
+				class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1.5 rounded-full transition-colors"
+			>
+				Run simulation
+			</button>
+		</div>
+
+		<div id="agent-task" class="text-gray-200 font-medium mb-4 opacity-0">
+			Processing discount request...
+		</div>
+
+		<div class="space-y-3" id="agent-steps">
+			<div class="agent-step opacity-0" data-step="1">
+				<div class="flex items-start gap-3">
+					<div class="step-icon w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+						<svg class="w-3 h-3 text-gray-600 checkmark hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="spinner hidden w-3 h-3 border-2 border-gray-600 border-t-green-400 rounded-full animate-spin"></div>
+					</div>
+					<div class="flex-1">
+						<p class="text-sm text-gray-400">Checking customer history...</p>
+						<p class="text-xs text-gray-600 step-result hidden mt-1">Found: Enterprise account, 2 years, $48k ARR</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="agent-step opacity-0" data-step="2">
+				<div class="flex items-start gap-3">
+					<div class="step-icon w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+						<svg class="w-3 h-3 text-gray-600 checkmark hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="spinner hidden w-3 h-3 border-2 border-gray-600 border-t-green-400 rounded-full animate-spin"></div>
+					</div>
+					<div class="flex-1">
+						<p class="text-sm text-gray-400">Checking open tickets...</p>
+						<p class="text-xs text-gray-600 step-result hidden mt-1">Found: 3 critical tickets unresolved (14 days avg)</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="agent-step opacity-0" data-step="3">
+				<div class="flex items-start gap-3">
+					<div class="step-icon w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+						<svg class="w-3 h-3 text-gray-600 checkmark hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="spinner hidden w-3 h-3 border-2 border-gray-600 border-t-green-400 rounded-full animate-spin"></div>
+					</div>
+					<div class="flex-1">
+						<p class="text-sm text-gray-400">Searching precedent...</p>
+						<p class="text-xs text-gray-600 step-result hidden mt-1">Found: Similar deal Q3 got 20% exception (policy v2.1 §4)</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="agent-step opacity-0" data-step="4">
+				<div class="flex items-start gap-3">
+					<div class="step-icon w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+						<svg class="w-3 h-3 text-gray-600 checkmark hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="spinner hidden w-3 h-3 border-2 border-gray-600 border-t-green-400 rounded-full animate-spin"></div>
+					</div>
+					<div class="flex-1">
+						<p class="text-sm text-gray-400">Routing for approval...</p>
+						<p class="text-xs text-gray-600 step-result hidden mt-1">VP Sales approved (churn risk flag triggered)</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="agent-step opacity-0" data-step="5">
+				<div class="flex items-start gap-3">
+					<div class="step-icon w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+						<svg class="w-3 h-3 text-gray-600 checkmark hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="spinner hidden w-3 h-3 border-2 border-gray-600 border-t-green-400 rounded-full animate-spin"></div>
+					</div>
+					<div class="flex-1">
+						<p class="text-sm text-gray-400">Saving decision trace...</p>
+						<p class="text-xs text-gray-600 step-result hidden mt-1">Done. Full context logged automatically.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="agent-complete" class="mt-5 pt-4 border-t border-gray-800 hidden">
+			<p class="text-xs text-green-400 font-medium">Decision trace captured with zero extra effort.</p>
+			<p class="text-xs text-gray-500 mt-1">The agent already had the context. It just saved it.</p>
+		</div>
+	</div>
+</div>
+
+<script>
+	const startBtn = document.getElementById('agent-start');
+	const taskEl = document.getElementById('agent-task');
+	const steps = document.querySelectorAll('.agent-step');
+	const completeEl = document.getElementById('agent-complete');
+	let isRunning = false;
+
+	async function sleep(ms: number) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
+	async function runStep(step: Element) {
+		const spinner = step.querySelector('.spinner');
+		const checkmark = step.querySelector('.checkmark');
+		const result = step.querySelector('.step-result');
+		const icon = step.querySelector('.step-icon');
+
+		// Show step
+		(step as HTMLElement).style.opacity = '1';
+		(step as HTMLElement).style.transform = 'translateX(0)';
+
+		// Show spinner
+		spinner?.classList.remove('hidden');
+
+		await sleep(800 + Math.random() * 400);
+
+		// Hide spinner, show checkmark
+		spinner?.classList.add('hidden');
+		checkmark?.classList.remove('hidden');
+		(checkmark as HTMLElement).style.color = '#4ade80';
+		(icon as HTMLElement).style.background = 'rgba(74, 222, 128, 0.1)';
+
+		// Show result
+		result?.classList.remove('hidden');
+		(result as HTMLElement).style.color = '#9ca3af';
+
+		await sleep(300);
+	}
+
+	async function runSimulation() {
+		if (isRunning) return;
+		isRunning = true;
+
+		// Reset
+		steps.forEach(step => {
+			(step as HTMLElement).style.opacity = '0';
+			(step as HTMLElement).style.transform = 'translateX(-10px)';
+			const spinner = step.querySelector('.spinner');
+			const checkmark = step.querySelector('.checkmark');
+			const result = step.querySelector('.step-result');
+			const icon = step.querySelector('.step-icon');
+			spinner?.classList.add('hidden');
+			checkmark?.classList.add('hidden');
+			result?.classList.add('hidden');
+			(checkmark as HTMLElement).style.color = '';
+			(icon as HTMLElement).style.background = '';
+		});
+		completeEl?.classList.add('hidden');
+
+		// Disable button
+		if (startBtn) {
+			startBtn.textContent = 'Running...';
+			(startBtn as HTMLButtonElement).disabled = true;
+		}
+
+		// Show task
+		if (taskEl) {
+			(taskEl as HTMLElement).style.opacity = '1';
+		}
+
+		await sleep(500);
+
+		// Run each step
+		for (const step of steps) {
+			await runStep(step);
+		}
+
+		// Show complete
+		await sleep(400);
+		completeEl?.classList.remove('hidden');
+
+		// Re-enable button
+		if (startBtn) {
+			startBtn.textContent = 'Run again';
+			(startBtn as HTMLButtonElement).disabled = false;
+		}
+
+		isRunning = false;
+	}
+
+	// Add transition styles
+	steps.forEach(step => {
+		(step as HTMLElement).style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+		(step as HTMLElement).style.transform = 'translateX(-10px)';
+	});
+
+	startBtn?.addEventListener('click', runSimulation);
+</script>

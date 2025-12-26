@@ -1,0 +1,86 @@
+---
+title: "Capture the Why"
+description: "We capture what happened everywhere. But ask 'why did we do that?' six months later and everyone's scrambling. The solution is embarrassingly simple."
+pubDate: 'Dec 26 2025'
+readingTime: 3
+---
+
+import { DecisionToggle, FlipCards, DecisionForm, Highlight, AgentSimulation, CommitCompare, RevealQuote } from "@components/interactive";
+
+There's a lot of noise right now about **"decision traces"** and **"context graphs."** Fancy words for a simple problem we've been ignoring for years.
+
+We don't need new infrastructure. <Highlight>We've just been lazy.</Highlight>
+
+<DecisionToggle />
+
+## The problem is embarrassingly simple
+
+Every tool we use captures what happened. Activity logs, audit trails, version history. We're swimming in **"what"** data.
+
+But ask **"why the hell did we do that?"** six months later and everyone's scrambling through Slack threads, pinging people who've left the company, reconstructing context from memory.
+
+The data was there. At the moment of decision, someone knew:
+- Why this approach won
+- What other options got shot down
+- Who said yes
+- What past decision made this okay
+
+<Highlight>We just didn't save it.</Highlight> Not because we couldn't. Because no one asked us to.
+
+## We already solved this for code
+
+Engineers figured this out 20 years ago.
+
+Git commit + PR description + linked issue = decision trace for code.
+
+<CommitCompare />
+
+Engineers who've been burned treat commit messages like documentation. Not because anyone forces them to. Because they've asked **"wait, why did we write it this way?"** one too many times.
+
+<Highlight color="green">The code doesn't change. The context around it does.</Highlight>
+
+## Now apply that thinking everywhere else
+
+<FlipCards />
+
+Same pattern. Just applied beyond code.
+
+## So why hasn't this happened?
+
+Two reasons.
+
+Friction. In the moment, no one wants to fill out a **"reason"** field. They're busy. They'll do it later. <Highlight color="pink">They never do.</Highlight>
+
+Incentives. Activity logs are easy to build. Check a compliance box, ship it. Decision traces take effort. You actually have to think.
+
+## What changes now
+
+AI agents fix both problems.
+
+<AgentSimulation />
+
+**No more friction.** The agent is already doing the work. It pulled data from 5 places, weighed options, got approval. Writing down why? That's just one more line. <Highlight color="green">Zero extra effort.</Highlight>
+
+**Incentives finally align.** AI agents need past decisions to get smarter. If you never saved why exceptions were made, the agent can't learn when to make them. Bad data in, bad decisions out.
+
+If you're building AI agents, you have a choice. Capture the why from day one, or end up with another pile of useless logs.
+
+## The moat isn't the graph. It's the discipline.
+
+You don't need fancy infrastructure to start. Just capture three things with every action:
+- What happened
+- Why
+- Who approved
+
+<DecisionForm />
+
+A text field works. A simple schema works. <Highlight>The value isn't in the architecture. It's in having the data at all.</Highlight>
+
+Six months from now, when someone asks **"why did we decide this?"**, you'll either have an answer or you won't.
+
+<RevealQuote
+  teaser="Want the trillion-dollar insight?"
+  button="Show me"
+  quote="Just give a shit<br/>about capturing the why."
+  subtitle="That's it. That's the whole thing."
+/>
