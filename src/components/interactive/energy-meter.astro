@@ -1,0 +1,248 @@
+---
+const drains = [
+	{ emoji: "💬", label: "Reply to every DM", drain: 25 },
+	{ emoji: "📅", label: "Attend every meeting", drain: 20 },
+	{ emoji: "🆓", label: "Give free advice", drain: 20 },
+	{ emoji: "🔔", label: "Stay in every group chat", drain: 15 },
+	{ emoji: "🤝", label: "Say yes to everything", drain: 20 },
+];
+---
+
+<div class="energy-meter-wrapper my-10 not-prose">
+	<div class="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 md:p-10">
+
+		<!-- Percentage Display -->
+		<div class="text-center mb-6">
+			<div class="energy-percent text-6xl md:text-7xl font-bold text-gray-900 dark:text-white transition-all duration-500">
+				100%
+			</div>
+			<div class="energy-status text-sm text-gray-500 dark:text-gray-400 mt-1 transition-all duration-300">
+				Fully charged
+			</div>
+		</div>
+
+		<!-- Horizontal Battery -->
+		<div class="battery-wrapper flex items-center justify-center gap-1 mb-8">
+			<div class="battery-body relative w-48 md:w-64 h-8 bg-gray-200 dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-600 overflow-hidden">
+				<div class="battery-fill absolute top-0 left-0 bottom-0 transition-all duration-700 ease-out" style="width: 100%"></div>
+			</div>
+			<div class="battery-cap w-2 h-4 bg-gray-300 dark:bg-gray-600 rounded-r-sm"></div>
+		</div>
+
+		<!-- Fading Card -->
+		<div class="card-container relative h-24 flex items-center justify-center">
+			{drains.map((item, index) => (
+				<div
+					class="drain-card absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500"
+					data-index={index}
+					data-drain={item.drain}
+				>
+					<div class="flex items-center gap-2 text-lg md:text-xl text-gray-800 dark:text-gray-200">
+						<span>{item.emoji}</span>
+						<span>{item.label}</span>
+					</div>
+					<div class="text-red-500 font-medium mt-1">
+						-{item.drain}%
+					</div>
+				</div>
+			))}
+
+			<!-- Final Message -->
+			<div class="final-card absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500">
+				<div class="text-lg md:text-xl text-gray-800 dark:text-gray-200 text-center">
+					Nothing left for the people who matter.
+				</div>
+			</div>
+
+			<!-- Initial State -->
+			<div class="initial-card absolute inset-0 flex flex-col items-center justify-center opacity-100 transition-opacity duration-500">
+				<div class="text-sm text-gray-400 dark:text-gray-500">
+					Watch where your energy goes...
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<style>
+	.battery-body {
+		transition: box-shadow 0.5s ease;
+	}
+
+	.battery-body.low {
+		box-shadow: inset 0 0 12px rgba(249, 115, 22, 0.4);
+	}
+
+	.battery-body.critical {
+		box-shadow: inset 0 0 16px rgba(239, 68, 68, 0.5);
+		animation: pulse-glow 1.5s ease-in-out infinite;
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			box-shadow: inset 0 0 16px rgba(239, 68, 68, 0.5);
+		}
+		50% {
+			box-shadow: inset 0 0 24px rgba(239, 68, 68, 0.7);
+		}
+	}
+
+	.battery-fill {
+		background: linear-gradient(90deg, #4ade80, #22c55e);
+	}
+
+	.battery-fill.medium {
+		background: linear-gradient(90deg, #facc15, #eab308);
+	}
+
+	.battery-fill.low {
+		background: linear-gradient(90deg, #fb923c, #f97316);
+	}
+
+	.battery-fill.critical {
+		background: linear-gradient(90deg, #f87171, #ef4444);
+	}
+
+	.energy-percent.critical {
+		color: #ef4444;
+	}
+</style>
+
+<script>
+	const wrapper = document.querySelector('.energy-meter-wrapper');
+	const percentEl = wrapper?.querySelector('.energy-percent');
+	const statusEl = wrapper?.querySelector('.energy-status');
+	const batteryBody = wrapper?.querySelector('.battery-body') as HTMLElement;
+	const batteryFill = wrapper?.querySelector('.battery-fill') as HTMLElement;
+	const cards = wrapper?.querySelectorAll('.drain-card');
+	const finalCard = wrapper?.querySelector('.final-card');
+	const initialCard = wrapper?.querySelector('.initial-card');
+
+	const drains = [25, 20, 20, 15, 20];
+	const statuses = [
+		{ threshold: 100, text: 'Fully charged' },
+		{ threshold: 80, text: 'Still good' },
+		{ threshold: 60, text: 'Getting tired' },
+		{ threshold: 40, text: 'Running low' },
+		{ threshold: 20, text: 'Nearly empty' },
+		{ threshold: 1, text: 'Burnout incoming' },
+		{ threshold: 0, text: 'Completely drained' },
+	];
+
+	let currentEnergy = 100;
+	let currentIndex = -1;
+	let isRunning = false;
+
+	function getStatus(energy: number): string {
+		for (const s of statuses) {
+			if (energy >= s.threshold) return s.text;
+		}
+		return 'Completely drained';
+	}
+
+	function updateDisplay(energy: number) {
+		if (percentEl) {
+			percentEl.textContent = `${energy}%`;
+			percentEl.classList.toggle('critical', energy <= 20);
+		}
+
+		if (statusEl) {
+			statusEl.textContent = getStatus(energy);
+		}
+
+		if (batteryFill) {
+			batteryFill.style.width = `${energy}%`;
+			batteryFill.classList.remove('medium', 'low', 'critical');
+			batteryBody?.classList.remove('low', 'critical');
+
+			if (energy <= 20) {
+				batteryFill.classList.add('critical');
+				batteryBody?.classList.add('critical');
+			} else if (energy <= 40) {
+				batteryFill.classList.add('low');
+				batteryBody?.classList.add('low');
+			} else if (energy <= 60) {
+				batteryFill.classList.add('medium');
+			}
+		}
+	}
+
+	function showCard(index: number) {
+		// Hide all cards
+		initialCard?.classList.remove('opacity-100');
+		initialCard?.classList.add('opacity-0');
+		cards?.forEach(card => {
+			card.classList.remove('opacity-100');
+			card.classList.add('opacity-0');
+		});
+		finalCard?.classList.remove('opacity-100');
+		finalCard?.classList.add('opacity-0');
+
+		// Show target card
+		if (index === -1) {
+			initialCard?.classList.remove('opacity-0');
+			initialCard?.classList.add('opacity-100');
+		} else if (index === drains.length) {
+			finalCard?.classList.remove('opacity-0');
+			finalCard?.classList.add('opacity-100');
+		} else {
+			const card = cards?.[index];
+			card?.classList.remove('opacity-0');
+			card?.classList.add('opacity-100');
+		}
+	}
+
+	function runSequence() {
+		if (!isRunning) return;
+
+		currentIndex++;
+
+		if (currentIndex < drains.length) {
+			// Drain energy
+			currentEnergy = Math.max(0, currentEnergy - drains[currentIndex]);
+			updateDisplay(currentEnergy);
+			showCard(currentIndex);
+
+			// Next step
+			setTimeout(runSequence, 1500);
+		} else if (currentIndex === drains.length) {
+			// Show final message
+			showCard(currentIndex);
+			setTimeout(runSequence, 2500);
+		} else {
+			// Reset
+			currentEnergy = 100;
+			currentIndex = -1;
+			updateDisplay(100);
+			showCard(-1);
+
+			// Restart after pause
+			setTimeout(runSequence, 2000);
+		}
+	}
+
+	function startAnimation() {
+		if (isRunning) return;
+		isRunning = true;
+
+		// Initial delay before starting
+		setTimeout(runSequence, 1500);
+	}
+
+	// Intersection Observer to start when visible
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					startAnimation();
+				}
+			});
+		},
+		{ threshold: 0.5 }
+	);
+
+	if (wrapper) {
+		observer.observe(wrapper);
+	}
+</script>
