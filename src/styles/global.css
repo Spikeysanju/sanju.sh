@@ -3,57 +3,105 @@
 @tailwind utilities;
 
 @layer base {
+
+  /* ——— typography tokens ——— */
+  :root {
+    --font-body: 'Google Sans', sans-serif;
+
+    /* font weights */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* font sizes */
+    --fs-xs: 0.75rem;     /* 12px — metadata, timestamps */
+    --fs-sm: 0.875rem;    /* 14px — secondary text, labels */
+    --fs-base: 1rem;      /* 16px — body */
+    --fs-lg: 1.125rem;    /* 18px — large body, descriptions */
+    --fs-xl: 1.25rem;     /* 20px — subheadings */
+    --fs-2xl: 1.5rem;     /* 24px — card titles */
+    --fs-4xl: 2.25rem;    /* 36px — page headings (mobile) */
+    --fs-5xl: 3rem;       /* 48px — page headings (tablet) */
+    --fs-7xl: 4.5rem;     /* 72px — page headings (desktop) */
+
+    /* tracking */
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.05em;
+
+    /* leading */
+    --leading-tight: 1.1;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+
+    /* ——— color tokens — light ——— */
+    --color-bg: #ffffff;
+    --color-bg-subtle: #f9fafb;       /* gray-50 */
+    --color-bg-muted: #f3f4f6;        /* gray-100 */
+
+    --color-text: #000000;
+    --color-text-secondary: #6b7280;  /* gray-500 */
+    --color-text-muted: #9ca3af;      /* gray-400 */
+    --color-text-body: #374151;       /* gray-700 */
+
+    --color-border: #e5e7eb;          /* gray-200 */
+    --color-border-strong: #d1d5db;   /* gray-300 */
+
+    /* accent — per section */
+    --color-accent-writing: #f97316;       /* orange-500 */
+    --color-accent-writing-bg: #fff7ed;    /* orange-50 */
+    --color-accent-thoughts: #ef4444;      /* red-500 */
+    --color-accent-thoughts-bg: #fef2f2;   /* red-50 */
+    --color-accent-ships: #84cc16;         /* lime-500 */
+    --color-accent-ships-bg: #f7fee7;      /* lime-50 */
+
+    /* category colors */
+    --color-cat-ai: #fde047;          /* yellow-300 */
+    --color-cat-design: #bef264;      /* lime-300 */
+    --color-cat-product: #86efac;     /* green-300 */
+    --color-cat-engineering: #d8b4fe; /* purple-300 */
+    --color-cat-productivity: #f9a8d4;/* pink-300 */
+    --color-cat-learning: #93c5fd;    /* blue-300 */
+    --color-cat-opensource: #fb923c;   /* orange-400 */
+    --color-cat-thoughts: #f87171;    /* red-400 */
+    --color-cat-work: #5eead4;        /* teal-300 */
+  }
+
+  .dark {
+    --color-bg: #000000;
+    --color-bg-subtle: #111827;       /* gray-900 */
+    --color-bg-muted: #1f2937;        /* gray-800 */
+
+    --color-text: #ffffff;
+    --color-text-secondary: #6b7280;  /* gray-500 */
+    --color-text-muted: #9ca3af;      /* gray-400 */
+    --color-text-body: #d1d5db;       /* gray-300 */
+
+    --color-border: #374151;          /* gray-700 */
+    --color-border-strong: #4b5563;   /* gray-600 */
+
+    --color-accent-writing: #fb923c;       /* orange-400 */
+    --color-accent-writing-bg: #431407;    /* orange-950 */
+    --color-accent-thoughts: #f87171;      /* red-400 */
+    --color-accent-thoughts-bg: #450a0a;   /* red-950 */
+    --color-accent-ships: #a3e635;         /* lime-400 */
+    --color-accent-ships-bg: #1a2e05;      /* lime-950 */
+  }
+
+  /* ——— base styles ——— */
   html {
     @apply scroll-smooth;
   }
 
   body {
-    font-family: 'UncutSans', sans-serif;
+    font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     @apply bg-white text-black dark:bg-black dark:text-white lowercase;
   }
 
-
-  @font-face {
-    font-family: 'UncutSans';
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff2/UncutSans-Bold.woff2') format('woff2');
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff/UncutSans-Bold.woff') format('woff');
-    font-weight: 700;
-  }
-
-  @font-face {
-    font-family: 'UncutSans';
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff2/UncutSans-Semibold.woff2') format('woff2');
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff/UncutSans-Semibold.woff') format('woff');
-    font-weight: 600;
-  }
-
-  @font-face {
-    font-family: 'UncutSans';
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff2/UncutSans-Medium.woff2') format('woff2');
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff/UncutSans-Medium.woff') format('woff');
-    font-weight: 500;
-  }
-
-  @font-face {
-    font-family: 'UncutSans';
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff2/UncutSans-Regular.woff2') format('woff2');
-    src:
-      local('UncutSans'),
-      url('/fonts/uncut/woff/UncutSans-Regular.woff') format('woff');
-    font-weight: 400;
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--fw-medium);
+    letter-spacing: var(--tracking-tight);
   }
 }
