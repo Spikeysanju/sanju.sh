@@ -1,4 +1,3 @@
-import satori from "satori";
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
 // @ts-ignore — handled by @astrojs/cloudflare wasmModuleImports
 import resvgWasm from "./resvg.wasm?module";
@@ -10,10 +9,11 @@ const ACCENT_COLORS: Record<string, string> = {
 };
 
 const GOOGLE_FONTS_CSS =
-	"https://fonts.googleapis.com/css2?family=Google+Sans:wght@500&display=swap";
+	"https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap";
+const FONT_FAMILY = "Google Sans";
 
 let wasmInitPromise: Promise<void> | null = null;
-let fontData: ArrayBuffer | null = null;
+let fontBufferCache: Uint8Array | null = null;
 
 async function ensureWasm() {
 	if (!wasmInitPromise) {
@@ -22,128 +22,82 @@ async function ensureWasm() {
 	return wasmInitPromise;
 }
 
-async function fetchGoogleFont(): Promise<ArrayBuffer> {
-	const css = await fetch(GOOGLE_FONTS_CSS, {
-		headers: { "User-Agent": "satori" },
-	}).then((r) => r.text());
+async function getFontBuffer(baseUrl: string): Promise<Uint8Array> {
+	if (fontBufferCache) return fontBufferCache;
 
-	const match = css.match(/src:\s*url\(([^)]+)\)\s*format\(['"]truetype['"]\)/);
-	if (!match?.[1]) throw new Error("could not parse font url from css");
+	let ab: ArrayBuffer;
+	try {
+		const css = await fetch(GOOGLE_FONTS_CSS, {
+			headers: { "User-Agent": "satori" },
+		}).then((r) => r.text());
 
-	return fetch(match[1]).then((r) => r.arrayBuffer());
+		const match = css.match(
+			/src:\s*url\(([^)]+)\)\s*format\(['"]truetype['"]\)/,
+		);
+		if (!match?.[1]) throw new Error("no font url");
+		ab = await fetch(match[1]).then((r) => r.arrayBuffer());
+	} catch {
+		ab = await fetch(
+			new URL("/fonts/uncut/woff/UncutSans-Medium.woff", baseUrl),
+		).then((r) => r.arrayBuffer());
+	}
+
+	fontBufferCache = new Uint8Array(ab);
+	return fontBufferCache;
 }
 
-async function ensureFont(baseUrl: string) {
-	if (!fontData) {
-		try {
-			fontData = await fetchGoogleFont();
-		} catch {
-			const res = await fetch(
-				new URL("/fonts/uncut/woff/UncutSans-Medium.woff", baseUrl),
-			);
-			fontData = await res.arrayBuffer();
+function wrapText(text: string, fontSize: number, maxWidth: number): string[] {
+	const avgCharWidth = fontSize * 0.52;
+	const charsPerLine = Math.floor(maxWidth / avgCharWidth);
+	const words = text.split(" ");
+	const lines: string[] = [];
+	let current = "";
+
+	for (const word of words) {
+		const test = current ? `${current} ${word}` : word;
+		if (test.length > charsPerLine && current) {
+			lines.push(current);
+			current = word;
+		} else {
+			current = test;
 		}
 	}
-	return fontData;
+	if (current) lines.push(current);
+	return lines;
 }
 
-function buildOgMarkup(title: string, section: string) {
+function escapeXml(s: string): string {
+	return s
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
+}
+
+function buildSvg(title: string, section: string): string {
 	const accent = ACCENT_COLORS[section] || "#f97316";
 	const len = title.length;
 	const fontSize = len > 40 ? 48 : len > 25 ? 56 : 64;
+	const lineHeight = fontSize * 1.15;
+	const lines = wrapText(title.toLowerCase(), fontSize, 900);
+	const titleBlockHeight = lines.length * lineHeight;
+	const titleY = (630 - titleBlockHeight) / 2 + fontSize * 0.8;
 
-	return {
-		type: "div",
-		props: {
-			style: {
-				width: "1200px",
-				height: "630px",
-				display: "flex",
-				flexDirection: "column",
-				justifyContent: "space-between",
-				padding: "60px",
-				backgroundColor: "#0a0a0a",
-				fontFamily: "Google Sans",
-			},
-			children: [
-				{
-					type: "div",
-					props: {
-						style: { display: "flex", alignItems: "center", gap: "10px" },
-						children: [
-							{
-								type: "div",
-								props: {
-									style: {
-										width: "12px",
-										height: "12px",
-										borderRadius: "50%",
-										backgroundColor: accent,
-									},
-								},
-							},
-							{
-								type: "span",
-								props: {
-									style: {
-										fontSize: "24px",
-										color: "#a3a3a3",
-										textTransform: "lowercase",
-									},
-									children: section,
-								},
-							},
-						],
-					},
-				},
-				{
-					type: "div",
-					props: {
-						style: {
-							fontSize: `${fontSize}px`,
-							color: "#ffffff",
-							fontWeight: 500,
-							lineHeight: 1.1,
-							textTransform: "lowercase",
-							letterSpacing: "-0.02em",
-							maxWidth: "900px",
-						},
-						children: title,
-					},
-				},
-				{
-					type: "div",
-					props: {
-						style: {
-							display: "flex",
-							justifyContent: "space-between",
-							alignItems: "center",
-						},
-						children: [
-							{
-								type: "span",
-								props: {
-									style: { fontSize: "24px", color: "#a3a3a3" },
-									children: "sanju.sh",
-								},
-							},
-							{
-								type: "div",
-								props: {
-									style: {
-										width: "120px",
-										height: "6px",
-										borderRadius: "3px",
-										backgroundColor: accent,
-									},
-								},
-							},
-						],
-					},
-				},
-			],
-		},
-	};
+	const titleTspans = lines
+		.map(
+			(line, i) =>
+				`<tspan x="60" dy="${i === 0 ? 0 : lineHeight}">${escapeXml(line)}</tspan>`,
+		)
+		.join("");
+
+	return `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <circle cx="72" cy="60" r="6" fill="${accent}"/>
+  <text x="90" y="68" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">${escapeXml(section)}</text>
+  <text x="60" y="${titleY}" fill="#ffffff" font-family="${FONT_FAMILY}" font-size="${fontSize}" font-weight="500" letter-spacing="-0.5">${titleTspans}</text>
+  <text x="60" y="586" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">sanju.sh</text>
+  <rect x="1020" y="577" width="120" height="6" rx="3" fill="${accent}"/>
+</svg>`;
 }
 
 export async function renderOgImage(
@@ -151,16 +105,19 @@ export async function renderOgImage(
 	section: string,
 	baseUrl: string,
 ): Promise<Uint8Array> {
-	const [font] = await Promise.all([ensureFont(baseUrl), ensureWasm()]);
+	const [fontBuffer] = await Promise.all([
+		getFontBuffer(baseUrl),
+		ensureWasm(),
+	]);
 
-	const svg = await satori(buildOgMarkup(title, section) as any, {
-		width: 1200,
-		height: 630,
-		fonts: [{ name: "Google Sans", data: font, weight: 500, style: "normal" }],
-	});
+	const svg = buildSvg(title, section);
 
 	const resvg = new Resvg(svg, {
 		fitTo: { mode: "width", value: 1200 },
+		font: {
+			fontBuffers: [fontBuffer],
+			defaultFontFamily: FONT_FAMILY,
+		},
 	});
 	return resvg.render().asPng();
 }
