@@ -12,4 +12,9 @@ export default defineConfig({
 	],
 	output: "server",
 	adapter: cloudflare(),
+	vite: {
+		optimizeDeps: {
+			exclude: ["@resvg/resvg-wasm"],
+		},
+	},
 });

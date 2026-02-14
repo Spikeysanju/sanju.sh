@@ -6,9 +6,9 @@ import { BaseHead } from '@components/seo';
 import RootLayout from '@layouts/root-layout.astro';
 import { clsx } from '@utils/index';
 
-type Props = CollectionEntry<'thought'>['data'];
+type Props = CollectionEntry<'thought'>['data'] & { ogImage?: string };
 
-const { title, description, showTldr, pubDate, updatedDate, readingTime } = Astro.props;
+const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage } = Astro.props;
 ---
 
 <html lang='en'>
@@ -16,6 +16,7 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime } = Astr
 		<BaseHead
 			title={title}
 			description={description}
+			image={ogImage}
 			type='article'
 			publishedTime={pubDate}
 			modifiedTime={updatedDate}

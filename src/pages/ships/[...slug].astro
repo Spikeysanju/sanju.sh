@@ -16,7 +16,7 @@ const { Content } = await post.render();
 const readingTime = getReadingTime(post.body);
 
 ---
-<ShipsLayout {...post.data} readingTime={readingTime}>
+<ShipsLayout {...post.data} ogImage={`/og/ships/${slug}`} readingTime={readingTime}>
 	<Content />
 	<ScrollProgress />
 </ShipsLayout>
