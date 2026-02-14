@@ -1,7 +1,7 @@
 ---
 import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
-import { SITE_TITLE, SITE_DESCRIPTION, socialLinks } from '@data/index';
+import { SITE_TITLE, socialLinks } from '@data/index';
 import RootLayout from '@layouts/root-layout.astro';
 ---
 
@@ -9,9 +9,8 @@ import RootLayout from '@layouts/root-layout.astro';
 <html lang='en'>
 	<head>
 		<BaseHead
-			title={`${SITE_TITLE} - About`}
-			description={SITE_DESCRIPTION}
-			image='/images/ogimage.png'
+			title={`about — ${SITE_TITLE}`}
+			description="sanju sivalingam — designer, founder, and builder of products that work"
 		/>
 	</head>
 

@@ -1,5 +1,8 @@
 export const SITE_TITLE = "Sanju's Space";
-export const SITE_DESCRIPTION = "A internet space for Sanju.";
+export const SITE_DESCRIPTION = "An internet space for Sanju.";
+export const SITE_URL = "https://sanju.sh";
+export const SITE_IMAGE = "/images/ogimage.png";
+export const TWITTER_HANDLE = "@spikeysanju";
 
 export interface MenuItem {
 	label: string;
@@ -20,17 +23,6 @@ export const menuItems: MenuItem[] = [
 		url: "/thoughts",
 	},
 ];
-
-export const title = "Sanju's Space";
-export const description = "A internet space for Sanju.";
-export const image = "/images/ogimage.png";
-export const url = "https://sanju.sh";
-
-export const ogImage = {
-	src: "/images/ogimage.png",
-	alt: "Sanju's Space",
-};
-
 
 export const products = [
 	{
@@ -76,21 +68,5 @@ export const socialLinks = [
 	{
 		label: "linkedin",
 		url: "https://www.linkedin.com/in/imsanju",
-	},
-];
-
-export interface Tool {
-	id: string;
-	name: string;
-	description: string;
-	slug: string;
-}
-
-export const tools: Tool[] = [
-	{
-		id: "ghosturl",
-		name: "GhostURL",
-		description: "Paste a link, get the same-looking text with invisible zero-width spaces. It looks normal, but it’s not clickable or detectable.",
-		slug: "ghosturl",
 	},
 ];

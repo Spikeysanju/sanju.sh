@@ -2,7 +2,7 @@
 import { ThoughtsItem } from "@components/cards";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import { SITE_TITLE } from "@data/index";
 import { getCollection } from "astro:content";
 import RootLayout from "@layouts/root-layout.astro";
 
@@ -15,9 +15,8 @@ const thoughts = (await getCollection("thought")).sort(
 <html lang='en'>
 	<head>
 		<BaseHead
-			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
-			image='/images/ogimage.png'
+			title={`thoughts — ${SITE_TITLE}`}
+			description="short-form thoughts on ai, design, product, and everything in between"
 		/>
 	</head>
 	<RootLayout>

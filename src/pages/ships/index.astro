@@ -2,7 +2,7 @@
 import { ShipsItem } from "@components/cards";
 import Headers from "@components/misc/headers.astro";
 import { BaseHead } from "@components/seo";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import { SITE_TITLE } from "@data/index";
 import { groupShipsByYearMonthSorted, type Ship } from "@utils/index";
 import RootLayout from "@layouts/root-layout.astro";
 
@@ -13,9 +13,8 @@ const groupedShips = await groupShipsByYearMonthSorted();
 <html lang='en'>
 	<head>
 		<BaseHead
-			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
-			image='/images/ogimage.png'
+			title={`ships — ${SITE_TITLE}`}
+			description="things sanju has shipped — products, features, and side projects"
 		/>
 	</head>
 	<RootLayout>

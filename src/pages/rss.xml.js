@@ -15,17 +15,24 @@ export async function GET(context) {
 		site: context.site,
 		items: [
 			...posts.map((post) => ({
-				...post.data,
+				title: post.data.title,
+				pubDate: post.data.pubDate,
+				description: post.data.description,
 				link: `/writings/${post.slug}/`,
 			})),
 			...thoughts.map((thought) => ({
-				...thought.data,
+				title: thought.data.title,
+				pubDate: thought.data.pubDate,
+				description: thought.data.description,
 				link: `/thoughts/${thought.slug}/`,
 			})),
 			...ships.map((ship) => ({
-				...ship.data,
+				title: ship.data.title,
+				pubDate: ship.data.pubDate,
+				description: ship.data.description,
 				link: `/ships/${ship.slug}/`,
 			})),
 		],
+		customData: `<language>en-us</language>`,
 	});
 }
