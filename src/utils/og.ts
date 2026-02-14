@@ -1,5 +1,7 @@
 import satori from "satori";
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
+// @ts-ignore — handled by @astrojs/cloudflare wasmModuleImports
+import resvgWasm from "./resvg.wasm?module";
 
 const ACCENT_COLORS: Record<string, string> = {
 	writings: "#f97316",
@@ -13,12 +15,9 @@ const GOOGLE_FONTS_CSS =
 let wasmInitPromise: Promise<void> | null = null;
 let fontData: ArrayBuffer | null = null;
 
-async function ensureWasm(baseUrl: string) {
+async function ensureWasm() {
 	if (!wasmInitPromise) {
-		wasmInitPromise = (async () => {
-			const res = await fetch(new URL("/resvg_bg.wasm", baseUrl));
-			await initWasm(await res.arrayBuffer());
-		})();
+		wasmInitPromise = initWasm(resvgWasm);
 	}
 	return wasmInitPromise;
 }
@@ -152,10 +151,7 @@ export async function renderOgImage(
 	section: string,
 	baseUrl: string,
 ): Promise<Uint8Array> {
-	const [font] = await Promise.all([
-		ensureFont(baseUrl),
-		ensureWasm(baseUrl),
-	]);
+	const [font] = await Promise.all([ensureFont(baseUrl), ensureWasm()]);
 
 	const svg = await satori(buildOgMarkup(title, section) as any, {
 		width: 1200,

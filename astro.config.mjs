@@ -11,10 +11,7 @@ export default defineConfig({
 		tailwind(),
 	],
 	output: "server",
-	adapter: cloudflare(),
-	vite: {
-		optimizeDeps: {
-			exclude: ["@resvg/resvg-wasm"],
-		},
-	},
+	adapter: cloudflare({
+		wasmModuleImports: true,
+	}),
 });
