@@ -9,7 +9,7 @@
 
   body {
     font-family: 'UncutSans', sans-serif;
-    @apply bg-white text-black dark:bg-black dark:text-white;
+    @apply bg-white text-black dark:bg-black dark:text-white lowercase;
   }
 
 

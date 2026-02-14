@@ -19,10 +19,6 @@ export const menuItems: MenuItem[] = [
 		label: "thoughts",
 		url: "/thoughts",
 	},
-	{
-		label: "tools",
-		url: "/tools",
-	},
 ];
 
 export const title = "Sanju's Space";
