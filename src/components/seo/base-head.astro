@@ -25,6 +25,7 @@ const {
 } = Astro.props;
 
 const resolvedImage = new URL(image, Astro.url);
+const fullTitle = `${title} | sanju`;
 ---
 
 <!-- Theme detection (before paint) -->
@@ -114,15 +115,15 @@ const resolvedImage = new URL(image, Astro.url);
 <link rel='canonical' href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name='title' content={title} />
+<title>{fullTitle}</title>
+<meta name='title' content={fullTitle} />
 <meta name='description' content={description} />
 <meta name='author' content={author} />
 
 <!-- Open Graph -->
 <meta property='og:type' content={type} />
 <meta property='og:url' content={Astro.url} />
-<meta property='og:title' content={title} />
+<meta property='og:title' content={fullTitle} />
 <meta property='og:description' content={description} />
 <meta property='og:image' content={resolvedImage} />
 <meta property='og:site_name' content={SITE_TITLE} />
@@ -141,7 +142,7 @@ const resolvedImage = new URL(image, Astro.url);
 <!-- Twitter -->
 <meta property='twitter:card' content='summary_large_image' />
 <meta property='twitter:url' content={Astro.url} />
-<meta property='twitter:title' content={title} />
+<meta property='twitter:title' content={fullTitle} />
 <meta property='twitter:description' content={description} />
 <meta property='twitter:image' content={resolvedImage} />
 <meta property='twitter:site' content={TWITTER_HANDLE} />
