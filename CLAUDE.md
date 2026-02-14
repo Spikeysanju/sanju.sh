@@ -2,18 +2,24 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Rules
+
+- Always use `bun` as the package manager and script runner — never npm or node
+- Never add `Co-Authored-By` lines to git commits
+- Prefer lowercase text across the site
+
 ## Commands
 
 ```bash
 # Development
-npm run dev          # Start dev server
-npm run build        # Type-check and build for production
-npm run preview      # Preview production build locally
+bun dev              # Start dev server
+bun run build        # Type-check and build for production
+bun run preview      # Preview production build locally
 
 # Code Quality
-npm run check        # Run Biome checks on ./src
-npm run lint         # Run Biome linter on ./src
-npm run format       # Format all files with Biome
+bun run check        # Run Biome checks on ./src
+bun run lint         # Run Biome linter on ./src
+bun run format       # Format all files with Biome
 ```
 
 ## Architecture

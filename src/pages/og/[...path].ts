@@ -20,7 +20,9 @@ export const GET: APIRoute = async ({ params, request }) => {
 		if (!collectionName || !slug) return Response.redirect(fallback, 302);
 
 		const posts = await getCollection(collectionName as any);
-		const post = posts.find((p: any) => p.slug === slug);
+		const post = posts.find((p: any) => p.slug === slug) as
+			| { data: { title: string }; slug: string }
+			| undefined;
 		if (!post) return Response.redirect(fallback, 302);
 
 		const png = await renderOgImage(
@@ -29,7 +31,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 			new URL(request.url).origin,
 		);
 
-		return new Response(png, {
+		return new Response(png.buffer as ArrayBuffer, {
 			headers: {
 				"Content-Type": "image/png",
 				"Cache-Control": "public, max-age=86400, s-maxage=604800",
