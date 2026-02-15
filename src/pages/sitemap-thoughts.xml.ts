@@ -9,7 +9,7 @@ export const GET: APIRoute = async () => {
   ${thoughts
 		.map(
 			(post) => `<url>
-    <loc>${new URL("/thoughts/" + post.slug, import.meta.env.SITE).href}</loc>
+    <loc>${new URL("/" + post.slug, import.meta.env.SITE).href}</loc>
     <lastmod>${(post.data.updatedDate ?? post.data.pubDate).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

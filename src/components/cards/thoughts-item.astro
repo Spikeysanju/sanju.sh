@@ -7,7 +7,7 @@ const { category, content, pubDate, index, slug } = Astro.props;
 
 ---
 
-<a href={`/thoughts/${slug}`}>
+<a href={`/${slug}`}>
 	<article
 		id={category}
 		class={clsx(

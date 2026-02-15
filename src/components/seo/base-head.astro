@@ -25,7 +25,8 @@ const {
 } = Astro.props;
 
 const resolvedImage = new URL(image, Astro.url);
-const fullTitle = `${title} | sanju`;
+const isHome = Astro.url.pathname === '/';
+const fullTitle = isHome ? title : `${title} | sanju`;
 ---
 
 <!-- Theme detection (before paint) -->

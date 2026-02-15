@@ -2,7 +2,6 @@
 import { WritingItem } from '@components/cards';
 import { Header } from '@components/misc';
 import { BaseHead } from '@components/seo';
-import { SITE_TITLE } from '@data/index';
 import { getCollection } from 'astro:content';
 import RootLayout from '@layouts/root-layout.astro';
 
@@ -15,7 +14,7 @@ const writings = (await getCollection('writing')).sort(
 <html lang='en'>
 	<head>
 		<BaseHead
-			title={`writings — ${SITE_TITLE}`}
+			title="writings"
 			description="read sanju's writings on design, engineering, and product"
 		/>
 	</head>
