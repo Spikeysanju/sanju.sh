@@ -1,0 +1,61 @@
+---
+title: "Less"
+description: "i looked at my site and felt it had too much. the fix wasn't adding something new. it was taking things away."
+pubDate: 'Feb 15 2026'
+readingTime: 2
+---
+
+so i've been going through my site lately and just... removing stuff.
+
+it started when i looked at the whole thing and felt like there was too much going on. sections i wasn't using, urls that were way too long, fonts loaded from google's servers. none of it was intentional. it just piled up over time. so instead of adding more, i started deleting.
+
+**i killed the ships section entirely.**
+
+i had this whole section called "ships" where i logged things i shipped. product updates, side projects, little wins. six posts total. i was pretty excited about it when i built it.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I track how many ships I build each month on <a href="https://t.co/6TY7gKMHvo">https://t.co/6TY7gKMHvo</a>. It&#39;s like a log of your ship-building progress 💿 <a href="https://t.co/UfaKil9Ksm">pic.twitter.com/UfaKil9Ksm</a></p>&mdash; Sanju (@spikeysanju) <a href="https://twitter.com/spikeysanju/status/1792267924121805059?ref_src=twsrc%5Etfw">May 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+but when i actually went back and read the posts, they were basically nothing. a tweet embed, a paragraph, a call-to-action at the bottom. the projects already speak for themselves, they don't need a blog post saying "hey i made this." so i removed everything. the posts, the layout, the listing page, the sitemap entry, the accent color tokens. all of it. and honestly, nothing was lost.
+
+**i shortened every single url.**
+
+my urls were ridiculous. stuff like `/writings/building-side-projects` and `/thoughts/stop-asking-for-design-feedback`. try saying that out loud to someone.
+
+so i went through every content file and renamed them:
+
+- `building-side-projects` → `side-projects`
+- `stop-asking-for-design-feedback` → `design-feedback`
+- `sanju's-internet-space` → `internet-space`
+
+then i flattened the routes completely. instead of `/writings/side-projects`, it's just `sanju.sh/side-projects` now. one catch-all route replaced three separate page files.
+
+if you can't type a url from memory, it's too long.
+
+**i switched to a self-hosted font.**
+
+the site was loading google sans from google's cdn on every page. worked fine, but it always bothered me that something as basic as my typeface depended on someone else's server. so i switched to uncut sans. self-hosted, four weights (regular, medium, semibold, bold), woff2 with woff fallback. no external requests. the font loads from the same place as everything else.
+
+**i built og images from scratch.**
+
+this one was fun and painful. i wanted every post to get its own og card when you share it. the title on a dark background, an accent color based on the section (orange for writings, red for thoughts), and "sanju.sh" in the corner. all generated dynamically on the edge.
+
+first attempt used satori to turn jsx into svg, then resvg to make it a png. worked perfectly on my machine. completely broke on cloudflare workers because satori uses yoga-layout which does dynamic wasm compilation, and workers block that. so i threw out satori and wrote the svg as a raw string template. word wrapping with tspan elements, a function that estimates character width to figure out line breaks. not pretty code, but it runs anywhere.
+
+then the text wouldn't show up. turned out cloudflare workers need wasm pre-compiled at build time, so i switched to a static `?module` import for the resvg binary. then the text still wouldn't render because i was loading a woff font and resvg wanted woff2. switched the format. finally worked.
+
+four commits and three rewrites for a png with some words on it. but now every post gets a branded card, cached for a week, generated on the edge, zero external services.
+
+**i made page titles quieter.**
+
+they used to be long. stuff like "writings — sanju | designer & founder". now it's just "writings | sanju". short enough to actually read in a browser tab.
+
+**none of this added new features.** the site does exactly what it did before. it shows writings, shows thoughts, tells you who i am. but everything that's still here is here because i decided to keep it. not because a template put it there.
+
+import { EndCTA } from "@components/cta";
+
+<EndCTA
+	title="i'm building dunsocial. an ai-native social media agent that writes, schedules, and publishes for you."
+	cta_label="try dunsocial"
+	bg_colour="orange"
+	link="https://dunsocial.com"
+/>
