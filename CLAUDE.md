@@ -28,10 +28,9 @@ This is an Astro-based personal website deployed to Cloudflare Pages with server
 
 ### Content Collections
 
-Content lives in `src/content/` with four collections defined in `src/content/config.ts`:
+Content lives in `src/content/` with three collections defined in `src/content/config.ts`:
 - **writing** - Blog posts with title, description, pubDate, heroImage, readingTime
 - **thought** - Short-form content with category and optional showTldr flag
-- **ship** - Project entries with ship_count and category
 - **whoami** - About page content
 
 ### Path Aliases
