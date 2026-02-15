@@ -43,19 +43,4 @@ const thought = defineCollection({
 	}),
 });
 
-const ship = defineCollection({
-	type: "content",
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		ship_count: z.number(),
-		category: z.string(),
-		// Transform string to Date object
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
-		readingTime: z.number().optional(),
-	}),
-});
-
-export const collections = { writing, thought, ship, whoami };
+export const collections = { writing, thought, whoami };

@@ -5,12 +5,9 @@ import resvgWasm from "./resvg.wasm?module";
 const ACCENT_COLORS: Record<string, string> = {
 	writings: "#f97316",
 	thoughts: "#ef4444",
-	ships: "#84cc16",
 };
 
-const GOOGLE_FONTS_CSS =
-	"https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap";
-const FONT_FAMILY = "Google Sans";
+const FONT_FAMILY = "Uncut Sans";
 
 let wasmInitPromise: Promise<void> | null = null;
 let fontBufferCache: Uint8Array | null = null;
@@ -25,22 +22,9 @@ async function ensureWasm() {
 async function getFontBuffer(baseUrl: string): Promise<Uint8Array> {
 	if (fontBufferCache) return fontBufferCache;
 
-	let ab: ArrayBuffer;
-	try {
-		const css = await fetch(GOOGLE_FONTS_CSS, {
-			headers: { "User-Agent": "satori" },
-		}).then((r) => r.text());
-
-		const match = css.match(
-			/src:\s*url\(([^)]+)\)\s*format\(['"]truetype['"]\)/,
-		);
-		if (!match?.[1]) throw new Error("no font url");
-		ab = await fetch(match[1]).then((r) => r.arrayBuffer());
-	} catch {
-		ab = await fetch(
-			new URL("/fonts/uncut/woff/UncutSans-Medium.woff", baseUrl),
-		).then((r) => r.arrayBuffer());
-	}
+	const ab = await fetch(
+		new URL("/fonts/uncut/woff/UncutSans-Regular.woff", baseUrl),
+	).then((r) => r.arrayBuffer());
 
 	fontBufferCache = new Uint8Array(ab);
 	return fontBufferCache;
@@ -94,7 +78,7 @@ function buildSvg(title: string, section: string): string {
   <rect width="1200" height="630" fill="#0a0a0a"/>
   <circle cx="72" cy="60" r="6" fill="${accent}"/>
   <text x="90" y="68" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">${escapeXml(section)}</text>
-  <text x="60" y="${titleY}" fill="#ffffff" font-family="${FONT_FAMILY}" font-size="${fontSize}" font-weight="500" letter-spacing="-0.5">${titleTspans}</text>
+  <text x="60" y="${titleY}" fill="#ffffff" font-family="${FONT_FAMILY}" font-size="${fontSize}" font-weight="400" letter-spacing="-0.5">${titleTspans}</text>
   <text x="60" y="586" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">sanju.sh</text>
   <rect x="1020" y="577" width="120" height="6" rx="3" fill="${accent}"/>
 </svg>`;

@@ -12,9 +12,6 @@ export const GET: APIRoute = async () => {
   <sitemap>
     <loc>${new URL("/sitemap-thoughts.xml", import.meta.env.SITE).href}</loc>
   </sitemap>
-  <sitemap>
-    <loc>${new URL("/sitemap-ships.xml", import.meta.env.SITE).href}</loc>
-  </sitemap>
 </sitemapindex>`;
 
 	return new Response(sitemapIndex, {

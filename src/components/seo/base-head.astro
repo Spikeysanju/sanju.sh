@@ -78,11 +78,6 @@ const fullTitle = `${title} | sanju`;
 	href='/sitemap-index.xml'
 />
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
-
 <!-- Global Metadata -->
 <meta charset='utf-8' />
 <meta
@@ -107,7 +102,8 @@ const fullTitle = `${title} | sanju`;
 <link rel='manifest' href='/manifest.json' />
 <meta name='msapplication-TileColor' content='#ffffff' />
 <meta name='msapplication-TileImage' content='/ms-icon-144x144.png' />
-<meta name='theme-color' content='#ffffff' />
+<meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: light)' />
+<meta name='theme-color' content='#000000' media='(prefers-color-scheme: dark)' />
 
 <meta name='generator' content={Astro.generator} />
 

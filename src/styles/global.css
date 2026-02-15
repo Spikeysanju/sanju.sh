@@ -2,11 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ——— @font-face — Uncut Sans ——— */
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Regular.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Medium.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Semibold.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Bold.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
 
   /* ——— typography tokens ——— */
   :root {
-    --font-body: 'Google Sans', sans-serif;
+    --font-body: 'Uncut Sans', sans-serif;
 
     /* font weights */
     --fw-regular: 400;
@@ -53,9 +90,6 @@
     --color-accent-writing-bg: #fff7ed;    /* orange-50 */
     --color-accent-thoughts: #ef4444;      /* red-500 */
     --color-accent-thoughts-bg: #fef2f2;   /* red-50 */
-    --color-accent-ships: #84cc16;         /* lime-500 */
-    --color-accent-ships-bg: #f7fee7;      /* lime-50 */
-
     /* category colors */
     --color-cat-ai: #fde047;          /* yellow-300 */
     --color-cat-design: #bef264;      /* lime-300 */
@@ -85,8 +119,6 @@
     --color-accent-writing-bg: #431407;    /* orange-950 */
     --color-accent-thoughts: #f87171;      /* red-400 */
     --color-accent-thoughts-bg: #450a0a;   /* red-950 */
-    --color-accent-ships: #a3e635;         /* lime-400 */
-    --color-accent-ships-bg: #1a2e05;      /* lime-950 */
   }
 
   /* ——— base styles ——— */

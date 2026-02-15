@@ -5,7 +5,6 @@ import { renderOgImage } from "@utils/og";
 const COLLECTION_MAP: Record<string, string> = {
 	writings: "writing",
 	thoughts: "thought",
-	ships: "ship",
 };
 
 export const GET: APIRoute = async ({ params, request }) => {
