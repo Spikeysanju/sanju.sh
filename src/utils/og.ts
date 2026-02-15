@@ -14,7 +14,9 @@ let fontBufferCache: Uint8Array | null = null;
 
 async function ensureWasm() {
 	if (!wasmInitPromise) {
-		wasmInitPromise = initWasm(resvgWasm);
+		wasmInitPromise = initWasm(resvgWasm).catch((e) => {
+			if (!/already initialized/i.test(e?.message)) throw e;
+		});
 	}
 	return wasmInitPromise;
 }
@@ -23,7 +25,7 @@ async function getFontBuffer(baseUrl: string): Promise<Uint8Array> {
 	if (fontBufferCache) return fontBufferCache;
 
 	const ab = await fetch(
-		new URL("/fonts/uncut/woff/UncutSans-Regular.woff", baseUrl),
+		new URL("/fonts/uncut/woff2/UncutSans-Regular.woff2", baseUrl),
 	).then((r) => r.arrayBuffer());
 
 	fontBufferCache = new Uint8Array(ab);
