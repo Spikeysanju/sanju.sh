@@ -26,8 +26,18 @@ export const menuItems: MenuItem[] = [
 
 export const products = [
 	{
+		name: "DroidClaw",
+		url: "https://droidclaw.ai",
+		image: "/products/droidclaw.png",
+	},
+	{
+		name: "DunSocial",
+		url: "https://dunsocial.com",
+		image: "/products/dunsocial.png",
+	},
+	{
 		name: "Fli.so",
-		url: "https://fli.so",
+		url: "https://github.com/thisuxhq/fli.so",
 		image: "/products/fli.png",
 	},
 	{
