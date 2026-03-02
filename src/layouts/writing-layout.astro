@@ -26,17 +26,17 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 	<RootLayout>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
+			class='flex flex-col w-full gap-6 max-w-xl lg:max-w-3xl'>
 			<Header />
 
 			<article
 				id='blog-content'
 				class='w-full flex flex-col gap-6 items-center justify-center'>
 				<h1
-					class='w-full text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight'>
+					class='w-full max-w-xl text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight'>
 					{title}
 				</h1>
-				<div class='flex flex-row gap-2 w-full'>
+				<div class='flex flex-row gap-2 w-full max-w-xl'>
 					<p class='text-start text-gray-500 font-medium'>
 						<FormattedDate date={pubDate.toString()} />
 					</p>
@@ -46,7 +46,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 					</p>
 				</div>
 				<p
-					class='w-full text-start font-medium text-gray-700 dark:text-gray-300 text-lg'>
+					class='w-full max-w-xl text-start font-medium text-gray-700 dark:text-gray-300 text-lg'>
 					<span class='font-semibold text-gray-900 dark:text-white'
 						>tl;dr:
 					</span>
@@ -63,6 +63,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 				}
 				<div
 					class={clsx(
+						'relative max-w-xl',
 						'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 items-center justify-center',
 						'dark:prose-a:bg-orange-950 dark:prose-a:decoration-orange-400 dark:prose-a:underline',
 						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
