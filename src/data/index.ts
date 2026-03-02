@@ -26,9 +26,9 @@ export const menuItems: MenuItem[] = [
 
 export const products = [
 	{
-		name: "DroidClaw",
-		url: "https://droidclaw.ai",
-		image: "/products/droidclaw.png",
+		name: "ThisUX",
+		url: "https://thisux.com",
+		image: "/products/thisux.png",
 	},
 	{
 		name: "DunSocial",
@@ -36,19 +36,29 @@ export const products = [
 		image: "/products/dunsocial.png",
 	},
 	{
-		name: "Fli.so",
-		url: "https://github.com/thisuxhq/fli.so",
-		image: "/products/fli.png",
-	},
-	{
-		name: "Uiino",
-		url: "https://uiino.com",
-		image: "/products/uiino.png",
-	},
-	{
 		name: "SticAI",
 		url: "https://sticai.com",
 		image: "/products/sticai.png",
+	},
+	{
+		name: "unitedby.ai",
+		url: "https://unitedby.ai",
+		image: "/products/unitedbyai.png",
+	},
+	{
+		name: "DroidClaw",
+		url: "https://droidclaw.ai",
+		image: "/products/droidclaw.png",
+	},
+	{
+		name: "DunTasks",
+		url: "https://duntasks.com",
+		image: "/products/duntasks.png",
+	},
+	{
+		name: "Fli.so",
+		url: "https://github.com/thisuxhq/fli.so",
+		image: "/products/fli.png",
 	},
 	{
 		name: "Dun",
@@ -56,9 +66,9 @@ export const products = [
 		image: "/products/dun.png",
 	},
 	{
-		name: "DunTasks",
-		url: "https://duntasks.com",
-		image: "/products/duntasks.png",
+		name: "Uiino",
+		url: "https://uiino.com",
+		image: "/products/uiino.png",
 	},
 ];
 
