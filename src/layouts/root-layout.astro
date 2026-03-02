@@ -1,6 +1,14 @@
+---
+interface Props {
+	maxWidth?: string;
+}
+
+const { maxWidth = 'max-w-xl' } = Astro.props;
+---
+
 <div
 	id='root-container'
-	class='w-full flex flex-col items-center justify-start my-6 p-4 antialiased max-w-xl mx-auto'>
+	class={`w-full flex flex-col items-center justify-start my-6 p-4 antialiased ${maxWidth} mx-auto`}>
 	<slot />
 </div>
 

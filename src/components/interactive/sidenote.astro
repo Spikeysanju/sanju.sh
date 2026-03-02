@@ -6,16 +6,16 @@ interface Props {
 const { id } = Astro.props;
 ---
 
-<span class="sidenote-wrapper relative">
+<span class="sidenote-wrapper">
 	<button
-		class="sidenote-toggle lg:pointer-events-none inline font-medium text-neutral-500 dark:text-neutral-400 cursor-pointer lg:cursor-default"
+		class="sidenote-toggle xl:pointer-events-none inline font-medium text-neutral-500 dark:text-neutral-400 cursor-pointer xl:cursor-default"
 		aria-label={`toggle sidenote ${id}`}
 		data-sidenote-id={id}
 	>
 		<sup class="text-xs">{id}</sup>
 	</button>
 	<span
-		class="sidenote-body not-prose hidden lg:block absolute lg:left-[calc(100%+2rem)] lg:top-0 lg:w-56 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed"
+		class="sidenote-body not-prose hidden xl:inline text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed"
 		data-sidenote-body={id}
 	>
 		<span class="font-medium">{id}:</span>{" "}
@@ -24,11 +24,20 @@ const { id } = Astro.props;
 </span>
 
 <style>
+	/* desktop: float sidenote into right margin */
+	@media (min-width: 1280px) {
+		.sidenote-body {
+			float: right;
+			clear: right;
+			width: 14rem;
+			margin-right: -17rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	/* mobile: toggle open */
 	.sidenote-body.is-open {
 		display: block;
-		position: relative;
-		left: 0;
-		top: 0;
 		width: 100%;
 		margin-top: 0.5rem;
 		margin-bottom: 0.5rem;
@@ -45,7 +54,7 @@ const { id } = Astro.props;
 <script>
 	document.addEventListener("click", (e) => {
 		const toggle = (e.target as HTMLElement).closest(".sidenote-toggle");
-		if (!toggle || window.innerWidth >= 1024) return;
+		if (!toggle || window.innerWidth >= 1280) return;
 
 		const id = toggle.getAttribute("data-sidenote-id");
 		const body = document.querySelector(`[data-sidenote-body="${id}"]`);
