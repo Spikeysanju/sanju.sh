@@ -1,0 +1,68 @@
+---
+title: "Micro Models > SLMs > LLMs"
+description: "you don't need 70B params to tap a button on a phone. for mobile agents, smaller is smarter."
+category: "ai"
+showTldr: true
+pubDate: "Mar 02 2026"
+updatedDate: "Mar 02 2026"
+readingTime: 2
+---
+
+import { Sidenote } from "@components/interactive";
+
+let's talk about running ai on phones.
+
+everyone's obsessed with making models bigger. more parameters, more data, more gpu. but for mobile agents, the ones that actually do stuff on your phone, bigger is the wrong direction entirely.
+
+## the numbers
+
+| | micro models | SLMs | LLMs |
+|---|---|---|---|
+| **size** | ~80MB | ~2GB | ~40GB |
+| **cost** | $0/action | $0.01/action | $0.03/action |
+| **runs on** | on device | on device (barely) | cloud only |
+
+a micro model fits in your phone's ram the way a photo does. an LLM needs a data center.
+
+## why send it to the cloud
+
+every time your phone agent hits a cloud api, that's latency. that's a network dependency. that's a privacy question. that's a cost.
+
+tap a button. 200ms round trip to a server. open an app. another 200ms. scroll down. another one. chain five actions together and you're waiting a full second just for the model to think. on someone else's computer.
+
+micro models run locally. zero latency. zero cost. zero privacy concerns. the action happens before your finger leaves the screen.
+
+## tapping a button doesn't need 70B params
+
+here's what mobile agents actually do most of the time. tap a button. type some text. scroll to an element. switch apps. read what's on screen.
+
+that's it. pattern matching. spatial reasoning on a 6-inch screen. you don't need a model that can write poetry and debate philosophy to find a button and tap it.
+
+a 50M parameter model trained specifically on mobile ui interactions will outperform a 70B general model at these tasks. every time. because it's built for exactly this.
+
+## app-specific micro models
+
+the future of mobile agents isn't one massive model doing everything. it's a swarm of tiny models, each trained for a specific app<Sidenote id="1">i'm actively working on this. app-specific micro models trained to take decisions and perform actions for individual apps. paper coming soon.</Sidenote>.
+
+think about it. every app has its own ui patterns, its own flows, its own quirks. a model trained specifically on whatsapp knows exactly where the send button is, how to navigate chats, how to handle media. a model trained on instagram knows stories, reels, dms, the whole layout.
+
+you don't need one giant brain that kinda knows every app. you need a tiny brain that deeply knows one app. train it on that app's screens, actions, and flows. 50M params. under 100MB. runs instantly on device.
+
+swap models based on which app is open. that's it.
+
+## the real bottleneck was never intelligence
+
+it was latency. cost. battery. privacy.
+
+micro models solve all four at once.
+
+for mobile agents, this isn't even a debate.
+
+import { EndCTA } from "@components/cta";
+
+<EndCTA
+  title="we built droidclaw. turn old phones into ai agents. give it a goal in plain english, it reads the screen, taps, types, and gets it done."
+  cta_label="check out droidclaw"
+  bg_colour="orange"
+  link="https://droidclaw.ai"
+/>
