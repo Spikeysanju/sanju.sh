@@ -28,7 +28,7 @@ a micro model fits in your phone's ram the way a photo does. an LLM needs a data
 
 every time your phone agent hits a cloud api, that's latency. that's a network dependency. that's a privacy question. that's a cost.
 
-tap a button. 200ms round trip to a server. open an app. another 200ms. scroll down. another one. chain five actions together and you're waiting a full second just for the model to think. on someone else's computer.
+tap a button. 200ms round trip to a server. open an app. another 200ms. scroll down. another one. chain five actions together and you're waiting a full second just for the model to think<Sidenote id="2">and that's assuming good connectivity. on spotty networks or in regions with high latency to cloud providers, it's even worse.</Sidenote>. on someone else's computer.
 
 micro models run locally. zero latency. zero cost. zero privacy concerns. the action happens before your finger leaves the screen.
 
@@ -38,7 +38,7 @@ here's what mobile agents actually do most of the time. tap a button. type some 
 
 that's it. pattern matching. spatial reasoning on a 6-inch screen. you don't need a model that can write poetry and debate philosophy to find a button and tap it.
 
-a 50M parameter model trained specifically on mobile ui interactions will outperform a 70B general model at these tasks. every time. because it's built for exactly this.
+a 50M parameter model trained specifically on mobile ui interactions will outperform a 70B general model at these tasks<Sidenote id="3">we've seen this pattern before. specialized small models beat general large models in vision, speech, and translation. mobile ui is next.</Sidenote>. every time. because it's built for exactly this.
 
 ## app-specific micro models
 
