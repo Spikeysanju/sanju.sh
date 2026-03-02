@@ -79,4 +79,34 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 			</article>
 		</div>
 	</RootLayout>
+
+	<style is:global>
+		#blog-content .prose :is(h2, h3, h4)[id] {
+			position: relative;
+			cursor: pointer;
+		}
+
+		#blog-content .prose :is(h2, h3, h4)[id]::after {
+			content: '#';
+			position: absolute;
+			left: -1.5rem;
+			opacity: 0;
+			color: rgb(163 163 163);
+			transition: opacity 0.15s;
+		}
+
+		#blog-content .prose :is(h2, h3, h4)[id]:hover::after {
+			opacity: 1;
+		}
+	</style>
+
+	<script>
+		document.querySelectorAll('#blog-content .prose :is(h2, h3, h4)[id]').forEach((heading) => {
+			heading.addEventListener('click', () => {
+				const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
+				navigator.clipboard.writeText(url);
+				history.replaceState(null, '', `#${heading.id}`);
+			});
+		});
+	</script>
 </html>

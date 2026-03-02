@@ -5,11 +5,11 @@ pubDate: 'Dec 26 2025'
 readingTime: 3
 ---
 
-import { DecisionToggle, FlipCards, DecisionForm, Highlight, AgentSimulation, CommitCompare, RevealQuote } from "@components/interactive";
+import { DecisionToggle, FlipCards, DecisionForm, AgentSimulation, CommitCompare, RevealQuote, Sidenote } from "@components/interactive";
 
 There's a lot of noise right now about **"decision traces"** and **"context graphs."** Fancy words for a simple problem we've been ignoring for years.
 
-We don't need new infrastructure. <Highlight>We've just been lazy.</Highlight>
+We don't need new infrastructure. We've just been lazy.
 
 <DecisionToggle />
 
@@ -25,19 +25,19 @@ The data was there. At the moment of decision, someone knew:
 - Who said yes
 - What past decision made this okay
 
-<Highlight>We just didn't save it.</Highlight> Not because we couldn't. Because no one asked us to.
+We just didn't save it. Not because we couldn't. Because no one asked us to.
 
 ## We already solved this for code
 
 Engineers figured this out 20 years ago.
 
-Git commit + PR description + linked issue = decision trace for code.
+Git commit + PR description + linked issue = decision trace for code<Sidenote id="1">this is why good commit messages matter. `fix bug` tells you nothing. `fix: skip retry on 401 because upstream returns stale tokens` tells you everything.</Sidenote>.
 
 <CommitCompare />
 
 Engineers who've been burned treat commit messages like documentation. Not because anyone forces them to. Because they've asked **"wait, why did we write it this way?"** one too many times.
 
-<Highlight color="green">The code doesn't change. The context around it does.</Highlight>
+The code doesn't change. The context around it does.
 
 ## Now apply that thinking everywhere else
 
@@ -49,7 +49,7 @@ Same pattern. Just applied beyond code.
 
 Two reasons.
 
-Friction. In the moment, no one wants to fill out a **"reason"** field. They're busy. They'll do it later. <Highlight color="pink">They never do.</Highlight>
+Friction. In the moment, no one wants to fill out a **"reason"** field. They're busy. They'll do it later<Sidenote id="2">this is the same reason people skip writing tests. the cost feels high now, the payoff feels far away. until it isn't.</Sidenote>. They never do.
 
 Incentives. Activity logs are easy to build. Check a compliance box, ship it. Decision traces take effort. You actually have to think.
 
@@ -59,9 +59,9 @@ AI agents fix both problems.
 
 <AgentSimulation />
 
-**No more friction.** The agent is already doing the work. It pulled data from 5 places, weighed options, got approval. Writing down why? That's just one more line. <Highlight color="green">Zero extra effort.</Highlight>
+**No more friction.** The agent is already doing the work. It pulled data from 5 places, weighed options, got approval. Writing down why? That's just one more line. Zero extra effort.
 
-**Incentives finally align.** AI agents need past decisions to get smarter. If you never saved why exceptions were made, the agent can't learn when to make them. Bad data in, bad decisions out.
+**Incentives finally align.** AI agents need past decisions to get smarter<Sidenote id="3">this is basically reinforcement learning from human decisions. every "why" you capture becomes a training signal for better future choices.</Sidenote>. If you never saved why exceptions were made, the agent can't learn when to make them. Bad data in, bad decisions out.
 
 If you're building AI agents, you have a choice. Capture the why from day one, or end up with another pile of useless logs.
 
@@ -74,7 +74,7 @@ You don't need fancy infrastructure to start. Just capture three things with eve
 
 <DecisionForm />
 
-A text field works. A simple schema works. <Highlight>The value isn't in the architecture. It's in having the data at all.</Highlight>
+A text field works. A simple schema works. The value isn't in the architecture. It's in having the data at all.
 
 Six months from now, when someone asks **"why did we decide this?"**, you'll either have an answer or you won't.
 
