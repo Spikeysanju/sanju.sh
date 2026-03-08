@@ -6,6 +6,11 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://sanju.sh",
+	vite: {
+		server: {
+			allowedHosts: ["frederick-east-surfing-beam.trycloudflare.com"],
+		},
+	},
 	integrations: [
 		mdx(),
 		tailwind(),

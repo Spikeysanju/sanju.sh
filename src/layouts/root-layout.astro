@@ -12,6 +12,19 @@ const { maxWidth = 'max-w-xl' } = Astro.props;
 	<slot />
 </div>
 
+<script>
+	import { WebHaptics } from 'web-haptics';
+
+	const haptics = new WebHaptics();
+
+	document.addEventListener('click', (e) => {
+		const target = e.target as Element;
+		if (target.closest('a, button')) {
+			haptics.trigger([{ duration: 15, intensity: 0.4 }]);
+		}
+	});
+</script>
+
 <head>
 	<!-- Your existing head content -->
 	<link

@@ -103,4 +103,52 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 			});
 		});
 	</script>
+
+	<script>
+		import { WebHaptics } from 'web-haptics';
+
+		const haptics = new WebHaptics();
+		const article = document.getElementById('blog-content');
+
+		if (article) {
+			const RATCHET_PX = 150;
+			const milestones = [0.25, 0.5, 0.75, 1.0];
+			const milestonePatterns = [
+				[{ duration: 15, intensity: 0.4 }],
+				[{ duration: 20, intensity: 0.6 }],
+				[{ duration: 25, intensity: 0.8 }],
+				[{ duration: 30, intensity: 0.5 }, { delay: 60, duration: 40, intensity: 1 }],
+			];
+			const fired = new Set<number>();
+
+			let lastY = window.scrollY;
+			let ratchet = 0;
+
+			window.addEventListener('scroll', () => {
+				const currentY = window.scrollY;
+				ratchet += Math.abs(currentY - lastY);
+				lastY = currentY;
+
+				// ratchet tick every RATCHET_PX scrolled
+				if (ratchet >= RATCHET_PX) {
+					haptics.trigger([{ duration: 8, intensity: 0.3 }]);
+					ratchet = ratchet % RATCHET_PX;
+				}
+
+				// reading progress milestones
+				const articleTop = article.getBoundingClientRect().top + window.scrollY;
+				const progress = Math.min(
+					(currentY + window.innerHeight - articleTop) / article.offsetHeight,
+					1
+				);
+
+				milestones.forEach((m, i) => {
+					if (!fired.has(m) && progress >= m) {
+						fired.add(m);
+						haptics.trigger(milestonePatterns[i]);
+					}
+				});
+			}, { passive: true });
+		}
+	</script>
 </html>
