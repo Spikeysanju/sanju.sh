@@ -15,7 +15,9 @@ const { maxWidth = 'max-w-xl' } = Astro.props;
 <script>
 	import { WebHaptics } from 'web-haptics';
 
+	// single shared instance — any page can use window.__haptics
 	const haptics = new WebHaptics();
+	(window as any).__haptics = haptics;
 
 	document.addEventListener('click', (e) => {
 		const target = e.target as Element;

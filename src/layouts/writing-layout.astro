@@ -111,19 +111,16 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 	</script>
 
 	<script>
-		import { WebHaptics } from 'web-haptics';
+		import type { WebHaptics } from 'web-haptics';
 
-		const haptics = new WebHaptics();
+		// reuse the shared instance created in root-layout (already unlocked by clicks)
+		const haptics: WebHaptics = (window as any).__haptics;
 		const article = document.getElementById('blog-content');
 
-		// unlock AudioContext on first gesture so scroll haptics work
-		document.addEventListener('touchstart', () => haptics.trigger([{ duration: 1 }]), { once: true });
-		document.addEventListener('click', () => haptics.trigger([{ duration: 1 }]), { once: true });
-
-		if (article) {
+		if (haptics && article) {
 			const RATCHET_PX = 150;
 			const milestones = [0.25, 0.5, 0.75, 1.0];
-			const milestonePatterns: Parameters<typeof haptics.trigger>[0][] = [
+			const milestonePatterns = [
 				[{ duration: 15, intensity: 0.4 }],
 				[{ duration: 20, intensity: 0.6 }],
 				[{ duration: 25, intensity: 0.8 }],
