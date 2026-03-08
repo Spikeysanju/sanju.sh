@@ -110,10 +110,14 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 		const haptics = new WebHaptics();
 		const article = document.getElementById('blog-content');
 
+		// unlock AudioContext on first gesture so scroll haptics work
+		document.addEventListener('touchstart', () => haptics.trigger([{ duration: 1 }]), { once: true });
+		document.addEventListener('click', () => haptics.trigger([{ duration: 1 }]), { once: true });
+
 		if (article) {
 			const RATCHET_PX = 150;
 			const milestones = [0.25, 0.5, 0.75, 1.0];
-			const milestonePatterns = [
+			const milestonePatterns: Parameters<typeof haptics.trigger>[0][] = [
 				[{ duration: 15, intensity: 0.4 }],
 				[{ duration: 20, intensity: 0.6 }],
 				[{ duration: 25, intensity: 0.8 }],
@@ -129,13 +133,11 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 				ratchet += Math.abs(currentY - lastY);
 				lastY = currentY;
 
-				// ratchet tick every RATCHET_PX scrolled
 				if (ratchet >= RATCHET_PX) {
 					haptics.trigger([{ duration: 8, intensity: 0.3 }]);
 					ratchet = ratchet % RATCHET_PX;
 				}
 
-				// reading progress milestones
 				const articleTop = article.getBoundingClientRect().top + window.scrollY;
 				const progress = Math.min(
 					(currentY + window.innerHeight - articleTop) / article.offsetHeight,
