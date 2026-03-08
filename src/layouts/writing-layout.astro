@@ -111,20 +111,20 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 	</script>
 
 	<script>
-		import type { WebHaptics } from 'web-haptics';
+		// navigator.vibrate works during scroll without any AudioContext/user-gesture requirement
+		const vibrate = (pattern: number | number[]) => navigator.vibrate?.(pattern);
 
-		// reuse the shared instance created in root-layout (already unlocked by clicks)
-		const haptics: WebHaptics = (window as any).__haptics;
 		const article = document.getElementById('blog-content');
 
-		if (haptics && article) {
+		if (article) {
 			const RATCHET_PX = 150;
 			const milestones = [0.25, 0.5, 0.75, 1.0];
-			const milestonePatterns = [
-				[{ duration: 15, intensity: 0.4 }],
-				[{ duration: 20, intensity: 0.6 }],
-				[{ duration: 25, intensity: 0.8 }],
-				[{ duration: 30, intensity: 0.5 }, { delay: 60, duration: 40, intensity: 1 }],
+			// alternating [vibrate, pause, vibrate] patterns — escalating intensity
+			const milestonePatterns: (number | number[])[] = [
+				15,
+				25,
+				[15, 30, 25],
+				[30, 50, 40],
 			];
 			const fired = new Set<number>();
 
@@ -137,7 +137,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 				lastY = currentY;
 
 				if (ratchet >= RATCHET_PX) {
-					haptics.trigger([{ duration: 8, intensity: 0.3 }]);
+					vibrate(8);
 					ratchet = ratchet % RATCHET_PX;
 				}
 
@@ -150,7 +150,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 				milestones.forEach((m, i) => {
 					if (!fired.has(m) && progress >= m) {
 						fired.add(m);
-						haptics.trigger(milestonePatterns[i]);
+						vibrate(milestonePatterns[i]);
 					}
 				});
 			}, { passive: true });
