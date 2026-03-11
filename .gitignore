@@ -17,5 +17,8 @@ pnpm-debug.log*
 .env
 .env.production
 
+# mcp config (contains tokens)
+.mcp.json
+
 # macOS-specific files
 .DS_Store
