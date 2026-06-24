@@ -39,20 +39,6 @@ the astro cloudflare adapter writes a worker bundle to `dist/server` and static 
 
 the old cloudflare pages projects were removed after the astro 7 migration. use workers for production deploys going forward.
 
-## 🔧 environment variables
-analytics use Umami and Clarity. set these as plaintext worker variables in cloudflare, and include them in the build environment when rebuilding so the analytics scripts are rendered into the production html:
-
-```plaintext
-# Umami analytics
-UMAMI_TRACKING_URL=https://track.thisux.com/script.js
-UMAMI_WEBSITE_ID=f2010e7e-645c-4dd4-9062-c1ef006f6307
-
-# Clarity analytics
-CLARITY_TRACKING_ID=ml2glxblrk
-```
-
-if you don't want to use analytics, remove the analytics code from [src/components/seo/base-head.astro](https://github.com/Spikeysanju/sanju.sh/blob/main/src/components/seo/base-head.astro).
-
 ## 🤝 contributing
 if you have ideas or suggestions, feel free to open an issue or submit a pull request. i'm open to collaborations and contributions.
 
