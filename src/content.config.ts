@@ -1,12 +1,12 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 const whoami = defineCollection({
-	type: "content",
-	// Type-check frontmatter using a schema
+	loader: glob({ base: "./src/content/whoami", pattern: "**/*.{md,mdx}" }),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
@@ -15,12 +15,10 @@ const whoami = defineCollection({
 });
 
 const writing = defineCollection({
-	type: "content",
-	// Type-check frontmatter using a schema
+	loader: glob({ base: "./src/content/writing", pattern: "**/*.{md,mdx}" }),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
@@ -29,14 +27,12 @@ const writing = defineCollection({
 });
 
 const thought = defineCollection({
-	type: "content",
-	// Type-check frontmatter using a schema
+	loader: glob({ base: "./src/content/thought", pattern: "**/*.{md,mdx}" }),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
 		category: z.string(),
 		showTldr: z.boolean().optional(),
-		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		readingTime: z.number().optional(),

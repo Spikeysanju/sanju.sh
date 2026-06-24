@@ -1,34 +1,37 @@
 ---
-import WritingLayout from '@layouts/writing-layout.astro';
-import ThoughtsLayout from '@layouts/thoughts-layout.astro';
-import { ScrollProgress } from '@components/misc';
-import { getCollection } from 'astro:content';
-import { getReadingTime } from '@utils/index';
+import { getCollection, render } from "astro:content";
+import { ScrollProgress } from "@components/misc";
+import ThoughtsLayout from "@layouts/thoughts-layout.astro";
+import WritingLayout from "@layouts/writing-layout.astro";
+import { getReadingTime } from "@utils/index";
 
 const { slug } = Astro.params;
 
-const writings = await getCollection('writing');
-const thoughts = await getCollection('thought');
+const writings = await getCollection("writing");
+const thoughts = await getCollection("thought");
 
-const writing = writings.find((p) => p.slug === slug);
-const thought = thoughts.find((p) => p.slug === slug);
-
-if (!writing && !thought) return Astro.redirect('/404');
-
+const writing = writings.find((p) => p.id === slug);
+const thought = thoughts.find((p) => p.id === slug);
 const post = writing ?? thought;
-const { Content } = await post!.render();
-const readingTime = getReadingTime(post!.body);
-const heroImage = writing ? (writing.data.heroImage || `/og/writings/${slug}`) : undefined;
-const ogImage = thought ? `/og/thoughts/${slug}` : undefined;
+if (!post) {
+	return Astro.redirect("/404");
+}
+
+const { Content } = await render(post);
+const readingTime = getReadingTime(post.body ?? "");
+const heroImage = writing
+	? writing.data.heroImage || `/og/writings/${slug}`
+	: "";
+const ogImage = thought ? `/og/thoughts/${slug}` : "";
 ---
 
 {writing ? (
-	<WritingLayout {...writing.data} heroImage={heroImage!} readingTime={readingTime}>
+	<WritingLayout {...writing.data} heroImage={heroImage} readingTime={readingTime}>
 		<Content />
 		<ScrollProgress />
 	</WritingLayout>
 ) : thought ? (
-	<ThoughtsLayout {...thought.data} ogImage={ogImage!} readingTime={readingTime}>
+	<ThoughtsLayout {...thought.data} ogImage={ogImage} readingTime={readingTime}>
 		<Content />
 		<ScrollProgress />
 	</ThoughtsLayout>

@@ -1,0 +1,9 @@
+{
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"name": "sanju-sh",
+	"compatibility_date": "2026-06-24",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	}
+}
