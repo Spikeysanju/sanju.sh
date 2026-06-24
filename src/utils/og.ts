@@ -1,4 +1,5 @@
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
+import uncutSansRegularUrl from "../assets/fonts/UncutSans-Regular.woff2?url&inline";
 // @ts-ignore — handled by @astrojs/cloudflare wasmModuleImports
 import resvgWasm from "./resvg.wasm?module";
 
@@ -21,14 +22,24 @@ async function ensureWasm() {
 	return wasmInitPromise;
 }
 
-async function getFontBuffer(baseUrl: string): Promise<Uint8Array> {
+function decodeBase64(base64: string): Uint8Array {
+	const binary = atob(base64);
+	const bytes = new Uint8Array(binary.length);
+	for (let i = 0; i < binary.length; i++) {
+		bytes[i] = binary.charCodeAt(i);
+	}
+	return bytes;
+}
+
+function getFontBuffer(): Uint8Array {
 	if (fontBufferCache) return fontBufferCache;
 
-	const ab = await fetch(
-		new URL("/fonts/uncut/woff2/UncutSans-Regular.woff2", baseUrl),
-	).then((r) => r.arrayBuffer());
+	const [, base64] = uncutSansRegularUrl.split(",");
+	if (!base64) {
+		throw new Error("Bundled OG font is not an inline data URL");
+	}
 
-	fontBufferCache = new Uint8Array(ab);
+	fontBufferCache = decodeBase64(base64);
 	return fontBufferCache;
 }
 
@@ -89,10 +100,10 @@ function buildSvg(title: string, section: string): string {
 export async function renderOgImage(
 	title: string,
 	section: string,
-	baseUrl: string,
+	_baseUrl: string,
 ): Promise<Uint8Array> {
 	const [fontBuffer] = await Promise.all([
-		getFontBuffer(baseUrl),
+		getFontBuffer(),
 		ensureWasm(),
 	]);
 
