@@ -83,9 +83,3 @@ For analytics:
 
 - `UMAMI_WEBSITE_ID`, `UMAMI_TRACKING_URL`: Umami analytics.
 - `CLARITY_TRACKING_ID`: Microsoft Clarity.
-
-Current production values:
-
-- `UMAMI_TRACKING_URL=https://track.thisux.com/script.js`
-- `UMAMI_WEBSITE_ID=f2010e7e-645c-4dd4-9062-c1ef006f6307`
-- `CLARITY_TRACKING_ID=ml2glxblrk`
