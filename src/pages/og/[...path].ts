@@ -1,11 +1,11 @@
-import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { renderOgImage } from "@utils/og";
+import type { APIRoute } from "astro";
 
-const COLLECTION_MAP: Record<string, string> = {
+const COLLECTION_MAP = {
 	writings: "writing",
 	thoughts: "thought",
-};
+} as const;
 
 export const GET: APIRoute = async ({ params, request }) => {
 	const fallback = new URL("/images/ogimage.png", request.url).toString();
@@ -15,13 +15,12 @@ export const GET: APIRoute = async ({ params, request }) => {
 		const [section, ...rest] = path.split("/");
 		const slug = rest.join("/");
 
-		const collectionName = COLLECTION_MAP[section];
+		const collectionName =
+			COLLECTION_MAP[section as keyof typeof COLLECTION_MAP];
 		if (!collectionName || !slug) return Response.redirect(fallback, 302);
 
-		const posts = await getCollection(collectionName as any);
-		const post = posts.find((p: any) => p.slug === slug) as
-			| { data: { title: string }; slug: string }
-			| undefined;
+		const posts = await getCollection(collectionName);
+		const post = posts.find((p) => p.id === slug);
 		if (!post) return Response.redirect(fallback, 302);
 
 		const png = await renderOgImage(

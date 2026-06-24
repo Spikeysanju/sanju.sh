@@ -1,8 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import { ThoughtsItem } from "@components/cards";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
-import { getCollection } from "astro:content";
 import RootLayout from "@layouts/root-layout.astro";
 
 const thoughts = (await getCollection("thought")).sort(
@@ -31,7 +31,7 @@ const thoughts = (await getCollection("thought")).sort(
 						category={thought.data.category}
 						content={thought.data.description}
 						pubDate={thought.data.pubDate}
-						slug={thought.slug}
+						slug={thought.id}
 						index={i}
 					/>
 				))
