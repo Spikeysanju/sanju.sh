@@ -1,5 +1,5 @@
 ---
-title: "meet sanju, designer founder"
+title: "sanju, designer, founder"
 description: "I run ThisUX, a design-led product studio. I'm working on ideas like sticai.com, abogrow.com, uiino.com, supaprompts.com, ffmpeg.info, and more. Always tinkering."
 pubDate: 'Sept 1 2024'
 ---
