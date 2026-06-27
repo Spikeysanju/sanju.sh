@@ -1,6 +1,7 @@
 ---
 import 'src/styles/global.css';
 import { SITE_TITLE, TWITTER_HANDLE } from '@data/index';
+import { env } from 'cloudflare:workers';
 
 interface Props {
 	title: string;
@@ -27,6 +28,10 @@ const {
 const resolvedImage = new URL(image, Astro.url);
 const isHome = Astro.url.pathname === '/';
 const fullTitle = isHome ? title : `${title} | sanju`;
+const runtimeEnv = env as unknown as Partial<Record<string, string>>;
+const umamiTrackingUrl = runtimeEnv.UMAMI_TRACKING_URL ?? import.meta.env.UMAMI_TRACKING_URL;
+const umamiWebsiteId = runtimeEnv.UMAMI_WEBSITE_ID ?? import.meta.env.UMAMI_WEBSITE_ID;
+const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLARITY_TRACKING_ID;
 ---
 
 <!-- Theme detection (before paint) -->
@@ -49,18 +54,18 @@ const fullTitle = isHome ? title : `${title} | sanju`;
 </script>
 
 <!-- Umami analytics -->{
-	import.meta.env.PROD && (
+	import.meta.env.PROD && umamiTrackingUrl && umamiWebsiteId && (
 		<script
 			defer
-			src={import.meta.env.UMAMI_TRACKING_URL}
-			data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
+			src={umamiTrackingUrl}
+			data-website-id={umamiWebsiteId}
 		/>
 	)
 }
 
 <!-- Clarity analytics -->
 {
-	import.meta.env.PROD && (
+	import.meta.env.PROD && clarityTrackingId && (
 		<script
 			type='text/javascript'
 			set:html={`
@@ -68,7 +73,7 @@ const fullTitle = isHome ? title : `${title} | sanju`;
 				c[a] = c[a] || function() { (c[a].q=c[a].q||[]).push(arguments) };
 				t=l.createElement(r); t.async=1; t.src="https://www.clarity.ms/tag/" + i;
 				y=l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t,y);
-			})(window, document, "clarity", "script", "${import.meta.env.CLARITY_TRACKING_ID}");
+			})(window, document, "clarity", "script", "${clarityTrackingId}");
 		`}
 		/>
 	)
