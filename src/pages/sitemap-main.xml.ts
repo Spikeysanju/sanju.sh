@@ -19,11 +19,6 @@ export const GET: APIRoute = async () => {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>${new URL("/ships", import.meta.env.SITE).href}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>${new URL("/me", import.meta.env.SITE).href}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
