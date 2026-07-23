@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@data/index";
 
 export async function GET(context) {
 	const [posts, thoughts] = await Promise.all([
@@ -13,23 +13,24 @@ export async function GET(context) {
 			title: post.data.title,
 			pubDate: post.data.updatedDate ?? post.data.pubDate,
 			description: post.data.description.trim(),
-			link: `/${post.id}/`,
+			link: `/${post.id}`,
 		})),
 		...thoughts.map((thought) => ({
 			title: thought.data.title,
 			pubDate: thought.data.updatedDate ?? thought.data.pubDate,
 			description: thought.data.description.trim(),
-			link: `/${thought.id}/`,
+			link: `/${thought.id}`,
 			categories: [thought.data.category],
 		})),
 	].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
 
-	const selfUrl = new URL("rss.xml", context.site).href;
+	const selfUrl = new URL("rss.xml", context.site ?? SITE_URL).href;
 
 	return rss({
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
-		site: context.site,
+		site: context.site ?? SITE_URL,
+		trailingSlash: false,
 		items,
 		xmlns: {
 			atom: "http://www.w3.org/2005/Atom",

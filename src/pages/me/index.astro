@@ -1,16 +1,29 @@
 ---
-import { Header } from '@components/misc';
-import { BaseHead } from '@components/seo';
-import { socialLinks } from '@data/index';
-import RootLayout from '@layouts/root-layout.astro';
+import { Header } from "@components/misc";
+import { BaseHead } from "@components/seo";
+import { AUTHOR_IMAGE, AUTHOR_NAME, socialLinks } from "@data/index";
+import RootLayout from "@layouts/root-layout.astro";
+import { absoluteUrl, profilePageJsonLd } from "@utils/seo";
+
+const pageUrl = absoluteUrl("/me");
+const pageTitle = "about sanju sivalingam";
+const pageDescription =
+	"sanju sivalingam — designer, founder of thisux, and builder of products that work.";
+const jsonLd = profilePageJsonLd({
+	url: pageUrl,
+	name: `${AUTHOR_NAME} — about`,
+	description: pageDescription,
+	imageOrigin: Astro.url,
+});
 ---
 
 <!doctype html>
 <html lang='en'>
 	<head>
 		<BaseHead
-			title="about"
-			description="sanju sivalingam — designer, founder, and builder of products that work"
+			title={pageTitle}
+			description={pageDescription}
+			jsonLd={jsonLd}
 		/>
 	</head>
 
@@ -28,8 +41,12 @@ import RootLayout from '@layouts/root-layout.astro';
 					<div class='relative group'>
 						<img
 							id='headshot-image'
-							src='https://github.com/spikeysanju.png'
+							src={AUTHOR_IMAGE}
 							alt='Sanju Sivalingam headshot'
+							width='160'
+							height='160'
+							fetchpriority='high'
+							decoding='async'
 							class='w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-2 border-white flex-shrink-0 transition-opacity duration-300 group-hover:opacity-75'
 						/>
 						<button
@@ -64,6 +81,7 @@ import RootLayout from '@layouts/root-layout.astro';
 						Sanju Sivalingam is a designer and founder who runs <a
 							href='https://thisux.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>ThisUX</a
 						>, a design-led product studio. He builds products that actually work and helps other founders turn their ideas into reality. He's also big on open source and loves sharing what he learns along the way.
@@ -89,6 +107,7 @@ import RootLayout from '@layouts/root-layout.astro';
 						When he's not building products, he's contributing to <a
 							href='https://github.com/spikeysanju'
 							target='_blank'
+							rel='me noopener noreferrer'
 							class='underline underline-offset-2'
 							>open source projects</a
 						> and speaking at conferences. He believes in sharing knowledge and helping others learn from his experiences.
@@ -97,41 +116,49 @@ import RootLayout from '@layouts/root-layout.astro';
 						He's currently working on several projects including <a
 							href='https://dunsuite.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>Dun</a
 						>, <a
 							href='https://fli.so'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>Fli</a
 						>, <a
 							href='https://uiino.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>Uiino</a
 						>, <a
 							href='https://sticai.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>SticAI</a
 						>, <a
 							href='https://abogrow.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>aboGrow</a
 						>, <a
 							href='https://ffmpeg.info'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>ffmpeg info</a
 						>, <a
 							href='https://glance.sticai.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>Glance</a
 						>, and <a
 							href='https://spotlight.thisux.com'
 							target='_blank'
+							rel='noopener noreferrer'
 							class='underline underline-offset-2'
 							>Spotlight</a
 						>. He's always tinkering with new ideas and building things.
@@ -151,12 +178,13 @@ import RootLayout from '@layouts/root-layout.astro';
 					<a
 						href='https://cal.com/imsanju/15min'
 						target='_blank'
+						rel='noopener noreferrer'
 						class='underline underline-offset-2'>
 						schedule a call
 					</a>
 					or
 					<a
-						href='mailto:work@sanju.sh?subject=Let\'s%20Collaborate&body=Hi%20Sanju,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20a%20potential%20collaboration%20with%20you.%0D%0A%0D%0ABest%20regards,%0D%0A%5BYour%20Name%5D'
+						href='mailto:work@sanju.sh?subject=Let%27s%20Collaborate&body=Hi%20Sanju,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20a%20potential%20collaboration%20with%20you.%0D%0A%0D%0ABest%20regards,%0D%0A%5BYour%20Name%5D'
 						class='underline underline-offset-2'>
 						drop me a line
 					</a>
@@ -175,6 +203,7 @@ import RootLayout from '@layouts/root-layout.astro';
 						socialLinks.map((link) => (
 							<a
 								href={link.url}
+								rel={link.me ? 'me noopener noreferrer' : undefined}
 								target={link.url.startsWith('mailto:') ? undefined : '_blank'}
 								class='text-xl font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:underline underline-offset-2 transition-colors'>
 								{link.label}
@@ -198,47 +227,18 @@ import RootLayout from '@layouts/root-layout.astro';
 					
 					try {
 						const imageUrl = headshotImage.src;
-						
-						// Create a canvas to handle the image download
-						const canvas = document.createElement('canvas');
-						const ctx = canvas.getContext('2d');
-						
-						if (!ctx) {
-							throw new Error('Could not get canvas context');
-						}
-						
-						// Set canvas dimensions to match image
-						canvas.width = headshotImage.naturalWidth || headshotImage.width;
-						canvas.height = headshotImage.naturalHeight || headshotImage.height;
-						
-						// Draw the image onto canvas
-						ctx.drawImage(headshotImage, 0, 0);
-						
-						// Convert canvas to blob and download
-						canvas.toBlob((blob) => {
-							if (blob) {
-								const url = window.URL.createObjectURL(blob);
-								const a = document.createElement('a');
-								a.href = url;
-								a.download = 'sanju-sivalingam-headshot.jpg';
-								document.body.appendChild(a);
-								a.click();
-								document.body.removeChild(a);
-								window.URL.revokeObjectURL(url);
-							} else {
-								// Fallback: try direct download if canvas fails
-								const a = document.createElement('a');
-								a.href = imageUrl;
-								a.download = 'sanju-sivalingam-headshot.jpg';
-								a.target = '_blank';
-								document.body.appendChild(a);
-								a.click();
-								document.body.removeChild(a);
-							}
-						}, 'image/jpeg', 0.95);
+						const response = await fetch(imageUrl);
+						const blob = await response.blob();
+						const url = window.URL.createObjectURL(blob);
+						const a = document.createElement('a');
+						a.href = url;
+						a.download = 'sanju-sivalingam-headshot.png';
+						document.body.appendChild(a);
+						a.click();
+						document.body.removeChild(a);
+						window.URL.revokeObjectURL(url);
 					} catch (error) {
 						console.error('Error downloading image:', error);
-						// Fallback: open image in new tab
 						window.open(headshotImage.src, '_blank');
 					}
 				});
@@ -246,4 +246,3 @@ import RootLayout from '@layouts/root-layout.astro';
 		});
 	</script>
 </html>
-

@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import { ScrollProgress } from "@components/misc";
 import ThoughtsLayout from "@layouts/thoughts-layout.astro";
 import WritingLayout from "@layouts/writing-layout.astro";
-import { getReadingTime } from "@utils/index";
+import { getReadingTime, getWordCount } from "@utils/index";
 
 const { slug } = Astro.params;
 
@@ -13,25 +13,106 @@ const thoughts = await getCollection("thought");
 const writing = writings.find((p) => p.id === slug);
 const thought = thoughts.find((p) => p.id === slug);
 const post = writing ?? thought;
+
 if (!post) {
-	return Astro.redirect("/404");
+	return Astro.rewrite("/404");
 }
 
 const { Content } = await render(post);
-const readingTime = getReadingTime(post.body ?? "");
-const heroImage = writing
+const body = post.body ?? "";
+const readingTime = getReadingTime(body);
+const wordCount = getWordCount(body);
+
+function relatedFrom(
+	entries: typeof writings | typeof thoughts,
+	currentId: string,
+	sectionLabel: string,
+	limit = 3,
+) {
+	return entries
+		.filter((entry) => entry.id !== currentId)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+		.slice(0, limit)
+		.map((entry) => ({
+			title: entry.data.title,
+			description: entry.data.description,
+			slug: entry.id,
+			sectionLabel,
+		}));
+}
+
+function relatedThoughts(currentId: string, category: string, limit = 3) {
+	const sameCategory = thoughts
+		.filter(
+			(entry) => entry.id !== currentId && entry.data.category === category,
+		)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+	const others = thoughts
+		.filter(
+			(entry) =>
+				entry.id !== currentId &&
+				entry.data.category !== category &&
+				!sameCategory.some((picked) => picked.id === entry.id),
+		)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+	return [...sameCategory, ...others].slice(0, limit).map((entry) => ({
+		title: entry.data.title,
+		description: entry.data.description,
+		slug: entry.id,
+		sectionLabel: entry.data.category,
+	}));
+}
+
+const relatedPosts = writing
+	? relatedFrom(writings, writing.id, "writing")
+	: thought
+		? relatedThoughts(thought.id, thought.data.category)
+		: [];
+
+const heroImage = writing?.data.heroImage;
+const ogImage = writing
 	? writing.data.heroImage || `/og/writings/${slug}`
-	: "";
-const ogImage = thought ? `/og/thoughts/${slug}` : "";
+	: `/og/thoughts/${slug}`;
+
+const breadcrumbs = writing
+	? [
+			{ name: "home", url: "/" },
+			{ name: "writings", url: "/writings" },
+			{ name: writing.data.title, url: `/${writing.id}` },
+		]
+	: thought
+		? [
+				{ name: "home", url: "/" },
+				{ name: "thoughts", url: "/thoughts" },
+				{ name: thought.data.title, url: `/${thought.id}` },
+			]
+		: [];
 ---
 
 {writing ? (
-	<WritingLayout {...writing.data} heroImage={heroImage} readingTime={readingTime}>
+	<WritingLayout
+		{...writing.data}
+		heroImage={heroImage}
+		ogImage={ogImage}
+		readingTime={readingTime}
+		wordCount={wordCount}
+		relatedPosts={relatedPosts}
+		breadcrumbs={breadcrumbs}
+	>
 		<Content />
 		<ScrollProgress />
 	</WritingLayout>
 ) : thought ? (
-	<ThoughtsLayout {...thought.data} ogImage={ogImage} readingTime={readingTime}>
+	<ThoughtsLayout
+		{...thought.data}
+		ogImage={ogImage}
+		readingTime={readingTime}
+		wordCount={wordCount}
+		relatedPosts={relatedPosts}
+		breadcrumbs={breadcrumbs}
+	>
 		<Content />
 		<ScrollProgress />
 	</ThoughtsLayout>

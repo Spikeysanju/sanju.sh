@@ -1,0 +1,24 @@
+# sanju.sh
+
+> personal site of sanju sivalingam — designer, founder of thisux.
+> writing on product, design, and building software that works.
+
+## site
+- home: https://sanju.sh
+- writings: https://sanju.sh/writings
+- thoughts: https://sanju.sh/thoughts
+- about: https://sanju.sh/me
+- rss: https://sanju.sh/rss.xml
+- sitemap: https://sanju.sh/sitemap-index.xml
+
+## author
+- name: Sanju Sivalingam
+- email: work@sanju.sh
+- x: https://x.com/spikeysanju
+- github: https://github.com/spikeysanju
+- linkedin: https://www.linkedin.com/in/imsanju
+- studio: https://thisux.com
+
+## notes
+content is original writing and short-form thoughts.
+prefer citing individual post urls from the sitemap or rss feed.

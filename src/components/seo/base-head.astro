@@ -1,37 +1,77 @@
 ---
-import 'src/styles/global.css';
-import { SITE_TITLE, TWITTER_HANDLE } from '@data/index';
-import { env } from 'cloudflare:workers';
+import "src/styles/global.css";
+import { env } from "cloudflare:workers";
+import { AUTHOR_NAME, SITE_TITLE, SITE_URL, TWITTER_HANDLE } from "@data/index";
+import {
+	type BreadcrumbItem,
+	absoluteAssetUrl,
+	absoluteUrl,
+	blogPostingJsonLd,
+	normalizePath,
+	websitePageJsonLd,
+} from "@utils/seo";
 
 interface Props {
 	title: string;
 	description: string;
 	image?: string;
-	type?: 'website' | 'article';
+	type?: "website" | "article";
 	publishedTime?: Date;
 	modifiedTime?: Date;
 	author?: string;
+	breadcrumbs?: BreadcrumbItem[];
+	wordCount?: number;
+	/** full JSON-LD object override (e.g. ProfilePage on /me) */
+	jsonLd?: Record<string, unknown>;
+	/** noindex for error pages etc */
+	noindex?: boolean;
 }
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const {
 	title,
 	description,
-	image = '/images/ogimage.png',
-	type = 'website',
+	image = "/images/ogimage.png",
+	type = "website",
 	publishedTime,
 	modifiedTime,
-	author = 'Sanju Sivalingam',
+	author = AUTHOR_NAME,
+	breadcrumbs,
+	wordCount,
+	jsonLd,
+	noindex = false,
 } = Astro.props;
 
-const resolvedImage = new URL(image, Astro.url);
-const isHome = Astro.url.pathname === '/';
+const pathname = normalizePath(Astro.url.pathname);
+const canonicalURL = absoluteUrl(pathname);
+const isHome = pathname === "/";
 const fullTitle = isHome ? title : `${title} | sanju`;
+const resolvedImage = absoluteAssetUrl(image, Astro.url);
+
 const runtimeEnv = env as unknown as Partial<Record<string, string>>;
-const umamiTrackingUrl = runtimeEnv.UMAMI_TRACKING_URL ?? import.meta.env.UMAMI_TRACKING_URL;
-const umamiWebsiteId = runtimeEnv.UMAMI_WEBSITE_ID ?? import.meta.env.UMAMI_WEBSITE_ID;
-const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLARITY_TRACKING_ID;
+const umamiTrackingUrl =
+	runtimeEnv.UMAMI_TRACKING_URL ?? import.meta.env.UMAMI_TRACKING_URL;
+const umamiWebsiteId =
+	runtimeEnv.UMAMI_WEBSITE_ID ?? import.meta.env.UMAMI_WEBSITE_ID;
+const clarityTrackingId =
+	runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLARITY_TRACKING_ID;
+
+const structuredData =
+	jsonLd ??
+	(type === "article"
+		? blogPostingJsonLd({
+				title,
+				description,
+				url: canonicalURL,
+				image: resolvedImage,
+				datePublished: publishedTime,
+				dateModified: modifiedTime,
+				breadcrumbs,
+				wordCount,
+			})
+		: websitePageJsonLd({
+				description,
+				imageOrigin: Astro.url,
+			}));
 ---
 
 <!-- Theme detection (before paint) -->
@@ -53,7 +93,8 @@ const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLAR
 	}
 </script>
 
-<!-- Umami analytics -->{
+<!-- Umami analytics -->
+{
 	import.meta.env.PROD && umamiTrackingUrl && umamiWebsiteId && (
 		<script
 			defer
@@ -90,6 +131,7 @@ const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLAR
 	name='viewport'
 	content='width=device-width,initial-scale=1'
 />
+{noindex && <meta name='robots' content='noindex, follow' />}
 
 <!-- Favicons -->
 <link rel='apple-touch-icon' sizes='57x57' href='/apple-icon-57x57.png' />
@@ -124,7 +166,7 @@ const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLAR
 
 <!-- Open Graph -->
 <meta property='og:type' content={type} />
-<meta property='og:url' content={Astro.url} />
+<meta property='og:url' content={canonicalURL} />
 <meta property='og:title' content={fullTitle} />
 <meta property='og:description' content={description} />
 <meta property='og:image' content={resolvedImage} />
@@ -134,19 +176,21 @@ const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLAR
 <meta property='og:site_name' content={SITE_TITLE} />
 <meta property='og:locale' content='en_US' />
 
-{type === 'article' && publishedTime && (
-	<meta property='article:published_time' content={publishedTime.toISOString()} />
-)}
-{type === 'article' && modifiedTime && (
-	<meta property='article:modified_time' content={modifiedTime.toISOString()} />
-)}
-{type === 'article' && (
-	<meta property='article:author' content={author} />
-)}
+{
+	type === 'article' && publishedTime && (
+		<meta property='article:published_time' content={publishedTime.toISOString()} />
+	)
+}
+{
+	type === 'article' && modifiedTime && (
+		<meta property='article:modified_time' content={modifiedTime.toISOString()} />
+	)
+}
+{type === 'article' && <meta property='article:author' content={author} />}
 
 <!-- Twitter -->
 <meta name='twitter:card' content='summary_large_image' />
-<meta name='twitter:url' content={Astro.url} />
+<meta name='twitter:url' content={canonicalURL} />
 <meta name='twitter:title' content={fullTitle} />
 <meta name='twitter:description' content={description} />
 <meta name='twitter:image' content={resolvedImage} />
@@ -159,51 +203,8 @@ const clarityTrackingId = runtimeEnv.CLARITY_TRACKING_ID ?? import.meta.env.CLAR
 	rel='alternate'
 	type='application/rss+xml'
 	title={`${SITE_TITLE} RSS Feed`}
-	href={new URL('rss.xml', Astro.site)}
+	href={new URL('rss.xml', SITE_URL).href}
 />
 
 <!-- JSON-LD Structured Data -->
-{type === 'website' ? (
-	<script type="application/ld+json" set:html={JSON.stringify({
-		"@context": "https://schema.org",
-		"@type": "WebSite",
-		"name": SITE_TITLE,
-		"url": Astro.site?.toString(),
-		"description": description,
-		"author": {
-			"@type": "Person",
-			"name": "Sanju Sivalingam",
-			"url": Astro.site?.toString(),
-			"sameAs": [
-				"https://x.com/spikeysanju",
-				"https://github.com/spikeysanju",
-				"https://www.linkedin.com/in/imsanju"
-			]
-		}
-	})} />
-) : (
-	<script type="application/ld+json" set:html={JSON.stringify({
-		"@context": "https://schema.org",
-		"@type": "Article",
-		"headline": title,
-		"description": description,
-		"image": resolvedImage.toString(),
-		"url": canonicalURL.toString(),
-		"datePublished": publishedTime?.toISOString(),
-		"dateModified": (modifiedTime ?? publishedTime)?.toISOString(),
-		"author": {
-			"@type": "Person",
-			"name": "Sanju Sivalingam",
-			"url": Astro.site?.toString()
-		},
-		"publisher": {
-			"@type": "Person",
-			"name": "Sanju Sivalingam",
-			"url": Astro.site?.toString()
-		},
-		"mainEntityOfPage": {
-			"@type": "WebPage",
-			"@id": canonicalURL.toString()
-		}
-	})} />
-)}
+<script type='application/ld+json' set:html={JSON.stringify(structuredData)} />

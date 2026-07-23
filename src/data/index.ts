@@ -1,8 +1,17 @@
 export const SITE_TITLE = "Sanju's Space";
-export const SITE_DESCRIPTION = "An internet space for Sanju.";
+export const SITE_DESCRIPTION =
+	"sanju sivalingam — designer and founder of thisux. writing on product, design, and building software that works.";
 export const SITE_URL = "https://sanju.sh";
 export const SITE_IMAGE = "/images/ogimage.png";
 export const TWITTER_HANDLE = "@spikeysanju";
+export const AUTHOR_NAME = "Sanju Sivalingam";
+export const AUTHOR_JOB_TITLE = "designer, founder";
+export const AUTHOR_IMAGE = "/images/sanju.png";
+export const AUTHOR_EMAIL = "work@sanju.sh";
+
+/** stable schema.org @id for the person entity */
+export const PERSON_ID = `${SITE_URL}/#person`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
 
 export interface MenuItem {
 	label: string;
@@ -76,17 +85,26 @@ export const socialLinks = [
 	{
 		label: "@x",
 		url: "https://x.com/spikeysanju",
+		me: true,
 	},
 	{
 		label: "email",
-		url: "mailto:work@sanju.sh",
+		url: `mailto:${AUTHOR_EMAIL}`,
+		me: false,
 	},
 	{
 		label: "github",
 		url: "https://github.com/spikeysanju",
+		me: true,
 	},
 	{
 		label: "linkedin",
 		url: "https://www.linkedin.com/in/imsanju",
+		me: true,
 	},
 ];
+
+/** public profiles used in schema.org sameAs */
+export const sameAs = socialLinks
+	.filter((link) => link.me)
+	.map((link) => link.url);

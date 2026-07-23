@@ -1,0 +1,36 @@
+---
+import { Header } from "@components/misc";
+import { BaseHead } from "@components/seo";
+import RootLayout from "@layouts/root-layout.astro";
+
+Astro.response.status = 404;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="page not found"
+			description="this page doesn't exist. head home, or browse writings and thoughts."
+			noindex={true}
+		/>
+	</head>
+
+	<RootLayout>
+		<div class="flex flex-col w-full gap-8 max-w-xl">
+			<Header />
+			<div class="flex flex-col gap-4">
+				<p class="text-sm font-medium uppercase tracking-wide text-gray-500">404</p>
+				<h1 class="text-5xl md:text-7xl font-medium tracking-tight">page not found</h1>
+				<p class="text-lg font-medium text-gray-700 dark:text-gray-400">
+					this url doesn't match anything on the site. it may have moved, or it never existed.
+				</p>
+			</div>
+			<nav aria-label="helpful links" class="flex flex-col gap-3">
+				<a href="/" class="text-lg font-medium underline underline-offset-2">go home</a>
+				<a href="/writings" class="text-lg font-medium underline underline-offset-2">read writings</a>
+				<a href="/thoughts" class="text-lg font-medium underline underline-offset-2">browse thoughts</a>
+			</nav>
+		</div>
+	</RootLayout>
+</html>
