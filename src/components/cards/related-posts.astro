@@ -1,0 +1,44 @@
+---
+interface RelatedPost {
+	title: string;
+	description: string;
+	slug: string;
+	sectionLabel: string;
+}
+
+interface Props {
+	posts: RelatedPost[];
+	heading?: string;
+}
+
+const { posts, heading = "keep reading" } = Astro.props;
+---
+
+{
+	posts.length > 0 && (
+		<nav
+			aria-label='related posts'
+			class='w-full max-w-xl flex flex-col gap-4 pt-10 border-t border-gray-200 dark:border-gray-800 not-prose'>
+			<p class='text-sm font-medium uppercase tracking-wide text-gray-500'>{heading}</p>
+			<ul class='flex flex-col gap-4'>
+				{posts.map((post) => (
+					<li>
+						<a
+							href={`/${post.slug}`}
+							class='group flex flex-col gap-1 no-underline'>
+							<span class='text-xs font-medium uppercase tracking-wide text-gray-500'>
+								{post.sectionLabel}
+							</span>
+							<span class='text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:underline underline-offset-2'>
+								{post.title}
+							</span>
+							<span class='text-sm font-medium text-gray-600 dark:text-gray-400 line-clamp-2'>
+								{post.description}
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	)
+}

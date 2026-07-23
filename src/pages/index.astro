@@ -35,6 +35,7 @@ import RootLayout from "@layouts/root-layout.astro";
 					I run <a
 						href='https://thisux.com'
 						target='_blank'
+						rel='noopener noreferrer'
 						class='underline underline-offset-2'
 						>ThisUX</a
 					>, a design-led product studio. We make things that work. For years, I
@@ -49,10 +50,15 @@ import RootLayout from "@layouts/root-layout.astro";
 								<a
 									href={product.url}
 									target='_blank'
+									rel='noopener noreferrer'
 									class='p-2 rounded-full gap-2 flex-wrap hover:rotate-1 hover:scale-105 transition-all duration-300 flex items-center justify-center bg-gray-100 hover:bg-gray-200 dark:bg-[#1F1F1F] dark:hover:bg-[#2F2F2F]'>
 									<img
 										src={product.image}
 										alt={product.name}
+										width='36'
+										height='36'
+										loading='lazy'
+										decoding='async'
 										class='size-9'
 									/>
 									<span class='mr-2'>{product.name}</span>
@@ -72,6 +78,7 @@ import RootLayout from "@layouts/root-layout.astro";
 					<a
 						href='https://cal.com/imsanju/15min'
 						target='_blank'
+						rel='noopener noreferrer'
 						class='underline underline-offset-2'>
 						schedule a call
 					</a>
@@ -85,6 +92,8 @@ import RootLayout from "@layouts/root-layout.astro";
 					socialLinks.map((link) => (
 						<a
 							href={link.url}
+							rel={link.me ? 'me noopener noreferrer' : undefined}
+							target={link.url.startsWith('mailto:') ? undefined : '_blank'}
 							class='text-lg font-medium text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline underline-offset-2'>
 							{link.label}
 						</a>

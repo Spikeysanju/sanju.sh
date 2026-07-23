@@ -1,4 +1,5 @@
 import { getCollection } from "astro:content";
+import { SITE_URL } from "@data/index";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
@@ -9,7 +10,7 @@ export const GET: APIRoute = async () => {
   ${thoughts
 		.map(
 			(post) => `<url>
-    <loc>${new URL(`/${post.id}`, import.meta.env.SITE).href}</loc>
+    <loc>${SITE_URL}/${post.id}</loc>
     <lastmod>${(post.data.updatedDate ?? post.data.pubDate).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

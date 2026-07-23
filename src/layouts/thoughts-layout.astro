@@ -1,14 +1,43 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { Header } from '@components/misc';
-import FormattedDate from '@components/misc/formatted-date.astro';
-import { BaseHead } from '@components/seo';
-import RootLayout from '@layouts/root-layout.astro';
-import { clsx } from '@utils/index';
+import type { CollectionEntry } from "astro:content";
+import { RelatedPosts } from "@components/cards";
+import { Header } from "@components/misc";
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { BaseHead } from "@components/seo";
+import RootLayout from "@layouts/root-layout.astro";
+import { clsx } from "@utils/index";
+import type { BreadcrumbItem } from "@utils/seo";
 
-type Props = CollectionEntry<'thought'>['data'] & { ogImage?: string };
+type Related = {
+	title: string;
+	description: string;
+	slug: string;
+	sectionLabel: string;
+};
 
-const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage } = Astro.props;
+type Props = CollectionEntry<"thought">["data"] & {
+	ogImage?: string;
+	wordCount?: number;
+	relatedPosts?: Related[];
+	breadcrumbs?: BreadcrumbItem[];
+};
+
+const {
+	title,
+	description,
+	showTldr,
+	pubDate,
+	updatedDate,
+	readingTime,
+	ogImage,
+	wordCount,
+	relatedPosts = [],
+	breadcrumbs = [
+		{ name: "home", url: "/" },
+		{ name: "thoughts", url: "/thoughts" },
+		{ name: title, url: Astro.url.pathname },
+	],
+} = Astro.props;
 ---
 
 <html lang='en'>
@@ -20,6 +49,8 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 			type='article'
 			publishedTime={pubDate}
 			modifiedTime={updatedDate}
+			breadcrumbs={breadcrumbs}
+			wordCount={wordCount}
 		/>
 	</head>
 
@@ -58,7 +89,7 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 				<div
 					class={clsx(
 						'relative max-w-xl',
-					'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline  items-center justify-center',
+						'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline  items-center justify-center',
 						'dark:prose-a:bg-red-950 dark:prose-a:decoration-red-400 dark:prose-a:underline prose-a:bg-red-50 prose-a:decoration-red-500',
 						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
 						'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
@@ -70,6 +101,8 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 					)}>
 					<slot />
 				</div>
+
+				<RelatedPosts posts={relatedPosts} />
 			</article>
 		</div>
 	</RootLayout>

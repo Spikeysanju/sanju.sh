@@ -1,14 +1,45 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { Header } from '@components/misc';
-import FormattedDate from '@components/misc/formatted-date.astro';
-import { BaseHead } from '@components/seo';
-import RootLayout from '@layouts/root-layout.astro';
-import { clsx } from '@utils/index';
+import type { CollectionEntry } from "astro:content";
+import { RelatedPosts } from "@components/cards";
+import { Header } from "@components/misc";
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { BaseHead } from "@components/seo";
+import RootLayout from "@layouts/root-layout.astro";
+import { clsx } from "@utils/index";
+import type { BreadcrumbItem } from "@utils/seo";
 
-type Props = CollectionEntry<'writing'>['data'];
+type Related = {
+	title: string;
+	description: string;
+	slug: string;
+	sectionLabel: string;
+};
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime } = Astro.props;
+type Props = CollectionEntry<"writing">["data"] & {
+	ogImage?: string;
+	wordCount?: number;
+	relatedPosts?: Related[];
+	breadcrumbs?: BreadcrumbItem[];
+};
+
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	ogImage,
+	readingTime,
+	wordCount,
+	relatedPosts = [],
+	breadcrumbs = [
+		{ name: "home", url: "/" },
+		{ name: "writings", url: "/writings" },
+		{ name: title, url: Astro.url.pathname },
+	],
+} = Astro.props;
+
+const shareImage = ogImage || heroImage || "/images/ogimage.png";
 ---
 
 <html lang='en'>
@@ -16,10 +47,12 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 		<BaseHead
 			title={title}
 			description={description}
-			image={heroImage || '/images/ogimage.png'}
+			image={shareImage}
 			type='article'
 			publishedTime={pubDate}
 			modifiedTime={updatedDate}
+			breadcrumbs={breadcrumbs}
+			wordCount={wordCount}
 		/>
 	</head>
 
@@ -57,6 +90,10 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 						<img
 							src={heroImage}
 							alt={title}
+							width='1200'
+							height='630'
+							fetchpriority='high'
+							decoding='async'
 							class='w-full rounded-lg'
 						/>
 					)
@@ -76,6 +113,8 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 					)}>
 					<slot />
 				</div>
+
+				<RelatedPosts posts={relatedPosts} />
 			</article>
 		</div>
 	</RootLayout>
