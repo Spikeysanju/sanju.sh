@@ -39,10 +39,10 @@ import { products } from "@data/index";
 
 <style>
 	.product-dock {
-		--dock-icon: 2.35rem;
-		--dock-gap: 0.35rem;
-		--dock-pad-x: 0.6rem;
-		--dock-pad-y: 0.45rem;
+		--dock-icon: 2.25rem;
+		--dock-gap: 0.4rem;
+		--dock-pad-x: 0.55rem;
+		--dock-pad-y: 0.4rem;
 		/* room above the rail so tooltips never collide with copy */
 		--dock-tooltip-space: 2.25rem;
 
@@ -62,14 +62,14 @@ import { products } from "@data/index";
 		margin: 0;
 		padding: var(--dock-pad-y) var(--dock-pad-x);
 		list-style: none;
-		border: 1px solid rgb(0 0 0 / 0.08);
-		border-radius: 1.25rem;
-		background: rgb(245 245 247 / 0.78);
+		border: 1px solid rgb(0 0 0 / 0.1);
+		border-radius: 9999px;
+		background: rgb(232 232 237 / 0.92);
 		box-shadow:
-			0 10px 28px rgb(0 0 0 / 0.1),
-			inset 0 1px 0 rgb(255 255 255 / 0.65);
-		backdrop-filter: blur(18px) saturate(1.4);
-		-webkit-backdrop-filter: blur(18px) saturate(1.4);
+			0 8px 22px rgb(0 0 0 / 0.08),
+			inset 0 1px 0 rgb(255 255 255 / 0.7);
+		backdrop-filter: blur(18px) saturate(1.25);
+		-webkit-backdrop-filter: blur(18px) saturate(1.25);
 	}
 
 	:global(.dark) .product-dock__rail {
@@ -108,13 +108,22 @@ import { products } from "@data/index";
 		display: block;
 		width: 100%;
 		height: 100%;
-		border-radius: 22%;
+		border-radius: 9999px;
+		overflow: hidden;
 		object-fit: cover;
 		user-select: none;
 		pointer-events: none;
+		background: rgb(0 0 0 / 0.04);
 		box-shadow:
-			0 1px 1px rgb(0 0 0 / 0.08),
-			0 6px 14px rgb(0 0 0 / 0.14);
+			0 0 0 0.5px rgb(0 0 0 / 0.08),
+			0 2px 6px rgb(0 0 0 / 0.1);
+	}
+
+	:global(.dark) .product-dock__icon {
+		background: rgb(255 255 255 / 0.04);
+		box-shadow:
+			0 0 0 0.5px rgb(255 255 255 / 0.08),
+			0 3px 10px rgb(0 0 0 / 0.28);
 	}
 
 	@keyframes product-dock-tooltip-in {
@@ -191,9 +200,9 @@ import { products } from "@data/index";
 		);
 		if (!items.length) return;
 
-		const baseSize = 2.35; // rem
-		const maxScale = 1.18;
-		const influence = 56;
+		const baseSize = 2.25; // rem
+		const maxScale = 1.16;
+		const influence = 52;
 
 		const reset = () => {
 			for (const item of items) {
