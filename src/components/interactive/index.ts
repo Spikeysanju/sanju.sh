@@ -7,3 +7,4 @@ export { default as CommitCompare } from "./commit-compare.astro";
 export { default as RevealQuote } from "./reveal-quote.astro";
 export { default as EnergyMeter } from "./energy-meter.astro";
 export { default as Sidenote } from "./sidenote.astro";
+export { default as ProductDock } from "./product-dock.astro";

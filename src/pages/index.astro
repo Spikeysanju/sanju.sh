@@ -1,7 +1,8 @@
 ---
+import { ProductDock } from "@components/interactive";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
-import { SITE_DESCRIPTION, products, socialLinks } from "@data/index";
+import { SITE_DESCRIPTION, socialLinks } from "@data/index";
 import RootLayout from "@layouts/root-layout.astro";
 ---
 
@@ -44,28 +45,7 @@ import RootLayout from "@layouts/root-layout.astro";
 
 				<div class='font-medium text-lg text-gray-700 dark:text-gray-300'>
 					I work on ideas like
-					<div class='flex flex-wrap gap-2 mt-5'>
-						{
-							products.map((product) => (
-								<a
-									href={product.url}
-									target='_blank'
-									rel='noopener noreferrer'
-									class='p-2 rounded-full gap-2 flex-wrap hover:rotate-1 hover:scale-105 transition-all duration-300 flex items-center justify-center bg-gray-100 hover:bg-gray-200 dark:bg-[#1F1F1F] dark:hover:bg-[#2F2F2F]'>
-									<img
-										src={product.image}
-										alt={product.name}
-										width='36'
-										height='36'
-										loading='lazy'
-										decoding='async'
-										class='size-9'
-									/>
-									<span class='mr-2'>{product.name}</span>
-								</a>
-							))
-						}
-					</div>
+					<ProductDock />
 				</div>
 
 				<div class='font-medium text-lg text-gray-700 dark:text-gray-400'>

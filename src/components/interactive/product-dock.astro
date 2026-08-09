@@ -1,0 +1,237 @@
+---
+import { products } from "@data/index";
+---
+
+<nav
+	class='product-dock'
+	aria-label='products'>
+	<ul class='product-dock__rail'>
+		{
+			products.map((product) => (
+				<li class='product-dock__item'>
+					<a
+						href={product.url}
+						target='_blank'
+						rel='noopener noreferrer'
+						class='product-dock__link'
+						aria-label={product.name}>
+						<span
+							class='product-dock__tooltip'
+							aria-hidden='true'>
+							{product.name}
+						</span>
+						<img
+							src={product.image}
+							alt=''
+							width='48'
+							height='48'
+							loading='lazy'
+							decoding='async'
+							class='product-dock__icon'
+							draggable='false'
+						/>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.product-dock {
+		--dock-icon: 2.35rem;
+		--dock-gap: 0.35rem;
+		--dock-pad-x: 0.6rem;
+		--dock-pad-y: 0.45rem;
+		/* room above the rail so tooltips never collide with copy */
+		--dock-tooltip-space: 2.25rem;
+
+		display: block;
+		width: fit-content;
+		max-width: 100%;
+		margin-top: 0.35rem;
+		/* keep overflow visible — overflow-x:auto forces y-clip too */
+		overflow: visible;
+		padding-top: var(--dock-tooltip-space);
+	}
+
+	.product-dock__rail {
+		display: flex;
+		align-items: flex-end;
+		gap: var(--dock-gap);
+		margin: 0;
+		padding: var(--dock-pad-y) var(--dock-pad-x);
+		list-style: none;
+		border: 1px solid rgb(0 0 0 / 0.08);
+		border-radius: 1.25rem;
+		background: rgb(245 245 247 / 0.78);
+		box-shadow:
+			0 10px 28px rgb(0 0 0 / 0.1),
+			inset 0 1px 0 rgb(255 255 255 / 0.65);
+		backdrop-filter: blur(18px) saturate(1.4);
+		-webkit-backdrop-filter: blur(18px) saturate(1.4);
+	}
+
+	:global(.dark) .product-dock__rail {
+		border-color: rgb(255 255 255 / 0.12);
+		background: rgb(44 44 46 / 0.72);
+		box-shadow:
+			0 12px 34px rgb(0 0 0 / 0.38),
+			inset 0 1px 0 rgb(255 255 255 / 0.08);
+	}
+
+	.product-dock__item {
+		position: relative;
+		display: flex;
+		flex: 0 0 auto;
+		align-items: flex-end;
+		justify-content: center;
+		width: var(--dock-icon);
+		height: var(--dock-icon);
+		transform-origin: 50% 100%;
+		transition: width 140ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.product-dock__link {
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+		outline: none;
+		transform-origin: 50% 100%;
+		transition: transform 140ms cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: transform;
+	}
+
+	.product-dock__icon {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: 22%;
+		object-fit: cover;
+		user-select: none;
+		pointer-events: none;
+		box-shadow:
+			0 1px 1px rgb(0 0 0 / 0.08),
+			0 6px 14px rgb(0 0 0 / 0.14);
+	}
+
+	@keyframes product-dock-tooltip-in {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) translateY(0.25rem) scale(0.96);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0) scale(1);
+		}
+	}
+
+	.product-dock__tooltip {
+		position: absolute;
+		bottom: calc(100% + 0.7rem);
+		left: 50%;
+		z-index: 5;
+		padding: 0.28rem 0.55rem;
+		border: 1px solid rgb(0 0 0 / 0.08);
+		border-radius: 0.45rem;
+		background: rgb(255 255 255 / 0.96);
+		color: #111;
+		font-size: 0.75rem;
+		font-weight: 500;
+		line-height: 1;
+		white-space: nowrap;
+		opacity: 0;
+		pointer-events: none;
+		transform: translateX(-50%) translateY(0.25rem) scale(0.96);
+		box-shadow: 0 8px 20px rgb(0 0 0 / 0.12);
+	}
+
+	:global(.dark) .product-dock__tooltip {
+		border-color: rgb(255 255 255 / 0.12);
+		background: rgb(40 40 42 / 0.96);
+		color: #f5f5f7;
+	}
+
+	.product-dock__link:hover .product-dock__tooltip,
+	.product-dock__link:focus-visible .product-dock__tooltip {
+		animation: product-dock-tooltip-in 160ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	}
+
+	.product-dock__link:focus-visible .product-dock__icon {
+		outline: 2px solid rgb(0 0 0 / 0.45);
+		outline-offset: 3px;
+	}
+
+	:global(.dark) .product-dock__link:focus-visible .product-dock__icon {
+		outline-color: rgb(255 255 255 / 0.55);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.product-dock__item,
+		.product-dock__link {
+			transition: none;
+		}
+
+		.product-dock__link:hover .product-dock__tooltip,
+		.product-dock__link:focus-visible .product-dock__tooltip {
+			animation: none;
+			opacity: 1;
+			transform: translateX(-50%) translateY(0) scale(1);
+		}
+	}
+</style>
+
+<script>
+	function initProductDock(root: HTMLElement) {
+		const items = Array.from(
+			root.querySelectorAll<HTMLElement>(".product-dock__item"),
+		);
+		if (!items.length) return;
+
+		const baseSize = 2.35; // rem
+		const maxScale = 1.18;
+		const influence = 56;
+
+		const reset = () => {
+			for (const item of items) {
+				item.style.width = "";
+				const link = item.querySelector<HTMLElement>(".product-dock__link");
+				if (link) link.style.transform = "";
+			}
+		};
+
+		const scaleAt = (distance: number) => {
+			const t = Math.min(Math.abs(distance) / influence, 1);
+			const eased = 1 - t * t * (3 - 2 * t);
+			return 1 + (maxScale - 1) * eased;
+		};
+
+		const onMove = (event: PointerEvent) => {
+			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				return;
+			}
+
+			for (const item of items) {
+				const rect = item.getBoundingClientRect();
+				const center = rect.left + rect.width / 2;
+				const scale = scaleAt(event.clientX - center);
+				const link = item.querySelector<HTMLElement>(".product-dock__link");
+
+				item.style.width = `${baseSize * scale}rem`;
+				if (link) {
+					link.style.transform = `translateY(${(1 - scale) * 6}px) scale(${scale})`;
+				}
+			}
+		};
+
+		root.addEventListener("pointermove", onMove);
+		root.addEventListener("pointerleave", reset);
+		root.addEventListener("pointercancel", reset);
+	}
+
+	const docks = document.querySelectorAll<HTMLElement>(".product-dock");
+	for (const dock of docks) initProductDock(dock);
+</script>
