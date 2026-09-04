@@ -11,51 +11,125 @@ const uniqueId = Math.random().toString(36).slice(2, 9);
 ---
 
 <div class="reveal-quote-wrapper my-10 not-prose" data-id={uniqueId}>
-	<div class="bg-gray-900 dark:bg-gray-950 p-8 text-center rounded-xl">
-		<p class="text-white text-2xl font-bold mb-6">{teaser}</p>
+	<div class="rq-card">
+		<p class="rq-teaser">{teaser}</p>
 
 		<div class="reveal-container">
 			<button
-				class="reveal-btn bg-white dark:bg-gray-100 text-gray-900 font-medium px-6 py-3 rounded-full hover:bg-gray-200 transition-colors"
+				class="reveal-btn"
+				type="button"
 			>
 				{button}
 			</button>
 		</div>
 
-		<div class="insight-reveal hidden">
-			<p class="text-3xl md:text-4xl font-bold text-white leading-tight" set:html={quote} />
-			{subtitle && <p class="text-gray-500 text-sm mt-6">{subtitle}</p>}
+		<div class="insight-reveal">
+			<p class="rq-quote" set:html={quote} />
+			{subtitle && <p class="rq-sub">{subtitle}</p>}
 		</div>
 	</div>
 </div>
 
 <script>
-	document.querySelectorAll('.reveal-quote-wrapper').forEach(wrapper => {
+	document.querySelectorAll('.reveal-quote-wrapper').forEach((wrapper) => {
 		const btn = wrapper.querySelector('.reveal-btn');
 		const container = wrapper.querySelector('.reveal-container');
 		const reveal = wrapper.querySelector('.insight-reveal');
 
 		btn?.addEventListener('click', () => {
-			container?.classList.add('hidden');
-			reveal?.classList.remove('hidden');
-			reveal?.classList.add('animate-fade-in');
+			container?.classList.add('is-off');
+			reveal?.classList.add('is-on');
 		});
 	});
 </script>
 
 <style>
-	.animate-fade-in {
-		animation: fadeIn 0.5s ease-out forwards;
+	.rq-card {
+		padding: 24px;
+		text-align: center;
+		border-radius: 12px;
+		background: var(--ds-background-200);
+		color: var(--ds-gray-1000);
+		box-shadow: var(--ds-shadow-border);
+		-webkit-font-smoothing: antialiased;
 	}
 
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
+	.rq-teaser {
+		margin: 0 0 20px;
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--ds-gray-1000);
+		text-wrap: balance;
+	}
+
+	.reveal-container.is-off {
+		display: none;
+	}
+
+	.reveal-btn {
+		min-height: 44px;
+		padding: 12px 24px;
+		border: 0;
+		border-radius: 9999px;
+		background: var(--ds-gray-1000);
+		color: var(--ds-background-100);
+		font-weight: 500;
+		cursor: pointer;
+		transition-property: transform, background-color;
+		transition-duration: 150ms;
+		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.reveal-btn:hover {
+		opacity: 0.88;
+	}
+
+	.reveal-btn:active {
+		transform: scale(0.96);
+	}
+
+	.insight-reveal {
+		display: none;
+	}
+
+	.insight-reveal.is-on {
+		display: block;
+	}
+
+	.rq-quote {
+		margin: 0;
+		font-size: 24px;
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--ds-gray-1000);
+		text-wrap: pretty;
+	}
+
+	.rq-sub {
+		margin: 24px 0 0;
+		font-size: 14px;
+		color: var(--ds-gray-900);
+	}
+
+	@media (min-width: 768px) {
+		.rq-card {
+			padding: 32px;
 		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+
+		.rq-teaser {
+			margin-bottom: 24px;
+			font-size: 24px;
+		}
+
+		.rq-quote {
+			font-size: 36px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal-btn {
+			transition: none;
 		}
 	}
 </style>

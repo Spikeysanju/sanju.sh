@@ -62,7 +62,7 @@ const jsonLd = profilePageJsonLd({
 							class='text-[min(10vw,64px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-3px]'>
 							sanju sivalingam
 						</h1>
-						<p class='text-xl font-medium text-gray-500 dark:text-gray-400'>
+						<p class='type-lede text-[var(--color-text-secondary)]'>
 							designer · founder
 						</p>
 					</div>
@@ -73,11 +73,11 @@ const jsonLd = profilePageJsonLd({
 			<div
 				id='bio'
 				class='flex flex-col gap-6'>
-				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+				<h2 class='type-section'>
 					bio
 				</h2>
 				<div class='flex flex-col gap-4'>
-					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+					<p class='type-body md:text-xl'>
 						Sanju Sivalingam is a designer and founder who runs <a
 							href='https://thisux.com'
 							target='_blank'
@@ -93,17 +93,17 @@ const jsonLd = profilePageJsonLd({
 			<div
 				id='extended-bio'
 				class='flex flex-col gap-6'>
-				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+				<h2 class='type-section'>
 					extended bio
 				</h2>
 				<div class='flex flex-col gap-4'>
-					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+					<p class='type-body md:text-xl'>
 						Sanju Sivalingam is the founder of ThisUX, a design-led product studio that helps startups and businesses build products that actually work. He's been in the game for a while, wearing many hats along the way, and now he's focused on building his own thing.
 					</p>
-					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+					<p class='type-body md:text-xl'>
 						He works with founders and business owners to build everything from MVPs to full products, or sometimes just fixes what's broken. The approach is simple: design to code, he handles it all. The secret? Creating systems that work, no matter what technology or problem you're dealing with.
 					</p>
-					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+					<p class='type-body md:text-xl'>
 						When he's not building products, he's contributing to <a
 							href='https://github.com/spikeysanju'
 							target='_blank'
@@ -112,7 +112,7 @@ const jsonLd = profilePageJsonLd({
 							>open source projects</a
 						> and speaking at conferences. He believes in sharing knowledge and helping others learn from his experiences.
 					</p>
-					<p class='font-medium text-xl text-gray-700 dark:text-gray-300 leading-relaxed'>
+					<p class='type-body md:text-xl'>
 						He's currently working on several projects including <a
 							href='https://dunsuite.com'
 							target='_blank'
@@ -170,10 +170,10 @@ const jsonLd = profilePageJsonLd({
 			<div
 				id='contact'
 				class='flex flex-col gap-6'>
-				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+				<h2 class='type-section'>
 					contact
 				</h2>
-				<p class='font-medium text-xl text-gray-700 dark:text-gray-300'>
+				<p class='type-body md:text-xl'>
 					Want to chat?
 					<a
 						href='https://cal.com/imsanju/15min'
@@ -195,7 +195,7 @@ const jsonLd = profilePageJsonLd({
 			<div
 				id='social-links'
 				class='flex flex-col gap-6 pt-6 border-t border-gray-200 dark:border-gray-800'>
-				<h2 class='text-4xl font-medium tracking-tight text-gray-900 dark:text-white'>
+				<h2 class='type-section'>
 					find me
 				</h2>
 				<div class='flex flex-row gap-6 flex-wrap'>
@@ -205,7 +205,7 @@ const jsonLd = profilePageJsonLd({
 								href={link.url}
 								rel={link.me ? 'me noopener noreferrer' : undefined}
 								target={link.url.startsWith('mailto:') ? undefined : '_blank'}
-								class='text-xl font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:underline underline-offset-2 transition-colors'>
+								class='type-body md:text-xl text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:underline transition-colors'>
 								{link.label}
 							</a>
 						))

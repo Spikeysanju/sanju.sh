@@ -1,0 +1,384 @@
+---
+
+---
+
+<div class="rule-comment-wrapper my-8 not-prose">
+	<div class="rc-card">
+		<div class="rc-toolbar">
+			<div class="rc-status">
+				<div class="rc-dot"></div>
+				<span class="rc-label">agent</span>
+			</div>
+			<button
+				id="rc-start"
+				class="rc-btn"
+				type="button"
+			>
+				run the agent
+			</button>
+		</div>
+
+		<div id="rc-task" class="rc-task">
+			okay, adding a paper. i can already feel it about to invent a new folder.
+		</div>
+
+		<div class="rc-steps" id="rc-steps">
+			<div class="rc-step" data-step="1">
+				<div class="rc-row">
+					<div class="rc-icon">
+						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="rc-spin"></div>
+					</div>
+					<div class="rc-copy">
+						<p class="rc-step-title">what broke</p>
+						<p class="rc-result">vault was empty. agent invented a sixth filename.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="rc-step" data-step="2">
+				<div class="rc-row">
+					<div class="rc-icon">
+						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="rc-spin"></div>
+					</div>
+					<div class="rc-copy">
+						<p class="rc-step-title">the guess</p>
+						<p class="rc-result">maybe a fixed five-file set stops the drift.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="rc-step" data-step="3">
+				<div class="rc-row">
+					<div class="rc-icon">
+						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="rc-spin"></div>
+					</div>
+					<div class="rc-copy">
+						<p class="rc-step-title">write the rule, then the why</p>
+						<p class="rc-result rc-mono">do not invent new filenames.<br /># 2026-09-02: agents invent layouts.<br /># hypothesis: a fixed file set stops drift.<br /># outcome: this is the only paper shape.<br /># keep unless we add a sixth file on purpose.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="rc-step" data-step="4">
+				<div class="rc-row">
+					<div class="rc-icon">
+						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+						</svg>
+						<div class="rc-spin"></div>
+					</div>
+					<div class="rc-copy">
+						<p class="rc-step-title">hide the comments from the model</p>
+						<p class="rc-result">agent sees the rule. you keep the why.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="rc-complete" class="rc-complete">
+			<p class="rc-complete-title">okay. now you can delete it later.</p>
+			<p class="rc-complete-sub">six months from now you'll actually know why that line exists.</p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.rc-card {
+		padding: 24px;
+		overflow: hidden;
+		border-radius: 12px;
+		background: var(--ds-background-200);
+		color: var(--ds-gray-1000);
+		box-shadow: var(--ds-shadow-border);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.rc-toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 16px;
+	}
+
+	.rc-status {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.rc-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 9999px;
+		background: var(--ds-gray-600);
+	}
+
+	.rc-label {
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--ds-gray-900);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.rc-btn {
+		position: relative;
+		min-height: 40px;
+		padding: 8px 14px;
+		border: 0;
+		border-radius: 9999px;
+		background: var(--ds-gray-100);
+		color: var(--ds-gray-1000);
+		font-size: 12px;
+		font-weight: 500;
+		cursor: pointer;
+		transition-property: transform, background-color, box-shadow;
+		transition-duration: 150ms;
+		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.rc-btn::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 40px;
+		height: 40px;
+		transform: translate(-50%, -50%);
+	}
+
+	.rc-btn:hover {
+		background: var(--ds-gray-200);
+	}
+
+	.rc-btn:active {
+		transform: scale(0.96);
+	}
+
+	.rc-btn:disabled {
+		opacity: 0.55;
+		cursor: default;
+	}
+
+	.rc-task {
+		margin-bottom: 16px;
+		font-weight: 500;
+		color: var(--ds-gray-1000);
+		opacity: 0;
+		transition-property: opacity;
+		transition-duration: 200ms;
+		transition-timing-function: ease-out;
+	}
+
+	.rc-task.is-on {
+		opacity: 1;
+	}
+
+	.rc-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.rc-step {
+		opacity: 0;
+		transform: translateX(-8px);
+		transition-property: opacity, transform;
+		transition-duration: 220ms;
+		transition-timing-function: ease-out;
+	}
+
+	.rc-step.is-on {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	.rc-row {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.rc-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+		margin-top: 2px;
+		border-radius: 9999px;
+		background: var(--ds-gray-100);
+		color: var(--ds-gray-900);
+	}
+
+	.rc-icon.is-done {
+		background: var(--ds-gray-200);
+		color: var(--ds-gray-1000);
+	}
+
+	.rc-check,
+	.rc-spin {
+		display: none;
+		width: 12px;
+		height: 12px;
+	}
+
+	.rc-icon.is-busy .rc-spin,
+	.rc-icon.is-done .rc-check {
+		display: block;
+	}
+
+	.rc-spin {
+		border: 2px solid var(--ds-gray-400);
+		border-top-color: var(--ds-gray-1000);
+		border-radius: 9999px;
+		animation: rc-rotate 0.6s linear infinite;
+	}
+
+	.rc-copy {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.rc-step-title {
+		margin: 0;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--ds-gray-900);
+	}
+
+	.rc-result {
+		display: none;
+		margin: 4px 0 0;
+		font-size: 12px;
+		line-height: 1.5;
+		color: var(--ds-gray-700);
+	}
+
+	.rc-result.is-on {
+		display: block;
+	}
+
+	.rc-mono {
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	}
+
+	.rc-complete {
+		display: none;
+		margin-top: 20px;
+		padding-top: 16px;
+		border-top: 1px solid var(--ds-gray-400);
+	}
+
+	.rc-complete.is-on {
+		display: block;
+	}
+
+	.rc-complete-title {
+		margin: 0;
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--ds-gray-1000);
+	}
+
+	.rc-complete-sub {
+		margin: 4px 0 0;
+		font-size: 12px;
+		color: var(--ds-gray-900);
+	}
+
+	@keyframes rc-rotate {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.rc-btn,
+		.rc-task,
+		.rc-step {
+			transition: none;
+		}
+
+		.rc-spin {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	const startBtn = document.getElementById('rc-start');
+	const taskEl = document.getElementById('rc-task');
+	const steps = document.querySelectorAll('.rc-step');
+	const completeEl = document.getElementById('rc-complete');
+	let isRunning = false;
+
+	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	async function sleep(ms: number) {
+		if (reduced) return;
+		await new Promise((resolve) => setTimeout(resolve, ms));
+	}
+
+	async function runStep(step: Element) {
+		const icon = step.querySelector('.rc-icon');
+		const result = step.querySelector('.rc-result');
+
+		step.classList.add('is-on');
+		icon?.classList.add('is-busy');
+
+		await sleep(650);
+
+		icon?.classList.remove('is-busy');
+		icon?.classList.add('is-done');
+		result?.classList.add('is-on');
+
+		await sleep(220);
+	}
+
+	async function runSimulation() {
+		if (isRunning) return;
+		isRunning = true;
+
+		steps.forEach((step) => {
+			step.classList.remove('is-on');
+			step.querySelector('.rc-icon')?.classList.remove('is-busy', 'is-done');
+			step.querySelector('.rc-result')?.classList.remove('is-on');
+		});
+		completeEl?.classList.remove('is-on');
+
+		if (startBtn) {
+			startBtn.textContent = 'running...';
+			(startBtn as HTMLButtonElement).disabled = true;
+		}
+
+		taskEl?.classList.add('is-on');
+		await sleep(320);
+
+		for (const step of steps) {
+			await runStep(step);
+		}
+
+		await sleep(280);
+		completeEl?.classList.add('is-on');
+
+		if (startBtn) {
+			startBtn.textContent = 'run again';
+			(startBtn as HTMLButtonElement).disabled = false;
+		}
+
+		isRunning = false;
+	}
+
+	startBtn?.addEventListener('click', runSimulation);
+</script>

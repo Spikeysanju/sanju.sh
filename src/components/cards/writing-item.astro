@@ -5,9 +5,9 @@ const { title, date, slug } = Astro.props;
 ---
 
 <a href={`/${slug}`}>
-	<article class='flex flex-row items-center justify-between w-full'>
-		<h3 class='text-base font-medium'>{title}</h3>
-		<p class='text-gray-500 font-medium'>
+	<article class='flex flex-row items-center justify-between w-full gap-3'>
+		<h3 class='text-base font-medium min-w-0 flex-1 text-pretty'>{title}</h3>
+		<p class='type-meta shrink-0'>
 			<FormattedDate date={date} />
 		</p>
 	</article>

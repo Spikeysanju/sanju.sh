@@ -66,21 +66,21 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 				id='blog-content'
 				class='w-full flex flex-col gap-6 items-center justify-center'>
 				<h1
-					class='w-full max-w-xl text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight'>
+					class='w-full max-w-xl type-page-title'>
 					{title}
 				</h1>
-				<div class='flex flex-row gap-2 w-full max-w-xl'>
-					<p class='text-start text-gray-500 font-medium'>
+				<div class='flex flex-row gap-2 w-full max-w-xl type-meta'>
+					<p class='text-start'>
 						<FormattedDate date={pubDate.toString()} />
 					</p>
-					<span class='text-gray-500 font-medium'>·</span>
-					<p class='text-start text-gray-500 font-medium'>
+					<span>·</span>
+					<p class='text-start'>
 						{readingTime} min read
 					</p>
 				</div>
 				<p
-					class='w-full max-w-xl text-start font-medium text-gray-700 dark:text-gray-300 text-lg'>
-					<span class='font-semibold text-gray-900 dark:text-white'
+					class='w-full max-w-xl text-start type-lede text-[var(--color-text-body)]'>
+					<span class='font-semibold text-[var(--color-text)]'
 						>tl;dr:
 					</span>
 					{description}
@@ -101,7 +101,7 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 				<div
 					class={clsx(
 						'relative max-w-xl',
-						'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 items-center justify-center',
+						'w-full prose md:prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 items-center justify-center',
 						'dark:prose-a:bg-orange-950 dark:prose-a:decoration-orange-400 dark:prose-a:underline',
 						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
 						'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
@@ -120,6 +120,33 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 	</RootLayout>
 
 	<style is:global>
+		#blog-content .prose {
+			--tw-prose-body: var(--ds-gray-1000);
+			--tw-prose-headings: var(--ds-gray-1000);
+			--tw-prose-lead: var(--ds-gray-1000);
+			--tw-prose-bold: var(--ds-gray-1000);
+			--tw-prose-counters: var(--ds-gray-900);
+			--tw-prose-bullets: var(--ds-gray-600);
+			--tw-prose-hr: var(--ds-gray-400);
+			--tw-prose-quotes: var(--ds-gray-1000);
+			--tw-prose-quote-borders: var(--ds-gray-400);
+			--tw-prose-captions: var(--ds-gray-700);
+			--tw-prose-kbd: var(--ds-gray-1000);
+			--tw-prose-code: var(--ds-gray-1000);
+			--tw-prose-pre-code: var(--ds-gray-1000);
+			--tw-prose-pre-bg: var(--ds-gray-100);
+			--tw-prose-th-borders: var(--ds-gray-400);
+			--tw-prose-td-borders: var(--ds-gray-400);
+			--tw-prose-invert-body: var(--ds-gray-1000);
+			--tw-prose-invert-headings: var(--ds-gray-1000);
+			--tw-prose-invert-bold: var(--ds-gray-1000);
+			--tw-prose-invert-quotes: var(--ds-gray-1000);
+			--tw-prose-invert-code: var(--ds-gray-1000);
+			--tw-prose-invert-pre-bg: var(--ds-gray-100);
+			--tw-prose-invert-hr: var(--ds-gray-400);
+			--tw-prose-invert-bullets: var(--ds-gray-600);
+		}
+
 		#blog-content .prose :is(h2, h3, h4)[id] {
 			position: relative;
 			cursor: pointer;

@@ -15,13 +15,13 @@ const { category, content, pubDate, index, slug } = Astro.props;
 			getCategoryColor(category), // set the background color based on category
 			index % 2 === 0 ? 'rotate-1 hover:rotate-0' : '-rotate-1 hover:-rotate-0' // rotate the card
 		)}>
-		<span class='absolute top-3 right-3 text-5xl text-gray-700'>"</span>
+		<span class='absolute top-3 right-3 text-4xl md:text-5xl text-gray-700'>"</span>
 		<h5 class='text-gray-900 dark:text-gray-900 w-full font-medium text-md'>
 			Sanju on{' '}
 			<span class='underline decoration-wavy'>{category}</span>
 		</h5>
 		<h1
-			class='text-black dark:text-black font-medium w-full sm:text-xl md:text-2xl indent-9'>
+			class='text-black dark:text-black font-medium w-full text-base md:text-xl lg:text-2xl indent-9 text-pretty'>
 			{content}
 		</h1>
 		<p class='text-black w-full text-end font-medium text-sm'>

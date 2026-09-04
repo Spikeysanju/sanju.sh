@@ -14,11 +14,11 @@ const isActive = href === pathname || href === `/${subpath?.[0]}`;
 <a
 	href={href}
 	class={clsx(
-		'hover:text-black dark:hover:text-white',
-		'hover:font-medium hover:cursor-pointer transition-all duration-100 ease-in-out',
+		'hover:text-[var(--color-text)] hover:cursor-pointer',
+		'transition-colors duration-150 ease-out',
 		isActive
-			? 'text-black dark:text-white font-medium'
-			: 'text-gray-400 dark:text-gray-500 font-medium'
+			? 'text-[var(--color-text)] font-medium'
+			: 'text-[var(--color-text-secondary)] font-medium'
 	)}
 	{...props}>
 	<slot />

@@ -4,7 +4,8 @@ import { products } from "@data/index";
 
 <nav
 	class='product-dock'
-	aria-label='products'>
+	aria-label='products'
+	style={`--dock-count: ${products.length}`}>
 	<ul class='product-dock__rail'>
 		{
 			products.map((product) => (
@@ -40,56 +41,51 @@ import { products } from "@data/index";
 <style>
 	.product-dock {
 		--dock-icon: 2.85rem;
-		--dock-gap: 0.45rem;
-		--dock-pad-x: 0.65rem;
-		--dock-pad-y: 0.5rem;
-		/* room above the rail so tooltips never collide with copy */
+		--dock-gap: 0.35rem;
+		--dock-pad-x: 0.5rem;
+		--dock-pad-y: 0.45rem;
 		--dock-tooltip-space: 2.25rem;
 
 		display: block;
-		width: fit-content;
+		width: 100%;
 		max-width: 100%;
-		margin-top: 0.35rem;
-		/* keep overflow visible — overflow-x:auto forces y-clip too */
-		overflow: visible;
+		min-width: 0;
+		margin-top: 0.5rem;
+		overflow-x: clip;
+		overflow-y: visible;
 		padding-top: var(--dock-tooltip-space);
 	}
 
 	.product-dock__rail {
 		display: flex;
 		align-items: flex-end;
+		justify-content: space-between;
 		gap: var(--dock-gap);
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
 		margin: 0;
 		padding: var(--dock-pad-y) var(--dock-pad-x);
 		list-style: none;
-		border: 1px solid rgb(0 0 0 / 0.1);
 		border-radius: 9999px;
-		background: rgb(232 232 237 / 0.92);
-		box-shadow:
-			0 8px 22px rgb(0 0 0 / 0.08),
-			inset 0 1px 0 rgb(255 255 255 / 0.7);
-		backdrop-filter: blur(18px) saturate(1.25);
-		-webkit-backdrop-filter: blur(18px) saturate(1.25);
-	}
-
-	:global(.dark) .product-dock__rail {
-		border-color: rgb(255 255 255 / 0.12);
-		background: rgb(44 44 46 / 0.72);
-		box-shadow:
-			0 12px 34px rgb(0 0 0 / 0.38),
-			inset 0 1px 0 rgb(255 255 255 / 0.08);
+		background: var(--ds-background-200);
+		box-shadow: var(--ds-shadow-border);
 	}
 
 	.product-dock__item {
 		position: relative;
 		display: flex;
-		flex: 0 0 auto;
+		flex: 1 1 0;
 		align-items: flex-end;
 		justify-content: center;
-		width: var(--dock-icon);
-		height: var(--dock-icon);
+		min-width: 0;
+		max-width: var(--dock-icon);
+		aspect-ratio: 1;
+		height: auto;
 		transform-origin: 50% 100%;
-		transition: width 140ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition-property: width, max-width;
+		transition-duration: 140ms;
+		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 	}
 
 	.product-dock__link {
@@ -100,8 +96,13 @@ import { products } from "@data/index";
 		height: 100%;
 		outline: none;
 		transform-origin: 50% 100%;
-		transition: transform 140ms cubic-bezier(0.22, 1, 0.36, 1);
-		will-change: transform;
+		transition-property: transform;
+		transition-duration: 140ms;
+		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.product-dock__link:active {
+		transform: scale(0.96);
 	}
 
 	.product-dock__icon {
@@ -113,17 +114,13 @@ import { products } from "@data/index";
 		object-fit: cover;
 		user-select: none;
 		pointer-events: none;
-		background: rgb(0 0 0 / 0.04);
-		box-shadow:
-			0 0 0 0.5px rgb(0 0 0 / 0.08),
-			0 2px 6px rgb(0 0 0 / 0.1);
+		background: var(--ds-gray-100);
+		outline: 1px solid oklch(0 0 0 / 0.1);
+		outline-offset: -1px;
 	}
 
 	:global(.dark) .product-dock__icon {
-		background: rgb(255 255 255 / 0.04);
-		box-shadow:
-			0 0 0 0.5px rgb(255 255 255 / 0.08),
-			0 3px 10px rgb(0 0 0 / 0.28);
+		outline-color: oklch(1 0 0 / 0.1);
 	}
 
 	@keyframes product-dock-tooltip-in {
@@ -144,38 +141,43 @@ import { products } from "@data/index";
 		left: 50%;
 		z-index: 5;
 		padding: 0.28rem 0.55rem;
-		border: 1px solid rgb(0 0 0 / 0.08);
-		border-radius: 0.45rem;
-		background: rgb(255 255 255 / 0.96);
-		color: #111;
-		font-size: 0.75rem;
-		font-weight: 500;
+		border-radius: 0.5rem;
+		background: var(--ds-background-100);
+		color: var(--ds-gray-1000);
+		font-size: var(--fs-xs);
+		font-weight: var(--fw-medium);
 		line-height: 1;
 		white-space: nowrap;
 		opacity: 0;
 		pointer-events: none;
 		transform: translateX(-50%) translateY(0.25rem) scale(0.96);
-		box-shadow: 0 8px 20px rgb(0 0 0 / 0.12);
-	}
-
-	:global(.dark) .product-dock__tooltip {
-		border-color: rgb(255 255 255 / 0.12);
-		background: rgb(40 40 42 / 0.96);
-		color: #f5f5f7;
+		box-shadow: var(--ds-shadow-border);
 	}
 
 	.product-dock__link:hover .product-dock__tooltip,
 	.product-dock__link:focus-visible .product-dock__tooltip {
-		animation: product-dock-tooltip-in 160ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+		animation: product-dock-tooltip-in 160ms cubic-bezier(0.2, 0, 0, 1) forwards;
 	}
 
 	.product-dock__link:focus-visible .product-dock__icon {
-		outline: 2px solid rgb(0 0 0 / 0.45);
+		outline: 2px solid var(--ds-gray-1000);
 		outline-offset: 3px;
 	}
 
-	:global(.dark) .product-dock__link:focus-visible .product-dock__icon {
-		outline-color: rgb(255 255 255 / 0.55);
+	@media (min-width: 640px) {
+		.product-dock {
+			width: fit-content;
+			--dock-gap: 0.45rem;
+			--dock-pad-x: 0.65rem;
+			--dock-pad-y: 0.5rem;
+		}
+
+		.product-dock__item {
+			flex: 0 0 var(--dock-icon);
+			width: var(--dock-icon);
+			height: var(--dock-icon);
+			max-width: var(--dock-icon);
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -218,8 +220,14 @@ import { products } from "@data/index";
 			return 1 + (maxScale - 1) * eased;
 		};
 
+		const canMagnify = () =>
+			window.matchMedia("(pointer: fine)").matches &&
+			window.matchMedia("(min-width: 640px)").matches &&
+			!window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 		const onMove = (event: PointerEvent) => {
-			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			if (!canMagnify()) {
+				reset();
 				return;
 			}
 

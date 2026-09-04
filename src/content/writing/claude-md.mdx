@@ -1,0 +1,91 @@
+---
+title: "why claude.md keeps growing"
+description: "i kept adding rules and never felt safe deleting any of them. turns out that's a named problem, and the fix is a comment."
+pubDate: 'Sep 4 2026'
+readingTime: 4
+---
+
+import { Highlight, RuleComment, Sidenote, RevealQuote } from "@components/interactive";
+import { EndCTA } from "@components/cta";
+
+so i've been watching my `CLAUDE.md` get longer.
+
+not in a dramatic way. just one more line. then another. "don't do this." "always do that." after a few weeks you open the file and it feels heavy. and the weird part is you can't delete anything. because you don't remember why it's there. and deleting it feels like it might break the agent.
+
+that's the whole problem. <Highlight color="yellow">the file grows because deletion feels unsafe</Highlight>, not because every rule is still doing work.
+
+someone actually measured this. kushal chakrabarti. the paper is [why does claude.md keep growing?](https://arxiv.org/abs/2608.11095) ([alphaxiv](https://www.alphaxiv.org/abs/2608.11095)). he calls it **catastrophic remembering**. you keep what you should have overwritten.
+
+## i thought old rules just went stale
+
+they don't. if a rule got stale, the old ones would be easier to cut. the opposite happens. the longer a line sits there, the less anyone wants to touch it.
+
+he looked at 1,867 github repos. instruction count more than triples over a file's life. **+226%**. the median file ends at 39 rules.
+
+and when people "delete," they usually don't. **77.3%** of the time they wipe the whole file, or move it to a sibling. size drops. then it grows back faster. 4.1% per commit before the rewrite. 4.9% after.
+
+longer is also not free. leftover instructions cost **24.1 percentage points** of correctness on the rules that still matter. the extra lines are not harmless. they just sit there and confuse the agent.
+
+## the fix is kind of embarrassing
+
+we already do this in code. we write comments.
+
+the rule tells the agent what to do. a `#` comment tells *you* why. then the harness strips the comments before the model runs. the agent never sees the essay. you do. six months later you can actually decide if the line still earns its place.
+
+dummy comments don't work. "added to address a recurring issue" is just noise. the paper tested that. it landed with the no-comment group.
+
+you have to write what failed, what you guessed, what happened, and when it's safe to delete.
+
+in the lab, uncommented prompts grew **+211.3%** extra. informative comments: **+1.4%**.
+
+don't let the agent auto-delete from those comments. they can be wrong. writing them is the safe half. a human still has to look.
+
+## just try it on the next rule
+
+if you can't fill this in, don't add the rule. you'll never feel okay deleting it.
+
+```text
+do the thing.
+# YYYY-MM-DD: what failed.
+# hypothesis: the guess.
+# outcome: what happened.
+# keep unless: when it's safe to delete.
+```
+
+this is one from a paper vault that kept inventing its own layout every session:
+
+```text
+do not invent new filenames.
+# 2026-09-02: vault was empty and agents invent layouts.
+# hypothesis: a fixed file set stops drift.
+# outcome: this is the only paper shape.
+# keep unless we add a sixth file on purpose.
+```
+
+and if you want to see the loop instead of staring at a template, hit run.
+
+<RuleComment />
+
+don't nuke the file. that's the rewrite trap. it looks clean for a week, then it comes back worse.
+
+don't add a rule you can't comment. that's how you get the 39-line graveyard.
+
+and this isn't only `CLAUDE.md`. bookmarks. team wikis. house rules. that note that says "we always do it this way" with no date on it. same disease.
+
+<Sidenote id="1">i already wrote about this instinct in [capture the why](/capture-why). that post is the feeling. this paper is the measurement, plus a template you can actually paste.</Sidenote>
+
+<RevealQuote
+  teaser="the last line of the paper"
+  button="show it"
+  quote="if english is the new code, why don't we have comments yet?"
+  subtitle="chakrabarti, section 6"
+/>
+
+paper: kushal chakrabarti, *why does claude.md keep growing? catastrophic remembering in agentic coding*, 11 aug 2026. [arxiv:2608.11095](https://arxiv.org/abs/2608.11095) · [alphaxiv](https://www.alphaxiv.org/abs/2608.11095)
+
+<EndCTA
+	title="i write about building with agents. follow along if you want the next one."
+	cta_label="follow on x"
+	bg_colour="orange"
+	link="https://x.com/spikeysanju"
+/>

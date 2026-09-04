@@ -8,3 +8,4 @@ export { default as RevealQuote } from "./reveal-quote.astro";
 export { default as EnergyMeter } from "./energy-meter.astro";
 export { default as Sidenote } from "./sidenote.astro";
 export { default as ProductDock } from "./product-dock.astro";
+export { default as RuleComment } from "./rule-comment.astro";

@@ -72,18 +72,40 @@
     --leading-normal: 1.5;
     --leading-relaxed: 1.625;
 
+    /* ——— geist / vercel ds tokens ——— */
+    --ds-background-100: #ffffff;
+    --ds-background-200: #fafafa;
+    --ds-gray-100: #f2f2f2;
+    --ds-gray-200: #ebebeb;
+    --ds-gray-300: #e8e8e8;
+    --ds-gray-400: #e5e5e5;
+    --ds-gray-500: #d4d4d4;
+    --ds-gray-600: #a3a3a3;
+    --ds-gray-700: #8f8f8f;
+    --ds-gray-800: #7d7d7d;
+    --ds-gray-900: #666666;
+    --ds-gray-1000: #171717;
+    --ds-shadow-border:
+      0 0 0 1px oklch(0 0 0 / 0.06),
+      0 1px 2px -1px oklch(0 0 0 / 0.06),
+      0 2px 4px 0 oklch(0 0 0 / 0.04);
+    --ds-shadow-border-hover:
+      0 0 0 1px oklch(0 0 0 / 0.08),
+      0 1px 2px -1px oklch(0 0 0 / 0.08),
+      0 2px 4px 0 oklch(0 0 0 / 0.06);
+
     /* ——— color tokens — light ——— */
-    --color-bg: #ffffff;
-    --color-bg-subtle: #f9fafb;       /* gray-50 */
-    --color-bg-muted: #f3f4f6;        /* gray-100 */
+    --color-bg: var(--ds-background-100);
+    --color-bg-subtle: var(--ds-background-200);
+    --color-bg-muted: var(--ds-gray-100);
 
-    --color-text: #000000;
-    --color-text-secondary: #6b7280;  /* gray-500 */
-    --color-text-muted: #9ca3af;      /* gray-400 */
-    --color-text-body: #374151;       /* gray-700 */
+    --color-text: var(--ds-gray-1000);
+    --color-text-secondary: var(--ds-gray-900);
+    --color-text-muted: var(--ds-gray-700);
+    --color-text-body: var(--ds-gray-1000);
 
-    --color-border: #e5e7eb;          /* gray-200 */
-    --color-border-strong: #d1d5db;   /* gray-300 */
+    --color-border: var(--ds-gray-400);
+    --color-border-strong: var(--ds-gray-500);
 
     /* accent — per section */
     --color-accent-writing: #f97316;       /* orange-500 */
@@ -103,17 +125,32 @@
   }
 
   .dark {
-    --color-bg: #000000;
-    --color-bg-subtle: #111827;       /* gray-900 */
-    --color-bg-muted: #1f2937;        /* gray-800 */
+    --ds-background-100: #000000;
+    --ds-background-200: #0a0a0a;
+    --ds-gray-100: #1a1a1a;
+    --ds-gray-200: #1f1f1f;
+    --ds-gray-300: #292929;
+    --ds-gray-400: #333333;
+    --ds-gray-500: #454545;
+    --ds-gray-600: #878787;
+    --ds-gray-700: #8f8f8f;
+    --ds-gray-800: #7d7d7d;
+    --ds-gray-900: #a1a1a1;
+    --ds-gray-1000: #ededed;
+    --ds-shadow-border: 0 0 0 1px oklch(1 0 0 / 0.08);
+    --ds-shadow-border-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
 
-    --color-text: #ffffff;
-    --color-text-secondary: #6b7280;  /* gray-500 */
-    --color-text-muted: #9ca3af;      /* gray-400 */
-    --color-text-body: #d1d5db;       /* gray-300 */
+    --color-bg: var(--ds-background-100);
+    --color-bg-subtle: var(--ds-background-200);
+    --color-bg-muted: var(--ds-gray-100);
 
-    --color-border: #374151;          /* gray-700 */
-    --color-border-strong: #4b5563;   /* gray-600 */
+    --color-text: var(--ds-gray-1000);
+    --color-text-secondary: var(--ds-gray-900);
+    --color-text-muted: var(--ds-gray-700);
+    --color-text-body: var(--ds-gray-1000);
+
+    --color-border: var(--ds-gray-400);
+    --color-border-strong: var(--ds-gray-500);
 
     --color-accent-writing: #fb923c;       /* orange-400 */
     --color-accent-writing-bg: #431407;    /* orange-950 */
@@ -129,11 +166,121 @@
   body {
     font-family: var(--font-body);
     font-weight: var(--fw-medium);
-    @apply bg-white text-black dark:bg-black dark:text-white lowercase;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-underline-position: from-font;
+    text-decoration-thickness: from-font;
+    @apply lowercase;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.18em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: var(--fw-medium);
     letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+}
+
+@layer components {
+  .type-page-title {
+    font-size: var(--fs-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--fw-medium);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .type-section {
+    font-size: var(--fs-2xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--fw-medium);
+    text-wrap: balance;
+  }
+
+  .type-lede {
+    font-size: var(--fs-base);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-body);
+    text-wrap: pretty;
+  }
+
+  .type-body {
+    font-size: var(--fs-base);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-body);
+  }
+
+  .type-meta {
+    font-size: var(--fs-sm);
+    line-height: var(--leading-normal);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .type-page-title {
+      font-size: var(--fs-5xl);
+    }
+
+    .type-section {
+      font-size: var(--fs-4xl);
+    }
+
+    .type-lede,
+    .type-body {
+      font-size: var(--fs-lg);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .type-page-title {
+      font-size: var(--fs-7xl);
+    }
+  }
+
+  /* same surface as the agent card */
+  .prose pre.astro-code {
+    margin: 1.5rem 0;
+    padding: 24px;
+    overflow-x: auto;
+    border-radius: 12px;
+    background: var(--ds-background-200) !important;
+    color: var(--ds-gray-1000) !important;
+    box-shadow: var(--ds-shadow-border);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .prose pre.astro-code code {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-weight: 400;
+    background: transparent !important;
+  }
+
+  html:not(.dark) .prose pre.astro-code span {
+    color: var(--shiki-light);
+    background-color: transparent !important;
+  }
+
+  html.dark .prose pre.astro-code span {
+    color: var(--shiki-dark);
+    background-color: transparent !important;
+  }
+
+  .prose pre.astro-code[data-language="text"] span {
+    color: var(--ds-gray-1000) !important;
   }
 }
