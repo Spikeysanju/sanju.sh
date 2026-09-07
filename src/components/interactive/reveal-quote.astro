@@ -10,7 +10,7 @@ const { teaser, button = "Show me", quote, subtitle } = Astro.props;
 const uniqueId = Math.random().toString(36).slice(2, 9);
 ---
 
-<div class="reveal-quote-wrapper my-10 not-prose" data-id={uniqueId}>
+<div class="reveal-quote-wrapper" data-id={uniqueId}>
 	<div class="rq-card">
 		<p class="rq-teaser">{teaser}</p>
 
@@ -44,6 +44,10 @@ const uniqueId = Math.random().toString(36).slice(2, 9);
 </script>
 
 <style>
+	.reveal-quote-wrapper {
+		margin-block: 2.5rem;
+	}
+
 	.rq-card {
 		padding: 24px;
 		text-align: center;

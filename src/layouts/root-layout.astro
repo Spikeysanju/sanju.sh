@@ -1,14 +1,17 @@
 ---
+import { sx } from "@utils/sx";
+import { styles } from "./root-layout.styles";
+
 interface Props {
-	maxWidth?: string;
+	maxWidth?: "xl" | "article";
 }
 
-const { maxWidth = 'max-w-xl' } = Astro.props;
+const { maxWidth = "xl" } = Astro.props;
 ---
 
 <div
 	id='root-container'
-	class={`w-full flex flex-col items-center justify-start my-6 p-4 antialiased ${maxWidth} mx-auto`}>
+	{...sx(styles.root, maxWidth === "article" ? styles.article : styles.xl)}>
 	<slot />
 </div>
 

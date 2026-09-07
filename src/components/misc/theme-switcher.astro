@@ -1,17 +1,15 @@
 ---
-import { clsx } from "@utils/index";
+import { sx } from "@utils/sx";
+import { styles } from "./theme-switcher.styles";
 ---
 <button
 	id='theme-toggle'
-	class={clsx(
-		'rounded-full p-2 hover:bg-gray-100 dark:hover:bg-gray-800',
-		'transition-colors duration-200'
-	)}
+	{...sx(styles.button)}
 	aria-label='Toggle theme'>
 	<!-- Sun icon -->
 	<svg
 		id='sun-icon'
-		class='w-5 h-5 hidden dark:block'
+		{...sx(styles.icon)}
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
@@ -27,7 +25,7 @@ import { clsx } from "@utils/index";
 	<!-- Moon icon -->
 	<svg
 		id='moon-icon'
-		class='w-5 h-5 block dark:hidden'
+		{...sx(styles.icon)}
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
@@ -40,6 +38,24 @@ import { clsx } from "@utils/index";
 		></path>
 	</svg>
 </button>
+
+<style>
+	#sun-icon {
+		display: none;
+	}
+
+	#moon-icon {
+		display: block;
+	}
+
+	:global(.dark) #sun-icon {
+		display: block;
+	}
+
+	:global(.dark) #moon-icon {
+		display: none;
+	}
+</style>
 
 <script>
 	const theme: string = (() => {
@@ -72,4 +88,3 @@ import { clsx } from "@utils/index";
 		.getElementById('theme-toggle')
 		?.addEventListener('click', handleToggleClick);
 </script>
-

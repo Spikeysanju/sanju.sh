@@ -1,16 +1,13 @@
 ---
+import { highlight } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./highlight.styles";
+
 interface Props {
-	color?: 'yellow' | 'green' | 'pink' | 'blue';
+	color?: "yellow" | "green" | "pink" | "blue";
 }
 
-const { color = 'yellow' } = Astro.props;
-
-const colorClasses = {
-	yellow: 'bg-yellow-200 dark:bg-yellow-400/30',
-	green: 'bg-green-200 dark:bg-green-400/30',
-	pink: 'bg-pink-200 dark:bg-pink-400/30',
-	blue: 'bg-blue-200 dark:bg-blue-400/30',
-};
+const { color = "yellow" } = Astro.props;
 ---
 
-<mark class={`${colorClasses[color]} px-1 py-0.5 rounded text-inherit not-prose`}><slot /></mark>
+<mark {...sx(styles.mark, highlight[color])}><slot /></mark>

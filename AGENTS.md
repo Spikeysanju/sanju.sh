@@ -21,6 +21,49 @@ Do not use for: refactoring, writing scripts from scratch, debugging business lo
 - Never add `Co-Authored-By` lines to git commits.
 - Prefer lowercase text across the site.
 - Keep changes small and aligned with the existing Astro content-site structure.
+- Style with StyleX only. Do not reintroduce Tailwind, `@apply`, or community StyleX forks.
+
+## Design system
+
+Tokens, recipes, and colocated StyleX modules are the styling contract. Agents must follow this pattern on every UI change.
+
+```ts
+// src/pages/example.styles.ts
+import * as stylex from "@stylexjs/stylex";
+import { colors, font, space } from "@styles/tokens.stylex";
+
+export const styles = stylex.create({
+	hero: {
+		color: colors.text,
+		fontWeight: font.medium,
+		padding: space[6],
+	},
+});
+```
+
+```astro
+---
+import { layout, type, link } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./example.styles";
+---
+<section {...sx(layout.page)}>
+	<h1 {...sx(type.pageTitle, styles.hero)}>title</h1>
+	<a href="/" {...sx(link.underline)}>home</a>
+</section>
+```
+
+Rules:
+
+- Import tokens from a relative `tokens.stylex` path in StyleX modules (the compiler cannot resolve TS path aliases for `defineVars` files). Never hardcode hex, `gray-500`, or new CSS variables in components.
+- Media query constants used as StyleX keys (`[md]`) must be declared in the same file as `stylex.create`. Do not import them.
+- Use recipes in `@styles/recipes` for type, layout, links, category/cta surfaces, and widget chrome before writing a new `stylex.create`.
+- Colocate unique styles in `*.styles.ts` next to the `.astro` file.
+- Apply styles with `{...sx(...)}` (`stylex.attrs`). Never put `stylex.create` or `defineVars` in `.astro` files.
+- MDX article chrome belongs in `src/styles/prose.css` (`.prose`, `.prose-writing`, `.prose-thoughts`), not per-component utilities.
+- Dark mode is the `.dark` class on `<html>`. Tokens already remap via CSS variables. Do not switch to `prefers-color-scheme` media queries for theme colors.
+- Keep scoped `<style>` only for keyframes, 3D transforms, or JS-toggled hooks. Point those rules at tokens (`var(--color-text)`), not hardcoded grays.
+- For JS-toggled visibility, keep the `.hidden` utility and merge it with StyleX via `class:list={['hidden', sx(styles.x).class]}`. Do not let `{...sx()}` overwrite hook class names.
 
 ## Commands
 

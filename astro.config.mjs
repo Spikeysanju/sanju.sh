@@ -1,6 +1,6 @@
 import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
-import tailwindcss from "@tailwindcss/vite";
+import stylex from "@stylexjs/unplugin";
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
@@ -8,7 +8,16 @@ export default defineConfig({
 	site: "https://sanju.sh",
 	trailingSlash: "never",
 	vite: {
-		plugins: [tailwindcss()],
+		plugins: [
+			stylex.vite({
+				useCSSLayers: true,
+				runtimeInjection: false,
+				unstable_moduleResolution: {
+					type: "commonJS",
+					rootDir: process.cwd(),
+				},
+			}),
+		],
 		server: {
 			allowedHosts: ["frederick-east-surfing-beam.trycloudflare.com"],
 		},

@@ -1,25 +1,22 @@
 ---
-import { clsx } from '@utils/index';
-import type { HTMLAttributes } from 'astro/types';
+import { sx } from "@utils/sx";
+import type { HTMLAttributes } from "astro/types";
+import { styles } from "./header-link.styles";
 
-type Props = HTMLAttributes<'a'>;
+type Props = HTMLAttributes<"a">;
 
 const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === `/${subpath?.[0]}`;
+const attrs = sx(styles.link, isActive ? styles.active : styles.inactive);
 ---
 
 <a
 	href={href}
-	class={clsx(
-		'hover:text-[var(--color-text)] hover:cursor-pointer',
-		'transition-colors duration-150 ease-out',
-		isActive
-			? 'text-[var(--color-text)] font-medium'
-			: 'text-[var(--color-text-secondary)] font-medium'
-	)}
+	class:list={[attrs.class, className]}
+	style={attrs.style}
 	{...props}>
 	<slot />
 </a>

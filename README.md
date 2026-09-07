@@ -15,7 +15,7 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 
 ## 🛠️ tech stack
 - **astro**: content-focused web framework with ssr on cloudflare workers
-- **tailwindcss**: utility-first css framework for rapid prototyping
+- **stylex**: typed design tokens and atomic styles for the site design system
 - **markdown**: for writing content in a simple and easy-to-read format
 - **typescript**: for type-checking and better code quality
 - **biome**: Format, lint, and more in a fraction of a second.

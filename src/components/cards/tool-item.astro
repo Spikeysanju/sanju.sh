@@ -1,13 +1,15 @@
 ---
+import { sx } from "@utils/sx";
+import { styles } from "./tool-item.styles";
+
 const { name, description, slug } = Astro.props;
 ---
 
 <a href={`/tools/${slug}`}>
-	<article class='flex flex-col gap-2 w-full'>
-		<h3 class='text-base font-medium'>{name}</h3>
-		<p class='text-gray-500 font-medium text-sm'>
+	<article {...sx(styles.card)}>
+		<h3 {...sx(styles.name)}>{name}</h3>
+		<p {...sx(styles.description)}>
 			{description}
 		</p>
 	</article>
 </a>
-

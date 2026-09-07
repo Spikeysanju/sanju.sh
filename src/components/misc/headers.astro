@@ -1,11 +1,13 @@
 ---
-import HeaderLink from './header-link.astro';
-import ThemeSwitcher from './theme-switcher.astro';
-import { menuItems } from '@data/index';
+import { menuItems } from "@data/index";
+import { sx } from "@utils/sx";
+import HeaderLink from "./header-link.astro";
+import { styles } from "./headers.styles";
+import ThemeSwitcher from "./theme-switcher.astro";
 ---
 
-<div class='flex flex-row justify-between items-center w-full max-w-xl'>
-	<div class='flex flex-row gap-3 font-medium text-black items-start'>
+<div {...sx(styles.bar)}>
+	<div {...sx(styles.nav)}>
 		{
 			menuItems.map((item) => (
 				<HeaderLink href={item.url}>{item.label}</HeaderLink>

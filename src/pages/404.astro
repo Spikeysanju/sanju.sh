@@ -2,6 +2,9 @@
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
 import RootLayout from "@layouts/root-layout.astro";
+import { layout, link, type } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./404.styles";
 
 Astro.response.status = 404;
 ---
@@ -17,19 +20,19 @@ Astro.response.status = 404;
 	</head>
 
 	<RootLayout>
-		<div class="flex flex-col w-full gap-8 max-w-xl">
+		<div {...sx(layout.page)}>
 			<Header />
-			<div class="flex flex-col gap-4">
-				<p class="type-meta uppercase tracking-wide">404</p>
-				<h1 class="type-page-title">page not found</h1>
-				<p class="type-lede">
+			<div {...sx(styles.copy)}>
+				<p {...sx(type.meta, type.uppercase)}>404</p>
+				<h1 {...sx(type.pageTitle)}>page not found</h1>
+				<p {...sx(type.lede)}>
 					this url doesn't match anything on the site. it may have moved, or it never existed.
 				</p>
 			</div>
-			<nav aria-label="helpful links" class="flex flex-col gap-3">
-				<a href="/" class="type-body underline underline-offset-2">go home</a>
-				<a href="/writings" class="type-body underline underline-offset-2">read writings</a>
-				<a href="/thoughts" class="type-body underline underline-offset-2">browse thoughts</a>
+			<nav aria-label="helpful links" {...sx(styles.nav)}>
+				<a href="/" {...sx(type.body, link.underline)}>go home</a>
+				<a href="/writings" {...sx(type.body, link.underline)}>read writings</a>
+				<a href="/thoughts" {...sx(type.body, link.underline)}>browse thoughts</a>
 			</nav>
 		</div>
 	</RootLayout>

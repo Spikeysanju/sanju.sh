@@ -4,6 +4,8 @@ import { WritingItem } from "@components/cards";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
 import RootLayout from "@layouts/root-layout.astro";
+import { layout, type } from "@styles/recipes";
+import { sx } from "@utils/sx";
 
 const writings = (await getCollection("writing")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -21,9 +23,9 @@ const writings = (await getCollection("writing")).sort(
 	<RootLayout>
 		<div
 			id='Header+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
+			{...sx(layout.page)}>
 			<Header />
-			<h1 class='w-full type-page-title'>writings</h1>
+			<h1 {...sx(type.pageTitle)}>writings</h1>
 
 			{
 				writings.map((writing) => (

@@ -4,6 +4,9 @@ import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
 import { SITE_DESCRIPTION, socialLinks } from "@data/index";
 import RootLayout from "@layouts/root-layout.astro";
+import { layout, link, type } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./index.styles";
 ---
 
 <!doctype html>
@@ -19,47 +22,44 @@ import RootLayout from "@layouts/root-layout.astro";
 	<RootLayout>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl lowercase'>
+			{...sx(layout.page)}>
 			<Header />
-			<h1
-				class='w-full text-start text-[min(12vw,72px)] font-medium leading-[0.9] tracking-[-2px] sm:tracking-[-4px]'>
+			<h1 {...sx(styles.title)}>
 				sanju
-				<span class='block text-[var(--color-text-secondary)]'
-					>designer, founder</span
-				>
+				<span {...sx(styles.titleMeta)}>designer, founder</span>
 			</h1>
 
 			<div
 				id='about'
-				class='flex flex-col gap-4'>
-				<div class='type-body'>
+				{...sx(styles.about)}>
+				<div {...sx(type.body)}>
 					I run <a
 						href='https://thisux.com'
 						target='_blank'
 						rel='noopener noreferrer'
-						class='underline underline-offset-2'
+						{...sx(link.underline)}
 						>ThisUX</a
 					>, a design-led product studio. We make things that work. For years, I
 					wore many hats. Now I’m doing my own thing.
 				</div>
 
-				<div class='type-body min-w-0'>
+				<div {...sx(type.body, styles.minW0)}>
 					I work on ideas like
 					<ProductDock />
 				</div>
 
-				<div class='type-body'>
+				<div {...sx(type.body)}>
 					I team up with founders and business owners. We build MVPs, full
 					products, or fix broken experiences. Design to code, we do it all.
 				</div>
 
-				<div class='type-body'>
+				<div {...sx(type.body)}>
 					Want to chat?{" "}
 					<a
 						href='https://cal.com/imsanju/15min'
 						target='_blank'
 						rel='noopener noreferrer'
-						class='underline underline-offset-2'>
+						{...sx(link.underline)}>
 						schedule a call
 					</a>
 				</div>
@@ -67,15 +67,15 @@ import RootLayout from "@layouts/root-layout.astro";
 
 			<div
 				id='social-links'
-				class='flex flex-row gap-4'>
+				{...sx(styles.social)}>
 				{
-					socialLinks.map((link) => (
+					socialLinks.map((social) => (
 						<a
-							href={link.url}
-							rel={link.me ? 'me noopener noreferrer' : undefined}
-							target={link.url.startsWith('mailto:') ? undefined : '_blank'}
-							class='type-body text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:underline'>
-							{link.label}
+							href={social.url}
+							rel={social.me ? 'me noopener noreferrer' : undefined}
+							target={social.url.startsWith('mailto:') ? undefined : '_blank'}
+							{...sx(type.body, link.muted)}>
+							{social.label}
 						</a>
 					))
 				}

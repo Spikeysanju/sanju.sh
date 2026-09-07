@@ -1,0 +1,170 @@
+.prose {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  margin-block: 0.75rem;
+  color: var(--color-text-body);
+  font-weight: var(--fw-medium);
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+  color: var(--color-text);
+}
+
+.prose h1 { font-size: var(--fs-2xl); }
+.prose h2 { font-size: var(--fs-xl); margin-top: 2em; }
+.prose h3 { font-size: var(--fs-lg); margin-top: 1.6em; }
+.prose h4,
+.prose h5,
+.prose h6 { font-size: var(--fs-base); }
+
+.prose p,
+.prose li {
+  font-size: var(--fs-base);
+  line-height: var(--leading-relaxed);
+  font-weight: var(--fw-medium);
+  text-wrap: pretty;
+}
+
+@media (min-width: 768px) {
+  .prose p,
+  .prose li {
+    font-size: var(--fs-lg);
+  }
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.prose-writing a {
+  background-color: var(--color-accent-writing-bg);
+  text-decoration-color: var(--color-accent-writing);
+}
+
+.prose-thoughts a {
+  background-color: var(--color-accent-thoughts-bg);
+  text-decoration-color: var(--color-accent-thoughts);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.75rem;
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0;
+}
+
+.prose img {
+  display: block;
+  width: 95vw;
+  max-width: 95vw;
+  margin: 2rem 0;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius-lg, 0.5rem);
+}
+
+@media (min-width: 768px) {
+  .prose img {
+    width: auto;
+    max-width: 72rem;
+  }
+}
+
+.prose :not(pre) > code {
+  background: var(--color-bg-muted);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.375rem;
+  font-size: 0.9em;
+  font-weight: var(--fw-regular);
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: none;
+}
+
+.prose pre.astro-code {
+  margin: 1.5rem 0;
+  padding: 24px;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: var(--ds-background-200) !important;
+  color: var(--ds-gray-1000) !important;
+  box-shadow: var(--ds-shadow-border);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+}
+
+.prose pre.astro-code code {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-weight: 400;
+  background: transparent !important;
+}
+
+html:not(.dark) .prose pre.astro-code span {
+  color: var(--shiki-light);
+  background-color: transparent !important;
+}
+
+html.dark .prose pre.astro-code span {
+  color: var(--shiki-dark);
+  background-color: transparent !important;
+}
+
+.prose pre.astro-code[data-language="text"] span {
+  color: var(--ds-gray-1000) !important;
+}
+
+.prose :is(h2, h3, h4)[id] {
+  position: relative;
+  cursor: pointer;
+}
+
+.prose :is(h2, h3, h4)[id]::after {
+  content: '#';
+  position: absolute;
+  left: -1.5rem;
+  opacity: 0;
+  color: var(--color-text-muted);
+  transition: opacity 0.15s;
+}
+
+.prose :is(h2, h3, h4)[id]:hover::after {
+  opacity: 1;
+}
