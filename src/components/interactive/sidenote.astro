@@ -1,4 +1,7 @@
 ---
+import { sx } from "@utils/sx";
+import { styles } from "./sidenote.styles";
+
 interface Props {
 	id: string;
 }
@@ -8,23 +11,24 @@ const { id } = Astro.props;
 
 <span class="sidenote-wrapper">
 	<button
-		class="sidenote-toggle xl:pointer-events-none inline font-medium text-neutral-500 dark:text-neutral-400 cursor-pointer xl:cursor-default"
+		class="sidenote-toggle"
+		{...sx(styles.toggle)}
 		aria-label={`toggle sidenote ${id}`}
 		data-sidenote-id={id}
 	>
-		<sup class="text-xs">{id}</sup>
+		<sup {...sx(styles.sup)}>{id}</sup>
 	</button>
 	<span
-		class="sidenote-body not-prose hidden xl:inline text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed"
+		class="sidenote-body"
+		{...sx(styles.body)}
 		data-sidenote-body={id}
 	>
-		<span class="font-medium">{id}:</span>{" "}
+		<span {...sx(styles.lead)}>{id}:</span>{" "}
 		<slot />
 	</span>
 </span>
 
 <style>
-	/* desktop: float sidenote into right margin */
 	@media (min-width: 1280px) {
 		.sidenote-body {
 			float: right;
@@ -35,19 +39,14 @@ const { id } = Astro.props;
 		}
 	}
 
-	/* mobile: toggle open */
 	.sidenote-body.is-open {
 		display: block;
 		width: 100%;
 		margin-top: 0.5rem;
 		margin-bottom: 0.5rem;
 		padding: 0.75rem;
-		background: rgb(245 245 245 / 0.8);
+		background: color-mix(in oklab, var(--color-bg-muted) 80%, transparent);
 		border-radius: 0.5rem;
-	}
-
-	:global(.dark) .sidenote-body.is-open {
-		background: rgb(38 38 38 / 0.5);
 	}
 </style>
 

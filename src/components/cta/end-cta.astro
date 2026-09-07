@@ -1,5 +1,7 @@
 ---
-import { clsx, getBackgroundColorClass } from '@utils/index';
+import { getCtaBackground } from "@utils/index";
+import { sx } from "@utils/sx";
+import { styles } from "./end-cta.styles";
 
 interface Props {
 	title: string;
@@ -9,27 +11,20 @@ interface Props {
 	link?: string;
 }
 
-const { title, cta_label, bg_colour, xHandle, link }: Props = Astro.props;
+const { title, cta_label, bg_colour, link }: Props = Astro.props;
 ---
 
-<div
-	class={clsx(
-		'flex flex-row w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out rounded-2xl',
-		getBackgroundColorClass(bg_colour)
-	)}>
-	<div class='w-full flex flex-col gap-3'>
-		<h5
-			class='text-gray-950 dark:text-gray-950 font-medium w-full text-base sm:text-xl md:text-2xl leading-tight text-pretty'>
+<div {...sx(styles.card, getCtaBackground(bg_colour))}>
+	<div {...sx(styles.copy)}>
+		<h5 {...sx(styles.title)}>
 			{title}
 		</h5>
 
-		<div class='w-full flex flex-row gap-2'>
+		<div {...sx(styles.actions)}>
 		<button
 			id='button-schedule-meeting'
 			data-umami-event={link ? `cta-custom-link-${cta_label}` : 'cta-schedule-meeting'}
-			class={clsx(
-				'bg-gray-950 text-white font-medium py-2 px-4 rounded-full w-fit cursor-pointer'
-			)}
+			{...sx(styles.primary)}
 			onclick={`window.open('${link || 'https://cal.com/imsanju/15min'}', '_blank')`}>
 			{cta_label}
 		</button>
@@ -37,7 +32,7 @@ const { title, cta_label, bg_colour, xHandle, link }: Props = Astro.props;
 			<button
 				id='button-email-me'
 				data-umami-event='cta-email-me'
-				class='text-black font-medium py-2 px-4 rounded-full w-fit underline underline-offset-2 cursor-pointer'
+				{...sx(styles.secondary)}
 				onclick="window.location.href=`mailto:work@sanju.sh?subject=Let's%20Build%20Something%20Remarkable&body=Hi%20Sanju%2C%0A%0AI%20came%20across%20your%20projects%20and%20was%20impressed%20by%20it.%20I%20would%20love%20to%20discuss%20the%20possibility%20of%20collaborating%20on%20a%20new%20project.%20Looking%20forward%20to%20hearing%20from%20you.%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D`">
 				Email me
 			</button>

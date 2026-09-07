@@ -1,30 +1,29 @@
 ---
-import FormattedDate from '@components/misc/formatted-date.astro';
-import { clsx, getCategoryColor } from '@utils/index';
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { getCategoryStyle } from "@utils/index";
+import { sx } from "@utils/sx";
+import { styles } from "./thoughts-item.styles";
 
 const { category, content, pubDate, index, slug } = Astro.props;
-
-
 ---
 
 <a href={`/${slug}`}>
 	<article
 		id={category}
-		class={clsx(
-			'flex flex-col w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out',
-			getCategoryColor(category), // set the background color based on category
-			index % 2 === 0 ? 'rotate-1 hover:rotate-0' : '-rotate-1 hover:-rotate-0' // rotate the card
+		{...sx(
+			styles.card,
+			getCategoryStyle(category),
+			index % 2 === 0 ? styles.tiltEven : styles.tiltOdd,
 		)}>
-		<span class='absolute top-3 right-3 text-4xl md:text-5xl text-gray-700'>"</span>
-		<h5 class='text-gray-900 dark:text-gray-900 w-full font-medium text-md'>
-			Sanju on{' '}
-			<span class='underline decoration-wavy'>{category}</span>
+		<span {...sx(styles.quote)}>"</span>
+		<h5 {...sx(styles.kicker)}>
+			Sanju on{" "}
+			<span {...sx(styles.wavy)}>{category}</span>
 		</h5>
-		<h1
-			class='text-black dark:text-black font-medium w-full text-xl md:text-2xl indent-9 text-pretty'>
+		<h1 {...sx(styles.content)}>
 			{content}
 		</h1>
-		<p class='text-black w-full text-end font-medium text-sm'>
+		<p {...sx(styles.date)}>
 			<FormattedDate date={pubDate} />
 		</p>
 	</article>

@@ -4,6 +4,9 @@ import { ThoughtsItem } from "@components/cards";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
 import RootLayout from "@layouts/root-layout.astro";
+import { layout, type } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./index.styles";
 
 const thoughts = (await getCollection("thought")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -21,9 +24,9 @@ const thoughts = (await getCollection("thought")).sort(
 	<RootLayout>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl'>
+			{...sx(layout.page)}>
 			<Header />
-			<h1 class='w-full type-page-title mb-6'>thoughts</h1>
+			<h1 {...sx(type.pageTitle, styles.title)}>thoughts</h1>
 
 			{
 				thoughts.map((thought, i) => (

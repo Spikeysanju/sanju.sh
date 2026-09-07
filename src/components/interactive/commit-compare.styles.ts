@@ -1,0 +1,121 @@
+import * as stylex from "@stylexjs/stylex";
+import { colors, font, radius, space } from "../../styles/tokens.stylex";
+
+export const styles = stylex.create({
+	chrome: {
+		display: "flex",
+		alignItems: "center",
+		gap: space[2],
+		paddingInline: space[4],
+		paddingBlock: space[2],
+		backgroundColor: colors.ds200,
+		borderBottomWidth: "1px",
+		borderBottomStyle: "solid",
+		borderBottomColor: colors.border,
+	},
+	chromeDark: {
+		display: "flex",
+		alignItems: "center",
+		gap: space[2],
+		paddingInline: space[4],
+		paddingBlock: space[2],
+		backgroundColor: colors.terminalMuted,
+		borderBottomWidth: "1px",
+		borderBottomStyle: "solid",
+		borderBottomColor: colors.terminalBorder,
+	},
+	body: {
+		padding: space[4],
+	},
+	author: {
+		display: "flex",
+		alignItems: "center",
+		gap: space[2],
+		marginBottom: space[3],
+	},
+	avatar: {
+		width: "1.5rem",
+		height: "1.5rem",
+		borderRadius: radius.full,
+	},
+	message: {
+		fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+		fontSize: font.sm,
+		color: colors.textSecondary,
+		backgroundColor: colors.bg,
+		borderRadius: radius.lg,
+		padding: space[3],
+		borderWidth: "1px",
+		borderStyle: "solid",
+		borderColor: colors.border,
+	},
+	messageDark: {
+		fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+		fontSize: font.sm,
+		color: colors.onTerminal,
+		backgroundColor: colors.terminalMuted,
+		borderRadius: radius.lg,
+		padding: space[3],
+		borderWidth: "1px",
+		borderStyle: "solid",
+		borderColor: colors.terminalBorder,
+	},
+	stats: {
+		marginTop: space[3],
+		display: "flex",
+		alignItems: "center",
+		gap: space[4],
+		fontSize: font.xs,
+		color: colors.textMuted,
+	},
+	icon: {
+		width: "1rem",
+		height: "1rem",
+	},
+	add: {
+		color: colors.success,
+	},
+	del: {
+		color: colors.danger,
+	},
+	footer: {
+		paddingInline: space[4],
+		paddingBlock: space[3],
+		backgroundColor: colors.bgSubtle,
+		borderTopWidth: "1px",
+		borderTopStyle: "solid",
+		borderTopColor: colors.border,
+	},
+	footerDark: {
+		paddingInline: space[4],
+		paddingBlock: space[3],
+		backgroundColor: colors.terminal,
+		borderTopWidth: "1px",
+		borderTopStyle: "solid",
+		borderTopColor: colors.terminalBorder,
+	},
+	footerNote: {
+		fontSize: font.xs,
+		color: colors.textMuted,
+	},
+	footerWarn: {
+		fontSize: font.xs,
+		color: colors.danger,
+		marginTop: space[1],
+	},
+	footerOk: {
+		fontSize: font.xs,
+		color: colors.success,
+		marginTop: space[1],
+	},
+	goodTitle: {
+		color: colors.success,
+		fontWeight: font.medium,
+	},
+	goodBody: {
+		color: colors.onTerminalMuted,
+		marginTop: space[2],
+		fontSize: font.xs,
+		lineHeight: font.leadingRelaxed,
+	},
+});

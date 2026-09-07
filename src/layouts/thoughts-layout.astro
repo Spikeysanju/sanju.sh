@@ -5,8 +5,10 @@ import { Header } from "@components/misc";
 import FormattedDate from "@components/misc/formatted-date.astro";
 import { BaseHead } from "@components/seo";
 import RootLayout from "@layouts/root-layout.astro";
-import { clsx } from "@utils/index";
+import { layout, type } from "@styles/recipes";
 import type { BreadcrumbItem } from "@utils/seo";
+import { sx } from "@utils/sx";
+import { styles } from "./writing-layout.styles";
 
 type Related = {
 	title: string;
@@ -54,51 +56,37 @@ const {
 		/>
 	</head>
 
-	<RootLayout maxWidth='max-w-xl xl:max-w-4xl'>
+	<RootLayout maxWidth='article'>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl xl:max-w-4xl xl:items-center'>
+			{...sx(layout.articlePage)}>
 			<Header />
 
 			<article
 				id='blog-content'
-				class='w-full flex flex-col gap-6 items-center justify-center'>
-				<h1
-					class='w-full max-w-xl type-page-title'>
+				{...sx(styles.article)}>
+				<h1 {...sx(styles.measure, type.pageTitle)}>
 					{title}
 				</h1>
-				<div class='flex flex-row gap-2 w-full max-w-xl type-meta'>
-					<p class='text-start'>
+				<div {...sx(styles.metaRow, type.meta)}>
+					<p>
 						<FormattedDate date={pubDate.toString()} />
 					</p>
 					<span>·</span>
-					<p class='text-start'>
+					<p>
 						{readingTime} min read
 					</p>
 				</div>
 
 				{
 				showTldr && (
-					<p
-						class='w-full max-w-xl text-start type-lede text-[var(--color-text-body)]'>
-						<span class='font-semibold'>tl;dr: </span>
+					<p {...sx(styles.measure, type.lede)}>
+						<span {...sx(styles.tldrLead)}>tl;dr: </span>
 						{description}
 					</p>
 				)
 				}
-				<div
-					class={clsx(
-						'relative max-w-xl',
-						'w-full prose md:prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline  items-center justify-center',
-						'dark:prose-a:bg-red-950 dark:prose-a:decoration-red-400 dark:prose-a:underline prose-a:bg-red-50 prose-a:decoration-red-500',
-						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
-						'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
-						'prose-ul:font-medium prose-ol:font-medium prose-li:font-medium',
-						'prose-ul:space-y-3 prose-ol:space-y-3 prose-li:space-y-3',
-						'prose-img:rounded-lg prose-img:my-8',
-						'[&_:not(pre)>code]:bg-neutral-100 [&_:not(pre)>code]:dark:bg-neutral-800 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:rounded-md [&_:not(pre)>code]:text-[0.9em] [&_:not(pre)>code]:font-normal [&_:not(pre)>code]:before:content-none [&_:not(pre)>code]:after:content-none',
-						'[&_img]:!max-w-[95vw] [&_img]:!w-[95vw] [&_img]:relative [&_img]:left-1/2 [&_img]:-translate-x-1/2 md:[&_img]:!max-w-6xl md:[&_img]:!w-auto'
-					)}>
+				<div class='prose prose-thoughts'>
 					<slot />
 				</div>
 
@@ -106,26 +94,6 @@ const {
 			</article>
 		</div>
 	</RootLayout>
-
-	<style is:global>
-		#blog-content .prose :is(h2, h3, h4)[id] {
-			position: relative;
-			cursor: pointer;
-		}
-
-		#blog-content .prose :is(h2, h3, h4)[id]::after {
-			content: '#';
-			position: absolute;
-			left: -1.5rem;
-			opacity: 0;
-			color: rgb(163 163 163);
-			transition: opacity 0.15s;
-		}
-
-		#blog-content .prose :is(h2, h3, h4)[id]:hover::after {
-			opacity: 1;
-		}
-	</style>
 
 	<script>
 		document.querySelectorAll('#blog-content .prose :is(h2, h3, h4)[id]').forEach((heading) => {
@@ -138,7 +106,6 @@ const {
 	</script>
 
 	<script>
-		// navigator.vibrate works during scroll without any AudioContext/user-gesture requirement
 		const vibrate = (pattern: number | number[]) => navigator.vibrate?.(pattern);
 
 		const article = document.getElementById('blog-content');

@@ -43,14 +43,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(255, 255, 255, 0.9);
+		background: color-mix(in oklab, var(--color-bg) 90%, transparent);
 		border-radius: 50%;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-	}
-
-	:global(.dark) #progress-container {
-		background: rgba(38, 38, 38, 0.9);
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+		box-shadow: var(--ds-shadow-border);
 	}
 
 	#progress-circle {
@@ -62,13 +57,13 @@
 
 	.circle-bg {
 		fill: none;
-		stroke: #eee;
+		stroke: var(--color-border);
 		stroke-width: 3.8;
 	}
 
 	.circle {
 		fill: none;
-		stroke: #4caf50;
+		stroke: var(--color-success);
 		stroke-width: 2.8;
 		stroke-linecap: round;
 		transition: stroke-dasharray 0.3s;

@@ -1,13 +1,16 @@
 ---
 import FormattedDate from "@components/misc/formatted-date.astro";
+import { type } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./writing-item.styles";
 
 const { title, date, slug } = Astro.props;
 ---
 
 <a href={`/${slug}`}>
-	<article class='flex flex-row items-center justify-between w-full gap-3'>
-		<h3 class='text-base font-medium min-w-0 flex-1 text-pretty'>{title}</h3>
-		<p class='type-meta shrink-0'>
+	<article {...sx(styles.row)}>
+		<h3 {...sx(styles.title)}>{title}</h3>
+		<p {...sx(type.meta, styles.date)}>
 			<FormattedDate date={date} />
 		</p>
 	</article>

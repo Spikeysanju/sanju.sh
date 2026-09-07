@@ -1,4 +1,7 @@
 ---
+import { sx } from "@utils/sx";
+import { styles } from "./follow-x.styles";
+
 interface Props {
 	xHandle: string;
 	label: string;
@@ -7,20 +10,17 @@ interface Props {
 const { xHandle, label }: Props = Astro.props;
 ---
 
-<div
-	class='flex flex-row w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out rounded-2xl bg-blue-500'>
-	<div class='w-full flex flex-col gap-3'>
-		<h5
-			class='text-white font-medium w-full text-base sm:text-xl md:text-2xl leading-tight text-pretty'>
+<div {...sx(styles.card)}>
+	<div {...sx(styles.copy)}>
+		<h5 {...sx(styles.title)}>
 			{label}
 		</h5>
 
 		<button
 			id='button-follow-twitter'
-			class='bg-white text-blue-500 font-medium py-2 px-4 rounded-full w-fit cursor-pointer'
+			{...sx(styles.button)}
 			onclick={`window.open('https://x.com/${xHandle}', '_blank')`}>
 			@{xHandle}
 		</button>
 	</div>
 </div>
-

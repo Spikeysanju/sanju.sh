@@ -1,4 +1,7 @@
 ---
+import { sx } from "@utils/sx";
+import { styles } from "./energy-meter.styles";
+
 const drains = [
 	{ emoji: "💬", label: "Reply to every DM", drain: 25 },
 	{ emoji: "📅", label: "Attend every meeting", drain: 20 },
@@ -8,60 +11,54 @@ const drains = [
 ];
 ---
 
-<div class="energy-meter-wrapper my-10 not-prose">
-	<div class="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 md:p-10">
-
-		<!-- Percentage Display -->
-		<div class="text-center mb-6">
-			<div class="energy-percent text-6xl md:text-7xl font-bold text-gray-900 dark:text-white transition-all duration-500">
+<div class="energy-meter-wrapper" {...sx(styles.wrap)}>
+	<div {...sx(styles.card)}>
+		<div {...sx(styles.readout)}>
+			<div class="energy-percent" {...sx(styles.percent)}>
 				100%
 			</div>
-			<div class="energy-status text-sm text-gray-500 dark:text-gray-400 mt-1 transition-all duration-300">
+			<div class="energy-status" {...sx(styles.status)}>
 				Fully charged
 			</div>
 		</div>
 
-		<!-- Horizontal Battery -->
-		<div class="battery-wrapper flex items-center justify-center gap-1 mb-8">
-			<div class="battery-body relative w-48 md:w-64 h-8 bg-gray-200 dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-600 overflow-hidden">
-				<div class="battery-fill absolute top-0 left-0 bottom-0 transition-all duration-700 ease-out" style="width: 100%"></div>
+		<div {...sx(styles.batteryRow)}>
+			<div class="battery-body" {...sx(styles.body)}>
+				<div class="battery-fill" style="width: 100%"></div>
 			</div>
-			<div class="battery-cap w-2 h-4 bg-gray-300 dark:bg-gray-600 rounded-r-sm"></div>
+			<div {...sx(styles.cap)}></div>
 		</div>
 
-		<!-- Fading Card -->
-		<div class="card-container relative h-24 flex items-center justify-center">
+		<div {...sx(styles.stage)}>
 			{drains.map((item, index) => (
 				<div
-					class="drain-card absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500"
+					class="drain-card"
+					{...sx(styles.cardLayer)}
 					data-index={index}
 					data-drain={item.drain}
 				>
-					<div class="flex items-center gap-2 text-lg md:text-xl text-gray-800 dark:text-gray-200">
+					<div {...sx(styles.line)}>
 						<span>{item.emoji}</span>
 						<span>{item.label}</span>
 					</div>
-					<div class="text-red-500 font-medium mt-1">
+					<div {...sx(styles.drain)}>
 						-{item.drain}%
 					</div>
 				</div>
 			))}
 
-			<!-- Final Message -->
-			<div class="final-card absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500">
-				<div class="text-lg md:text-xl text-gray-800 dark:text-gray-200 text-center">
+			<div class="final-card" {...sx(styles.cardLayer)}>
+				<div {...sx(styles.line, styles.center)}>
 					Nothing left for the people who matter.
 				</div>
 			</div>
 
-			<!-- Initial State -->
-			<div class="initial-card absolute inset-0 flex flex-col items-center justify-center opacity-100 transition-opacity duration-500">
-				<div class="text-sm text-gray-400 dark:text-gray-500">
+			<div class="initial-card is-on" {...sx(styles.cardLayer, styles.visible)}>
+				<div {...sx(styles.whisper)}>
 					Watch where your energy goes...
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 
@@ -71,41 +68,59 @@ const drains = [
 	}
 
 	.battery-body.low {
-		box-shadow: inset 0 0 12px rgba(249, 115, 22, 0.4);
+		box-shadow: inset 0 0 12px color-mix(in oklab, var(--color-accent-writing) 40%, transparent);
 	}
 
 	.battery-body.critical {
-		box-shadow: inset 0 0 16px rgba(239, 68, 68, 0.5);
+		box-shadow: inset 0 0 16px color-mix(in oklab, var(--color-accent-thoughts) 50%, transparent);
 		animation: pulse-glow 1.5s ease-in-out infinite;
 	}
 
 	@keyframes pulse-glow {
 		0%, 100% {
-			box-shadow: inset 0 0 16px rgba(239, 68, 68, 0.5);
+			box-shadow: inset 0 0 16px color-mix(in oklab, var(--color-accent-thoughts) 50%, transparent);
 		}
 		50% {
-			box-shadow: inset 0 0 24px rgba(239, 68, 68, 0.7);
+			box-shadow: inset 0 0 24px color-mix(in oklab, var(--color-accent-thoughts) 70%, transparent);
 		}
 	}
 
 	.battery-fill {
-		background: linear-gradient(90deg, #4ade80, #22c55e);
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		background: linear-gradient(90deg, var(--color-success), #22c55e);
+		transition: width 0.7s ease-out, background 0.5s ease;
 	}
 
 	.battery-fill.medium {
-		background: linear-gradient(90deg, #facc15, #eab308);
+		background: linear-gradient(90deg, var(--color-warning), #eab308);
 	}
 
 	.battery-fill.low {
-		background: linear-gradient(90deg, #fb923c, #f97316);
+		background: linear-gradient(90deg, #fb923c, var(--color-accent-writing));
 	}
 
 	.battery-fill.critical {
-		background: linear-gradient(90deg, #f87171, #ef4444);
+		background: linear-gradient(90deg, var(--color-danger), var(--color-accent-thoughts));
 	}
 
 	.energy-percent.critical {
-		color: #ef4444;
+		color: var(--color-accent-thoughts);
+	}
+
+	.drain-card,
+	.final-card,
+	.initial-card {
+		opacity: 0;
+		transition: opacity 0.5s ease;
+	}
+
+	.drain-card.is-on,
+	.final-card.is-on,
+	.initial-card.is-on {
+		opacity: 1;
 	}
 </style>
 
@@ -169,27 +184,16 @@ const drains = [
 	}
 
 	function showCard(index: number) {
-		// Hide all cards
-		initialCard?.classList.remove('opacity-100');
-		initialCard?.classList.add('opacity-0');
-		cards?.forEach(card => {
-			card.classList.remove('opacity-100');
-			card.classList.add('opacity-0');
-		});
-		finalCard?.classList.remove('opacity-100');
-		finalCard?.classList.add('opacity-0');
+		initialCard?.classList.remove('is-on');
+		cards?.forEach(card => card.classList.remove('is-on'));
+		finalCard?.classList.remove('is-on');
 
-		// Show target card
 		if (index === -1) {
-			initialCard?.classList.remove('opacity-0');
-			initialCard?.classList.add('opacity-100');
+			initialCard?.classList.add('is-on');
 		} else if (index === drains.length) {
-			finalCard?.classList.remove('opacity-0');
-			finalCard?.classList.add('opacity-100');
+			finalCard?.classList.add('is-on');
 		} else {
-			const card = cards?.[index];
-			card?.classList.remove('opacity-0');
-			card?.classList.add('opacity-100');
+			cards?.[index]?.classList.add('is-on');
 		}
 	}
 
@@ -199,25 +203,18 @@ const drains = [
 		currentIndex++;
 
 		if (currentIndex < drains.length) {
-			// Drain energy
 			currentEnergy = Math.max(0, currentEnergy - drains[currentIndex]);
 			updateDisplay(currentEnergy);
 			showCard(currentIndex);
-
-			// Next step
 			setTimeout(runSequence, 1500);
 		} else if (currentIndex === drains.length) {
-			// Show final message
 			showCard(currentIndex);
 			setTimeout(runSequence, 2500);
 		} else {
-			// Reset
 			currentEnergy = 100;
 			currentIndex = -1;
 			updateDisplay(100);
 			showCard(-1);
-
-			// Restart after pause
 			setTimeout(runSequence, 2000);
 		}
 	}
@@ -225,12 +222,9 @@ const drains = [
 	function startAnimation() {
 		if (isRunning) return;
 		isRunning = true;
-
-		// Initial delay before starting
 		setTimeout(runSequence, 1500);
 	}
 
-	// Intersection Observer to start when visible
 	const observer = new IntersectionObserver(
 		(entries) => {
 			entries.forEach(entry => {

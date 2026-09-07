@@ -1,4 +1,8 @@
 ---
+import { type } from "@styles/recipes";
+import { sx } from "@utils/sx";
+import { styles } from "./related-posts.styles";
+
 interface RelatedPost {
 	title: string;
 	description: string;
@@ -18,21 +22,21 @@ const { posts, heading = "keep reading" } = Astro.props;
 	posts.length > 0 && (
 		<nav
 			aria-label='related posts'
-			class='w-full max-w-xl flex flex-col gap-4 pt-10 border-t border-[var(--color-border)] not-prose'>
-			<p class='text-sm font-medium uppercase tracking-wide text-[var(--color-text-secondary)]'>{heading}</p>
-			<ul class='flex flex-col gap-4'>
+			{...sx(styles.nav)}>
+			<p {...sx(styles.heading)}>{heading}</p>
+			<ul {...sx(styles.list)}>
 				{posts.map((post) => (
 					<li>
 						<a
 							href={`/${post.slug}`}
-							class='group flex flex-col gap-1 no-underline'>
-							<span class='text-xs font-medium uppercase tracking-wide text-[var(--color-text-secondary)]'>
+							{...sx(styles.item)}>
+							<span {...sx(styles.label)}>
 								{post.sectionLabel}
 							</span>
-							<span class='type-body text-[var(--color-text)] group-hover:underline underline-offset-2'>
+							<span {...sx(type.body, styles.title)}>
 								{post.title}
 							</span>
-							<span class='text-sm font-medium text-[var(--color-text-secondary)] line-clamp-2'>
+							<span {...sx(styles.description)}>
 								{post.description}
 							</span>
 						</a>
