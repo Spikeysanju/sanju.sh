@@ -14,79 +14,30 @@
 				class="rc-btn"
 				type="button"
 			>
-				run the agent
+				play
 			</button>
 		</div>
 
-		<div id="rc-task" class="rc-task">
-			okay, adding a paper. i can already feel it about to invent a new folder.
-		</div>
+		<p id="rc-task" class="rc-task is-on">
+			i asked it to add a package. it ran npm.
+		</p>
 
 		<div class="rc-steps" id="rc-steps">
-			<div class="rc-step" data-step="1">
-				<div class="rc-row">
-					<div class="rc-icon">
-						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-						</svg>
-						<div class="rc-spin"></div>
-					</div>
-					<div class="rc-copy">
-						<p class="rc-step-title">what broke</p>
-						<p class="rc-result">vault was empty. agent invented a sixth filename.</p>
-					</div>
-				</div>
+			<div class="rc-step is-on" data-step="1">
+				<p class="rc-step-title">what it did</p>
+				<p class="rc-result is-on rc-mono">npm install</p>
 			</div>
 
-			<div class="rc-step" data-step="2">
-				<div class="rc-row">
-					<div class="rc-icon">
-						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-						</svg>
-						<div class="rc-spin"></div>
-					</div>
-					<div class="rc-copy">
-						<p class="rc-step-title">the guess</p>
-						<p class="rc-result">maybe a fixed five-file set stops the drift.</p>
-					</div>
-				</div>
+			<div class="rc-step is-on" data-step="2">
+				<p class="rc-step-title">the rule</p>
+				<p class="rc-result is-on rc-mono">use bun.<br />never npm.</p>
 			</div>
 
-			<div class="rc-step" data-step="3">
-				<div class="rc-row">
-					<div class="rc-icon">
-						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-						</svg>
-						<div class="rc-spin"></div>
-					</div>
-					<div class="rc-copy">
-						<p class="rc-step-title">write the rule, then the why</p>
-						<p class="rc-result rc-mono">do not invent new filenames.<br /># 2026-09-02: agents invent layouts.<br /># hypothesis: a fixed file set stops drift.<br /># outcome: this is the only paper shape.<br /># keep unless we add a sixth file on purpose.</p>
-					</div>
-				</div>
+			<div class="rc-step is-on" data-step="3">
+				<p class="rc-step-title">the why</p>
+				<p class="rc-result is-on rc-mono"># 2026-09-02  it ran npm in a bun repo<br /># keep unless we leave bun</p>
+				<p class="rc-note is-on">the agent only sees the rule. i keep the why so i can delete this later.</p>
 			</div>
-
-			<div class="rc-step" data-step="4">
-				<div class="rc-row">
-					<div class="rc-icon">
-						<svg class="rc-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-						</svg>
-						<div class="rc-spin"></div>
-					</div>
-					<div class="rc-copy">
-						<p class="rc-step-title">hide the comments from the model</p>
-						<p class="rc-result">agent sees the rule. you keep the why.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="rc-complete" class="rc-complete">
-			<p class="rc-complete-title">okay. now you can delete it later.</p>
-			<p class="rc-complete-sub">six months from now you'll actually know why that line exists.</p>
 		</div>
 	</div>
 </div>
@@ -141,7 +92,7 @@
 		font-size: 12px;
 		font-weight: 500;
 		cursor: pointer;
-		transition-property: transform, background-color, box-shadow;
+		transition-property: transform, background-color;
 		transition-duration: 150ms;
 		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 	}
@@ -170,7 +121,7 @@
 	}
 
 	.rc-task {
-		margin-bottom: 16px;
+		margin: 0 0 16px;
 		font-weight: 500;
 		color: var(--ds-gray-1000);
 		opacity: 0;
@@ -186,7 +137,7 @@
 	.rc-steps {
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
+		gap: 16px;
 	}
 
 	.rc-step {
@@ -202,67 +153,19 @@
 		transform: translateX(0);
 	}
 
-	.rc-row {
-		display: flex;
-		align-items: flex-start;
-		gap: 12px;
-	}
-
-	.rc-icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		width: 20px;
-		height: 20px;
-		margin-top: 2px;
-		border-radius: 9999px;
-		background: var(--ds-gray-100);
-		color: var(--ds-gray-900);
-	}
-
-	.rc-icon.is-done {
-		background: var(--ds-gray-200);
-		color: var(--ds-gray-1000);
-	}
-
-	.rc-check,
-	.rc-spin {
-		display: none;
-		width: 12px;
-		height: 12px;
-	}
-
-	.rc-icon.is-busy .rc-spin,
-	.rc-icon.is-done .rc-check {
-		display: block;
-	}
-
-	.rc-spin {
-		border: 2px solid var(--ds-gray-400);
-		border-top-color: var(--ds-gray-1000);
-		border-radius: 9999px;
-		animation: rc-rotate 0.6s linear infinite;
-	}
-
-	.rc-copy {
-		flex: 1;
-		min-width: 0;
-	}
-
 	.rc-step-title {
 		margin: 0;
-		font-size: 14px;
+		font-size: 12px;
 		font-weight: 500;
 		color: var(--ds-gray-900);
 	}
 
 	.rc-result {
 		display: none;
-		margin: 4px 0 0;
-		font-size: 12px;
+		margin: 6px 0 0;
+		font-size: 14px;
 		line-height: 1.5;
-		color: var(--ds-gray-700);
+		color: var(--ds-gray-1000);
 	}
 
 	.rc-result.is-on {
@@ -273,34 +176,16 @@
 		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 	}
 
-	.rc-complete {
+	.rc-note {
 		display: none;
-		margin-top: 20px;
-		padding-top: 16px;
-		border-top: 1px solid var(--ds-gray-400);
-	}
-
-	.rc-complete.is-on {
-		display: block;
-	}
-
-	.rc-complete-title {
-		margin: 0;
-		font-size: 12px;
-		font-weight: 500;
-		color: var(--ds-gray-1000);
-	}
-
-	.rc-complete-sub {
-		margin: 4px 0 0;
-		font-size: 12px;
+		margin: 8px 0 0;
+		font-size: 13px;
+		line-height: 1.5;
 		color: var(--ds-gray-900);
 	}
 
-	@keyframes rc-rotate {
-		to {
-			transform: rotate(360deg);
-		}
+	.rc-note.is-on {
+		display: block;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -309,10 +194,6 @@
 		.rc-step {
 			transition: none;
 		}
-
-		.rc-spin {
-			animation: none;
-		}
 	}
 </style>
 
@@ -320,7 +201,6 @@
 	const startBtn = document.getElementById('rc-start');
 	const taskEl = document.getElementById('rc-task');
 	const steps = document.querySelectorAll('.rc-step');
-	const completeEl = document.getElementById('rc-complete');
 	let isRunning = false;
 
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -330,50 +210,49 @@
 		await new Promise((resolve) => setTimeout(resolve, ms));
 	}
 
-	async function runStep(step: Element) {
-		const icon = step.querySelector('.rc-icon');
-		const result = step.querySelector('.rc-result');
+	function showAll() {
+		taskEl?.classList.add('is-on');
+		steps.forEach((step) => {
+			step.classList.add('is-on');
+			step.querySelector('.rc-result')?.classList.add('is-on');
+			step.querySelector('.rc-note')?.classList.add('is-on');
+		});
+	}
 
-		step.classList.add('is-on');
-		icon?.classList.add('is-busy');
-
-		await sleep(650);
-
-		icon?.classList.remove('is-busy');
-		icon?.classList.add('is-done');
-		result?.classList.add('is-on');
-
-		await sleep(220);
+	function hideAll() {
+		taskEl?.classList.remove('is-on');
+		steps.forEach((step) => {
+			step.classList.remove('is-on');
+			step.querySelector('.rc-result')?.classList.remove('is-on');
+			step.querySelector('.rc-note')?.classList.remove('is-on');
+		});
 	}
 
 	async function runSimulation() {
 		if (isRunning) return;
 		isRunning = true;
 
-		steps.forEach((step) => {
-			step.classList.remove('is-on');
-			step.querySelector('.rc-icon')?.classList.remove('is-busy', 'is-done');
-			step.querySelector('.rc-result')?.classList.remove('is-on');
-		});
-		completeEl?.classList.remove('is-on');
-
 		if (startBtn) {
-			startBtn.textContent = 'running...';
+			startBtn.textContent = 'playing...';
 			(startBtn as HTMLButtonElement).disabled = true;
 		}
+
+		hideAll();
+		await sleep(180);
 
 		taskEl?.classList.add('is-on');
 		await sleep(320);
 
 		for (const step of steps) {
-			await runStep(step);
+			step.classList.add('is-on');
+			step.querySelector('.rc-result')?.classList.add('is-on');
+			await sleep(280);
+			step.querySelector('.rc-note')?.classList.add('is-on');
+			await sleep(160);
 		}
 
-		await sleep(280);
-		completeEl?.classList.add('is-on');
-
 		if (startBtn) {
-			startBtn.textContent = 'run again';
+			startBtn.textContent = 'play again';
 			(startBtn as HTMLButtonElement).disabled = false;
 		}
 
@@ -381,4 +260,5 @@
 	}
 
 	startBtn?.addEventListener('click', runSimulation);
+	showAll();
 </script>

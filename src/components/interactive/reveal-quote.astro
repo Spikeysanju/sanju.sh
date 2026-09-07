@@ -55,10 +55,10 @@ const uniqueId = Math.random().toString(36).slice(2, 9);
 	}
 
 	.rq-teaser {
-		margin: 0 0 20px;
-		font-size: 20px;
-		font-weight: 600;
-		line-height: 1.2;
+		margin: 0 0 12px;
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.4;
 		color: var(--ds-gray-1000);
 		text-wrap: balance;
 	}
@@ -68,12 +68,13 @@ const uniqueId = Math.random().toString(36).slice(2, 9);
 	}
 
 	.reveal-btn {
-		min-height: 44px;
-		padding: 12px 24px;
+		min-height: 40px;
+		padding: 8px 14px;
 		border: 0;
 		border-radius: 9999px;
 		background: var(--ds-gray-1000);
 		color: var(--ds-background-100);
+		font-size: 12px;
 		font-weight: 500;
 		cursor: pointer;
 		transition-property: transform, background-color;
@@ -99,32 +100,17 @@ const uniqueId = Math.random().toString(36).slice(2, 9);
 
 	.rq-quote {
 		margin: 0;
-		font-size: 24px;
-		font-weight: 600;
-		line-height: 1.2;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.45;
 		color: var(--ds-gray-1000);
 		text-wrap: pretty;
 	}
 
 	.rq-sub {
-		margin: 24px 0 0;
-		font-size: 14px;
+		margin: 10px 0 0;
+		font-size: 13px;
 		color: var(--ds-gray-900);
-	}
-
-	@media (min-width: 768px) {
-		.rq-card {
-			padding: 32px;
-		}
-
-		.rq-teaser {
-			margin-bottom: 24px;
-			font-size: 24px;
-		}
-
-		.rq-quote {
-			font-size: 36px;
-		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
