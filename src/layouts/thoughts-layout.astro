@@ -54,10 +54,10 @@ const {
 		/>
 	</head>
 
-	<RootLayout maxWidth='max-w-xl xl:max-w-4xl'>
+	<RootLayout>
 		<div
 			id='navbar+title'
-			class='flex flex-col w-full gap-6 max-w-xl xl:max-w-4xl xl:items-center'>
+			class='flex flex-col w-full gap-6 max-w-xl'>
 			<Header />
 
 			<article
@@ -97,7 +97,7 @@ const {
 						'prose-ul:space-y-3 prose-ol:space-y-3 prose-li:space-y-3',
 						'prose-img:rounded-lg prose-img:my-8',
 						'[&_:not(pre)>code]:bg-neutral-100 [&_:not(pre)>code]:dark:bg-neutral-800 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:rounded-md [&_:not(pre)>code]:text-[0.9em] [&_:not(pre)>code]:font-normal [&_:not(pre)>code]:before:content-none [&_:not(pre)>code]:after:content-none',
-						'[&_img]:!max-w-[95vw] [&_img]:!w-[95vw] [&_img]:relative [&_img]:left-1/2 [&_img]:-translate-x-1/2 md:[&_img]:!max-w-6xl md:[&_img]:!w-auto'
+						'[&_img]:max-w-full [&_img]:h-auto'
 					)}>
 					<slot />
 				</div>

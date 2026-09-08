@@ -15,7 +15,7 @@ const { id } = Astro.props;
 		<sup class="text-xs">{id}</sup>
 	</button>
 	<span
-		class="sidenote-body not-prose hidden xl:inline text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed"
+		class="sidenote-body not-prose hidden xl:block text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed"
 		data-sidenote-body={id}
 	>
 		<span class="font-medium">{id}:</span>{" "}
@@ -24,13 +24,13 @@ const { id } = Astro.props;
 </span>
 
 <style>
-	/* desktop: float sidenote into right margin */
+	/* desktop: hang sidenote in the right gutter without growing the page */
 	@media (min-width: 1280px) {
 		.sidenote-body {
-			float: right;
-			clear: right;
+			position: absolute;
+			left: 100%;
 			width: 14rem;
-			margin-right: -17rem;
+			margin-left: 1.5rem;
 			margin-bottom: 0.5rem;
 		}
 	}
@@ -38,7 +38,10 @@ const { id } = Astro.props;
 	/* mobile: toggle open */
 	.sidenote-body.is-open {
 		display: block;
+		position: static;
+		left: auto;
 		width: 100%;
+		margin-left: 0;
 		margin-top: 0.5rem;
 		margin-bottom: 0.5rem;
 		padding: 0.75rem;
