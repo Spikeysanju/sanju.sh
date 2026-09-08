@@ -156,7 +156,7 @@ const structuredData =
 <meta name='generator' content={Astro.generator} />
 
 <!-- Canonical URL -->
-<link rel='canonical' href={canonicalURL} />
+{!noindex && <link rel='canonical' href={canonicalURL} />}
 
 <!-- Primary Meta Tags -->
 <title>{fullTitle}</title>
