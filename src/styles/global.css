@@ -161,6 +161,7 @@
   /* ——— base styles ——— */
   html {
     @apply scroll-smooth;
+    overflow-x: clip;
   }
 
   body {
