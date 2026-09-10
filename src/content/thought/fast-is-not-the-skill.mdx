@@ -1,0 +1,93 @@
+---
+title: "fast is not the skill anymore"
+description: "the model is fast. that question is settled. the skill now is knowing the output is wrong and being able to say why."
+category: "ai"
+showTldr: false
+pubDate: "Sep 10 2026"
+updatedDate: "Sep 10 2026"
+readingTime: 3
+---
+
+the model is fast. that question is settled.
+
+whatever you were going to spend three hours typing, it hands you in ninety seconds. so speed stopped being the thing that separates people.
+
+the skill now is knowing the output is wrong and being able to say why. most people entering this field cannot do that yet. and nobody is giving them a way to learn it.
+
+## the work split in two
+
+models made producing code and design almost free. they did not make judgment free.
+
+so the work split in two. one half is generating output. the other half is deciding if the output is any good.
+
+only the first half got automated. that is the whole story.
+
+![the work split in two. producing the output got automated. judging the output is still on you.](/images/thoughts/the-work-split.png)
+
+## what the day actually looks like
+
+prompt. read the output. it is wrong somewhere. prompt again. add a constraint. paste an error. try a different framing. something finally runs. ship it.
+
+that is not engineering. that is attrition.
+
+it feels productive because there is motion the entire time. tokens are moving. the diff is growing. something appears on screen every few seconds. but nothing was decided.
+
+you can spend eight hours like this and not make a single choice you could defend in a room.
+
+## the missing layer
+
+under every piece of shipped work there is a layer of questions that never show up in the diff.
+
+is this the right shape. what breaks at 10x. what happens on the unhappy path. why this abstraction. what did we just make expensive to change later.
+
+none of that lives in the output. it lives in the decision behind the output.
+
+![the layer under the output. what everyone sees is the code that shipped. what never shows up in the diff is the questions that decided all of it.](/images/thoughts/the-layer-under-the-output.png)
+
+the model will happily produce something that works for the case in front of it and quietly commit you to a structure you will hate in six months. it does not know that. it was not asked.
+
+## opinions come from consequences
+
+here is the part people get wrong. they think juniors are lazy. they are not.
+
+nobody asks the hard questions because nobody has a stake in the answer. if the model made the call, the call is not yours. you did not weigh anything. you did not reject an alternative. so there is nothing to be curious about and nothing to protect.
+
+the work arrives already finished. you are a reviewer of something you did not think about.
+
+i keep landing on the same word. opinions.
+
+opinions are not personality. they are compressed experience. you built it the wrong way once, you paid for it for a year, and now you have a rule.
+
+own a decision, live with what it costs you, form a view. if the model owns the decision, the loop never closes.
+
+![where opinions come from. before, you made the call, shipped it, it broke, you paid for it, and you had an opinion. now you prompt, take the output, ship it, and nothing was yours.](/images/thoughts/where-opinions-come-from.png)
+
+## we deleted the reps
+
+this is not a juniors problem. we deleted the reps.
+
+the way you used to build judgment was slow and painful. get it wrong. own it. fix it. watch it break again. form an opinion. repeat for four years.
+
+that loop was miserable and it worked. we automated the miserable part and then acted surprised that nobody is learning.
+
+if you are senior right now, you are running on judgment you bought with pain that no longer exists. that is worth being honest about.
+
+## what actually helps
+
+make people say what they expected before they run it. just a sentence. if the output surprises you and you cannot say why, you did not understand the problem. you understood the prompt.
+
+ask why in review and refuse to accept "the model suggested it." the question is the rep.
+
+let people be wrong in places that cost something small. judgment comes from being wrong somewhere it stung a little.
+
+have people write the failure cases first. before any code. the model will not volunteer that list.
+
+read the output like it came from a stranger who is confident and occasionally lying. because it did.
+
+## the short version
+
+the tools got fast. the bar for taste did not move.
+
+producing things is no longer where the value is. knowing which produced thing is right, and being able to say why out loud, is the only part left that is actually yours.
+
+fast is not the skill anymore. it has not been for a while.
