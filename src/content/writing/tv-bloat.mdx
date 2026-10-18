@@ -1,0 +1,76 @@
+---
+title: "i cleaned up my tv"
+description: "my mi tv came with tracking, ads, and a laggy home screen. i removed 29 apps over wifi in about ten minutes. no root needed."
+pubDate: 'Oct 18 2026'
+readingTime: 2
+---
+
+import { Sidenote } from "@components/interactive";
+import { EndCTA } from "@components/cta";
+
+i saw this post from ryan doyle and wanted the same thing for my tv.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hacked my TV with Claude Code today<br /><br />No more ads, bloatware, spyware or laggy UI<br /><br />I also got a beautiful screensaver with my revenue, calendar, weather, and notifications for new Stripe payments<br /><br />It was super easy! I sent it the listing for my tv, asked &quot;can you hack this?&quot; And it talked me through how</p>Ryan Doyle (@doooyle) <a href="https://x.com/doooyle/status/2111196679680540724?ref_src=twsrc%5Etfw">October 16, 2026</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+
+my mi tv was slow. the home screen was full of sponsored rows, xiaomi was quietly sending usage data home, and there were apps on it i had never opened. so i sat down with claude code and cleaned it up.
+
+**no root, just adb.**
+
+android tvs have a hidden developer mode. go to settings, then device preferences, then about, and click build seven times. then turn on usb debugging in the new developer menu. on mi tvs this also lets you connect over wifi.
+
+```bash
+adb connect 192.168.0.111
+```
+
+the tv asks if it should trust your computer. say yes.
+
+**back up first.**
+
+before touching anything i saved the full list of apps.
+
+```bash
+adb shell pm list packages > packages-backup.txt
+```
+
+120 apps. most of them keep the tv running. some really don't.
+
+**sort them.**
+
+i put every app in one of three piles. safe to remove, depends on what i use, and do not touch. the do not touch pile is big. the mediatek apps run the hdmi ports, the tuner and the picture. google play services runs most of the rest.
+
+the safe pile had things like
+
+- `com.miui.tv.analytics` and `com.xiaomi.statistic`, which is xiaomi's tracking
+- `fusion.android.tv.demo`, the store demo mode
+- `com.mitv.tvhome.michannel`, the sponsored content row
+- `com.mitv.tvhome.atv`, which is patchwall, the laggy xiaomi home screen
+- `com.xiaomi.mitv.updateservice`, the thing that pushes xiaomi updates
+
+**disable, then uninstall.**
+
+i disabled everything first so i could undo it in one command.
+
+```bash
+adb shell pm disable-user --user 0 com.miui.tv.analytics
+```
+
+once the tv still worked fine, i uninstalled them for my user.
+
+```bash
+adb shell pm uninstall --user 0 com.miui.tv.analytics
+```
+
+this doesn't wipe the app from the system. it just removes it for you, so a factory reset brings everything back<Sidenote id="1">to bring one app back without a reset, run `adb shell cmd package install-existing` with the package name.</Sidenote>. that's a nice safety net.
+
+**29 apps gone.**
+
+i restarted the tv to check nothing came back. nothing did. it went from 120 apps to 91 and feels quicker. no sponsored rows, no xiaomi tracking, no patchwall.
+
+then i used the clean slate to build my own screensaver. that's a post for another day.
+
+<EndCTA
+	title="i write about building with agents. follow along if you want the next one."
+	cta_label="follow on x"
+	bg_colour="orange"
+	link="https://x.com/spikeysanju"
+/>
