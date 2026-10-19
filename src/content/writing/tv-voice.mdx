@@ -1,0 +1,85 @@
+---
+title: "i took back the assistant button"
+description: "the mic button on my mi tv remote only talks to google. with claude code i made it open my own voice search instead. no root, and android tried hard to stop me."
+pubDate: 'Oct 19 2026'
+readingTime: 4
+---
+
+import { Sidenote } from "@components/interactive";
+import { EndCTA } from "@components/cta";
+
+last time i [cleaned up my tv](/tv-bloat) and promised a post about the screensaver i built after. this is the one after that.
+
+the screensaver is called wall-e. it's a small android tv app that shows my wallpapers, the weather, a quote and some ai news. once it was running i looked at the remote and thought, why does the mic button only talk to google?
+
+so i asked claude code to make it talk to me instead.
+
+**first, what does the button send?**
+
+we watched the raw input while i pressed it.
+
+```bash
+adb shell getevent -lt
+```
+
+the remote sends `KEY_VOICECOMMAND`, which android turns into `KEYCODE_ASSIST`. it's one quick tap, even if you hold the button down. so whatever listens has to work out on its own when you've stopped talking.
+
+**can my app even hear the remote?**
+
+this was the part i was most worried about. the mic is in the remote, not the tv. it streams over bluetooth.
+
+the logs showed google's voice search records it with a plain `AudioRecord`, 16 khz mono, the same api any app can use. xiaomi's audio driver reads the remote and passes it off as a wired headset mic. but the same logs had a line that checks if the app recording is google's<Sidenote id="1">the log literally says `create record for katniss apk check`. katniss is the codename of google's tv voice search.</Sidenote>. so maybe only google gets the remote.
+
+we added a hidden test screen to wall-e. press ok, record five seconds, save a wav. i pulled it back to my mac and heard myself. good, my app can use the remote's mic.
+
+**attempt one. catch the button.**
+
+android has accessibility services. they can see key presses before apps do. the plan was simple. catch `KEYCODE_ASSIST`, swallow it, open my screen.
+
+it did nothing. google opened every time.
+
+on android tv the system handles the assistant key itself, before accessibility services get a look. it goes straight to the voice assistant, and as far as i can tell only an app that came with the tv can be that assistant. a normal app like mine can't sign up for it.
+
+i could have disabled google's voice search. but then voice search inside other apps breaks too, and the button would most likely do nothing at all.
+
+**attempt two. let google open, then close it.**
+
+if i can't stop google, i can tidy up after it. accessibility services can also watch windows open. so wall-e watches for google's listening overlay. the moment it shows up, wall-e presses back and opens its own listening screen.
+
+google flashes for about a tenth of a second. then it's mine.
+
+**the bugs.**
+
+the first try worked. the second one didn't. i asked something and the tv started playing despacito.
+
+the back press landed a little too early. the overlay closed but google kept listening in the background, heard me, and opened its own results on top of mine. now wall-e keeps pressing back until google's windows have stayed gone for half a second. if google's results still pop up shortly after, it closes those too.
+
+then wall-e got stuck on listening. right after google lets go of the remote's mic, the mic sometimes opens but sends nothing. my code waited forever for sound. now it reads without blocking, and if nothing arrives in a second and a half it closes the mic and opens it again.
+
+**the backend.**
+
+wall-e already has a cloudflare worker serving the screensaver. i added one route.
+
+```ts
+const heard = await env.AI.run("@cf/openai/whisper-large-v3-turbo", {
+	audio: toBase64(audio),
+	task: "transcribe",
+});
+```
+
+the tv records until about a second of quiet, sends the wav, whisper writes it down, and exa searches the web for it. a shared key keeps strangers from using my whisper and exa credits. the whole round trip takes about five seconds.
+
+![wall-e voice search on the tv, showing results for "can you explain more about tesla roadster?"](/images/writing/tv-voice-search.png)
+
+**did it work?**
+
+i pressed it three times in a row. wall-e opened every time, google's results never showed, and the mic never got stuck.
+
+the funny part is the hack. i didn't take the button from google. google still opens every time. it just never gets to stay.
+
+<EndCTA
+	title="i write about building with agents. follow along if you want the next one."
+	cta_label="follow on x"
+	bg_colour="orange"
+	link="https://x.com/spikeysanju"
+/>
