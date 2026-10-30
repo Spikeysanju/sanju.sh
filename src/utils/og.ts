@@ -1,5 +1,5 @@
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
-import geistSerifRegularUrl from "../assets/fonts/GeistSerif-Regular.woff2?url&inline";
+import uncutSansRegularUrl from "../assets/fonts/UncutSans-Regular.woff2?url&inline";
 // @ts-ignore — handled by @astrojs/cloudflare wasmModuleImports
 import resvgWasm from "./resvg.wasm?module";
 
@@ -8,7 +8,7 @@ const ACCENT_COLORS: Record<string, string> = {
 	thoughts: "#ef4444",
 };
 
-const FONT_FAMILY = "Geist Serif";
+const FONT_FAMILY = "Uncut Sans";
 
 let wasmInitPromise: Promise<void> | null = null;
 let fontBufferCache: Uint8Array | null = null;
@@ -34,7 +34,7 @@ function decodeBase64(base64: string): Uint8Array {
 function getFontBuffer(): Uint8Array {
 	if (fontBufferCache) return fontBufferCache;
 
-	const [, base64] = geistSerifRegularUrl.split(",");
+	const [, base64] = uncutSansRegularUrl.split(",");
 	if (!base64) {
 		throw new Error("Bundled OG font is not an inline data URL");
 	}
