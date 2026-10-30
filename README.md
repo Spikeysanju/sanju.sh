@@ -11,7 +11,7 @@ this is a simple personal website i built using [astro](https://astro.build/), a
 - **writings**: a collection of my blog posts and articles
 - **thoughts**: a place for me to share my random thoughts and ideas (more like tweets or quotes)
 - **dynamic og images**: auto-generated per post using svg + resvg-wasm on the edge
-- **self-hosted fonts**: uncut sans, four weights, woff2 + woff fallback
+- **self-hosted fonts**: geist serif, single regular weight, woff2
 
 ## 🛠️ tech stack
 - **astro**: content-focused web framework with ssr on cloudflare workers
