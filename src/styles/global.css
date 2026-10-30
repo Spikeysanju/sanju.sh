@@ -2,12 +2,39 @@
 @config "../../tailwind.config.mjs";
 @plugin "@tailwindcss/typography";
 
-/* ——— @font-face — Geist Serif ——— */
-/* geist serif ships a single weight; claim the full range so browsers never synthesize bold */
+/* ——— @font-face — Uncut Sans ——— */
 @font-face {
-  font-family: 'Geist Serif';
-  src: url('/fonts/geist-serif/GeistSerif-Regular.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Regular.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Medium.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Semibold.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('/fonts/uncut/woff2/UncutSans-Bold.woff2') format('woff2'),
+       url('/fonts/uncut/woff/UncutSans-Bold.woff') format('woff');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -16,13 +43,13 @@
 
   /* ——— typography tokens ——— */
   :root {
-    --font-body: 'Geist Serif', 'Times New Roman', Times, serif;
+    --font-body: 'Uncut Sans', sans-serif;
 
     /* font weights */
     --fw-regular: 400;
-    --fw-medium: 400;
-    --fw-semibold: 400;
-    --fw-bold: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
 
     /* font sizes */
     --fs-xs: 0.75rem;     /* 12px — metadata, timestamps */
@@ -140,7 +167,6 @@
   body {
     font-family: var(--font-body);
     font-weight: var(--fw-medium);
-    font-synthesis-weight: none;
     color: var(--color-text);
     background: var(--color-bg);
     -webkit-font-smoothing: antialiased;
