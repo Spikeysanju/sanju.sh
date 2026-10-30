@@ -69,7 +69,7 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 					class='w-full max-w-xl type-page-title'>
 					{title}
 				</h1>
-				<div class='flex flex-row gap-2 w-full max-w-xl type-meta'>
+				<div class='flex flex-row gap-2 w-full max-w-xl type-meta text-base'>
 					<p class='text-start'>
 						<FormattedDate date={pubDate.toString()} />
 					</p>
@@ -79,7 +79,7 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 					</p>
 				</div>
 				<p
-					class='w-full max-w-xl text-start type-lede text-[var(--color-text-body)]'>
+					class='w-full max-w-xl text-start type-lede text-lg text-[var(--color-text-body)]'>
 					<span class='font-semibold text-[var(--color-text)]'
 						>tl;dr:
 					</span>
@@ -101,7 +101,7 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 				<div
 					class={clsx(
 						'relative max-w-xl',
-						'w-full prose md:prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 items-center justify-center',
+						'w-full prose prose-lg my-3 prose-p:font-medium dark:prose-invert prose-a:underline prose-a:bg-orange-50 prose-a:decoration-orange-500 items-center justify-center',
 						'dark:prose-a:bg-orange-950 dark:prose-a:decoration-orange-400 dark:prose-a:underline',
 						'prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium',
 						'prose-h1:tracking-tight prose-h2:tracking-tight prose-h3:tracking-tight prose-h4:tracking-tight prose-h5:tracking-tight prose-h6:tracking-tight',
@@ -145,6 +145,10 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 			--tw-prose-invert-pre-bg: var(--ds-gray-100);
 			--tw-prose-invert-hr: var(--ds-gray-400);
 			--tw-prose-invert-bullets: var(--ds-gray-600);
+		}
+
+		#blog-content .prose pre.astro-code code {
+			font-size: 0.9375rem;
 		}
 
 		#blog-content .prose :is(h2, h3, h4)[id] {
