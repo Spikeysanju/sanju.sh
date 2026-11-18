@@ -21,6 +21,8 @@ const SLUG_ALIASES: Record<string, string> = {
 
 const EXACT_PATH_REDIRECTS: Record<string, string> = {
 	"/writing": "/writings",
+	"/QR": "/qr",
+	"/HI": "/hi",
 	"/sitemap.xml": "/sitemap-index.xml",
 };
 
@@ -29,6 +31,8 @@ const STATIC_DESTINATIONS = new Set([
 	"/writings",
 	"/thoughts",
 	"/me",
+	"/qr",
+	"/hi",
 	"/sitemap-index.xml",
 ]);
 

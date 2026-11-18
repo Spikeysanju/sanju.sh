@@ -1,0 +1,98 @@
+---
+import { BaseHead } from "@components/seo";
+import { AUTHOR_EMAIL, AUTHOR_IMAGE, socialLinks } from "@data/index";
+import RootLayout from "@layouts/root-layout.astro";
+
+const url = (label: string) =>
+	socialLinks.find((link) => link.label === label)?.url ?? "/";
+
+const mailto = `mailto:${AUTHOR_EMAIL}?subject=${encodeURIComponent(
+	"hi sanju, we just met",
+)}`;
+
+const actions = [
+	{ label: "connect on linkedin", href: url("linkedin"), external: true },
+	{ label: "send an email", href: mailto, external: false },
+	{
+		label: "book a call",
+		href: "https://cal.com/imsanju/15min",
+		external: true,
+	},
+];
+
+const more = [
+	{ label: "x", href: url("@x") },
+	{ label: "github", href: url("github") },
+	{ label: "sanju.sh", href: "/" },
+];
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<BaseHead
+			title='sanju sivalingam, contact'
+			description='save sanju sivalingam as a contact, or connect on linkedin.'
+			noindex={true}
+		/>
+	</head>
+
+	<RootLayout>
+		<main class='flex flex-col w-full max-w-sm gap-8 pt-6 lowercase'>
+			<div class='flex flex-col items-center gap-4 text-center'>
+				<img
+					src={AUTHOR_IMAGE}
+					alt='sanju sivalingam'
+					width='96'
+					height='96'
+					fetchpriority='high'
+					class='w-24 h-24 rounded-full object-cover outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10'
+				/>
+				<div class='flex flex-col gap-1'>
+					<h1
+						class='text-[min(10vw,40px)] font-medium leading-[0.95] tracking-[-1.5px]'>
+						sanju sivalingam
+					</h1>
+					<p class='type-body text-[var(--color-text-secondary)]'>
+						designer, founder at thisux
+					</p>
+				</div>
+			</div>
+
+			<div class='flex flex-col gap-3'>
+				<a
+					href='/sanju.vcf'
+					class='flex items-center justify-center h-14 rounded-full bg-[var(--color-text)] text-[var(--color-bg)] font-medium text-lg transition-transform active:scale-[0.97]'>
+					save contact
+				</a>
+				{
+					actions.map((action) => (
+						<a
+							href={action.href}
+							target={action.external ? '_blank' : undefined}
+							rel={action.external ? 'noopener noreferrer' : undefined}
+							class='flex items-center justify-center h-14 rounded-full border border-[var(--color-border)] font-medium text-lg transition-transform active:scale-[0.97] hover:bg-[var(--color-bg-muted)]'>
+							{action.label}
+						</a>
+					))
+				}
+			</div>
+
+			<nav
+				aria-label='more links'
+				class='flex flex-row justify-center gap-5'>
+				{
+					more.map((link) => (
+						<a
+							href={link.href}
+							target={link.href.startsWith('http') ? '_blank' : undefined}
+							rel={link.href.startsWith('http') ? 'me noopener noreferrer' : undefined}
+							class='type-body text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:underline'>
+							{link.label}
+						</a>
+					))
+				}
+			</nav>
+		</main>
+	</RootLayout>
+</html>

@@ -1,0 +1,75 @@
+---
+import { BaseHead } from "@components/seo";
+import { SITE_URL } from "@data/index";
+import RootLayout from "@layouts/root-layout.astro";
+import { renderSVG } from "uqr";
+
+// the code points at the contact card, not this page, so whoever scans lands
+// on something useful right away
+const target = `${SITE_URL}/hi`;
+const qrSvg = renderSVG(target, {
+	ecc: "M",
+	border: 2,
+	pixelSize: 10,
+	whiteColor: "#ffffff",
+	blackColor: "#000000",
+});
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<BaseHead
+			title='scan to say hi'
+			description='scan to save sanju sivalingam as a contact.'
+			noindex={true}
+		/>
+	</head>
+
+	<RootLayout>
+		<main
+			class='flex flex-col items-center justify-center gap-8 w-full min-h-[calc(100svh-5rem)] lowercase'>
+			<div class='flex flex-col items-center gap-1 text-center'>
+				<h1
+					class='text-[min(10vw,48px)] font-medium leading-[0.9] tracking-[-2px]'>
+					sanju sivalingam
+				</h1>
+				<p class='type-body text-[var(--color-text-secondary)]'>
+					designer, founder at thisux
+				</p>
+			</div>
+
+			<a
+				href='/hi'
+				aria-label='sanju.sh/hi, scan to open contact card'
+				class='block w-full max-w-[min(80vw,360px)] aspect-square rounded-3xl overflow-hidden bg-white p-2 shadow-[0_0_0_1px_rgba(0,0,0,0.08)] [&>svg]:block [&>svg]:w-full [&>svg]:h-full'
+				set:html={qrSvg}
+			/>
+
+			<p class='type-meta text-center'>
+				scan with your camera to save my contact
+			</p>
+		</main>
+	</RootLayout>
+
+	<script>
+		// keep the screen on while someone is scanning
+		let lock: WakeLockSentinel | null = null;
+
+		async function keepAwake() {
+			if (!('wakeLock' in navigator) || document.visibilityState !== 'visible') return;
+			try {
+				lock = await navigator.wakeLock.request('screen');
+			} catch {
+				lock = null;
+			}
+		}
+
+		document.addEventListener('visibilitychange', () => {
+			if (document.visibilityState === 'visible' && !lock) keepAwake();
+			if (document.visibilityState === 'hidden') lock = null;
+		});
+
+		keepAwake();
+	</script>
+</html>
