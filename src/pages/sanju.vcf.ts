@@ -2,6 +2,7 @@ import {
 	AUTHOR_EMAIL,
 	AUTHOR_JOB_TITLE,
 	AUTHOR_NAME,
+	AUTHOR_PHONE,
 	SITE_URL,
 	socialLinks,
 } from "@data/index";
@@ -20,6 +21,7 @@ const lines = [
 	`FN:${AUTHOR_NAME}`,
 	"ORG:ThisUX",
 	`TITLE:${AUTHOR_JOB_TITLE}`,
+	`TEL;TYPE=CELL:${AUTHOR_PHONE}`,
 	`EMAIL;TYPE=INTERNET,WORK:${AUTHOR_EMAIL}`,
 	`URL:${SITE_URL}`,
 	`X-SOCIALPROFILE;TYPE=twitter:${profile("@x")}`,

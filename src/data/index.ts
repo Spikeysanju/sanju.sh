@@ -8,6 +8,8 @@ export const AUTHOR_NAME = "Sanju Sivalingam";
 export const AUTHOR_JOB_TITLE = "designer, founder";
 export const AUTHOR_IMAGE = "/images/sanju.png";
 export const AUTHOR_EMAIL = "work@sanju.sh";
+/** e.164, used for whatsapp and the saved contact */
+export const AUTHOR_PHONE = "+918939420381";
 
 /** stable schema.org @id for the person entity */
 export const PERSON_ID = `${SITE_URL}/#person`;
