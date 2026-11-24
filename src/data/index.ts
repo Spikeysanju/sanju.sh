@@ -38,48 +38,57 @@ export const menuItems: MenuItem[] = [
 export const products = [
 	{
 		name: "ThisUX",
+		tagline: "design-led product studio",
 		url: "https://thisux.com",
 		image: "/products/thisux.png",
 	},
 	{
 		name: "DunSocial",
+		tagline: "ai social media agent",
 		url: "https://dunsocial.com",
 		image: "/products/dunsocial.png",
 	},
 	{
+		name: "Dukoi",
+		tagline: "turn an old phone into a server",
+		url: "https://dukoi.com",
+		image: "/products/dukoi.png",
+	},
+	{
 		name: "SticAI",
+		tagline: "ai utility tools",
 		url: "https://sticai.com",
 		image: "/products/sticai.png",
 	},
 	{
 		name: "unitedby.ai",
+		tagline: "applied ai community",
 		url: "https://unitedby.ai",
 		image: "/products/unitedbyai.png",
 	},
 	{
 		name: "DroidClaw",
+		tagline: "android ai agent",
 		url: "https://droidclaw.ai",
 		image: "/products/droidclaw.png",
 	},
 	{
 		name: "DunTasks",
+		tagline: "minimal task manager",
 		url: "https://duntasks.com",
 		image: "/products/duntasks.png",
 	},
 	{
 		name: "Fli.so",
+		tagline: "open-source link shortener",
 		url: "https://github.com/thisuxhq/fli.so",
 		image: "/products/fli.png",
 	},
 	{
 		name: "Dun",
+		tagline: "focused tool suite",
 		url: "https://dunsuite.com",
 		image: "/products/dun.png",
-	},
-	{
-		name: "Uiino",
-		url: "https://uiino.com",
-		image: "/products/uiino.png",
 	},
 ];
 

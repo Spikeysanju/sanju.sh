@@ -4,3 +4,4 @@ export { default as FormattedDate } from "./formatted-date.astro";
 export { default as Dots } from "./dots.astro";
 export { default as ScrollProgress } from "./scroll-progress.astro";
 export { default as ThemeSwitcher } from "./theme-switcher.astro";
+export { default as CommandPalette } from "./command-palette.astro";

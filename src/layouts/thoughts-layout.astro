@@ -108,6 +108,37 @@ const {
 	</RootLayout>
 
 	<style is:global>
+		#blog-content .prose {
+			--tw-prose-body: var(--ds-gray-1000);
+			--tw-prose-headings: var(--ds-gray-1000);
+			--tw-prose-lead: var(--ds-gray-1000);
+			--tw-prose-bold: var(--ds-gray-1000);
+			--tw-prose-counters: var(--ds-gray-900);
+			--tw-prose-bullets: var(--ds-gray-600);
+			--tw-prose-hr: var(--ds-gray-400);
+			--tw-prose-quotes: var(--ds-gray-1000);
+			--tw-prose-quote-borders: var(--ds-gray-400);
+			--tw-prose-captions: var(--ds-gray-700);
+			--tw-prose-kbd: var(--ds-gray-1000);
+			--tw-prose-code: var(--ds-gray-1000);
+			--tw-prose-pre-code: var(--ds-gray-1000);
+			--tw-prose-pre-bg: var(--ds-gray-100);
+			--tw-prose-th-borders: var(--ds-gray-400);
+			--tw-prose-td-borders: var(--ds-gray-400);
+			--tw-prose-invert-body: var(--ds-gray-1000);
+			--tw-prose-invert-headings: var(--ds-gray-1000);
+			--tw-prose-invert-bold: var(--ds-gray-1000);
+			--tw-prose-invert-quotes: var(--ds-gray-1000);
+			--tw-prose-invert-code: var(--ds-gray-1000);
+			--tw-prose-invert-pre-bg: var(--ds-gray-100);
+			--tw-prose-invert-hr: var(--ds-gray-400);
+			--tw-prose-invert-bullets: var(--ds-gray-600);
+		}
+
+		#blog-content .prose pre.astro-code code {
+			font-size: 0.9375rem;
+		}
+
 		#blog-content .prose :is(h2, h3, h4)[id] {
 			position: relative;
 			cursor: pointer;
@@ -125,14 +156,28 @@ const {
 		#blog-content .prose :is(h2, h3, h4)[id]:hover::after {
 			opacity: 1;
 		}
+
+		#blog-content .prose :is(h2, h3, h4)[id].is-copied::after {
+			content: '✓';
+			opacity: 1;
+			color: var(--ds-gray-1000);
+		}
 	</style>
 
 	<script>
+		const copyTimers = new WeakMap<Element, number>();
 		document.querySelectorAll('#blog-content .prose :is(h2, h3, h4)[id]').forEach((heading) => {
 			heading.addEventListener('click', () => {
 				const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
 				navigator.clipboard.writeText(url);
 				history.replaceState(null, '', `#${heading.id}`);
+				heading.classList.add('is-copied');
+				const prev = copyTimers.get(heading);
+				if (prev) window.clearTimeout(prev);
+				copyTimers.set(
+					heading,
+					window.setTimeout(() => heading.classList.remove('is-copied'), 1200),
+				);
 			});
 		});
 	</script>

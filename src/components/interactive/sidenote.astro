@@ -8,14 +8,15 @@ const { id } = Astro.props;
 
 <span class="sidenote-wrapper">
 	<button
-		class="sidenote-toggle xl:pointer-events-none inline font-medium text-neutral-500 dark:text-neutral-400 cursor-pointer xl:cursor-default"
+		type="button"
+		class="sidenote-toggle inline font-medium text-neutral-500 dark:text-neutral-400 cursor-pointer xl:cursor-default transition-colors duration-150"
 		aria-label={`toggle sidenote ${id}`}
 		data-sidenote-id={id}
 	>
 		<sup class="text-xs">{id}</sup>
 	</button>
 	<span
-		class="sidenote-body not-prose hidden xl:block text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed"
+		class="sidenote-body not-prose hidden xl:block text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed transition-colors duration-150"
 		data-sidenote-body={id}
 	>
 		<span class="font-medium">{id}:</span>{" "}
@@ -32,6 +33,11 @@ const { id } = Astro.props;
 			width: 14rem;
 			margin-left: 1.5rem;
 			margin-bottom: 0.5rem;
+		}
+
+		.sidenote-wrapper:hover .sidenote-toggle,
+		.sidenote-wrapper:hover .sidenote-body {
+			color: var(--ds-gray-1000);
 		}
 	}
 

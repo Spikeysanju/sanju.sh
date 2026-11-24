@@ -1,0 +1,387 @@
+---
+import { getCollection } from "astro:content";
+import { AUTHOR_EMAIL, products } from "@data/index";
+
+const writings = (await getCollection("writing")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const thoughts = (await getCollection("thought")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const items = [
+	{ group: "pages", label: "sanju", meta: "home", action: "href:/" },
+	{
+		group: "pages",
+		label: "writings",
+		meta: "essays",
+		action: "href:/writings",
+	},
+	{
+		group: "pages",
+		label: "thoughts",
+		meta: "notes",
+		action: "href:/thoughts",
+	},
+	{
+		group: "pages",
+		label: "about",
+		meta: "bio & headshot",
+		action: "href:/me",
+	},
+	...writings.map((w) => ({
+		group: "writing",
+		label: w.data.title.toLowerCase(),
+		meta: String(w.data.pubDate.getFullYear()),
+		action: `href:/${w.id}`,
+	})),
+	...thoughts.map((t) => ({
+		group: "thought",
+		label: t.data.title.toLowerCase(),
+		meta: t.data.category.toLowerCase(),
+		action: `href:/${t.id}`,
+	})),
+	...products.map((p) => ({
+		group: "product",
+		label: p.name.toLowerCase(),
+		meta: p.tagline,
+		action: `external:${p.url}`,
+	})),
+	{
+		group: "action",
+		label: "toggle theme",
+		meta: "shortcut: t",
+		action: "cmd:theme",
+	},
+	{
+		group: "action",
+		label: `copy email (${AUTHOR_EMAIL})`,
+		meta: "clipboard",
+		action: "cmd:email",
+	},
+	{
+		group: "action",
+		label: "schedule a call",
+		meta: "cal.com",
+		action: "external:https://cal.com/imsanju/15min",
+	},
+];
+---
+
+<div
+	id='cmd-palette'
+	class='cmd-palette'
+	hidden
+	role='dialog'
+	aria-modal='true'
+	aria-label='quick jump'>
+	<div
+		class='cmd-palette__backdrop'
+		data-cmd-close>
+	</div>
+	<div class='cmd-palette__panel'>
+		<div class='cmd-palette__head'>
+			<input
+				id='cmd-palette-input'
+				type='text'
+				class='cmd-palette__input'
+				placeholder='jump to writing, thought, product, or action…'
+				autocomplete='off'
+			/>
+			<kbd class='cmd-palette__kbd'>esc</kbd>
+		</div>
+		<ul
+			id='cmd-palette-list'
+			class='cmd-palette__list'>
+		</ul>
+		<div class='cmd-palette__foot'>
+			<span>↑↓ navigate</span>
+			<span>↵ open</span>
+			<span>t theme</span>
+		</div>
+	</div>
+</div>
+
+<script
+	is:inline
+	id='cmd-palette-data'
+	type='application/json'
+	set:html={JSON.stringify(items)}
+/>
+
+<style>
+	.cmd-palette {
+		position: fixed;
+		inset: 0;
+		z-index: 60;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 14vh 1rem 2rem;
+	}
+
+	.cmd-palette[hidden] {
+		display: none;
+	}
+
+	.cmd-palette__backdrop {
+		position: fixed;
+		inset: 0;
+		background: oklch(0 0 0 / 0.35);
+		backdrop-filter: blur(4px);
+	}
+
+	.cmd-palette__panel {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 32rem;
+		border-radius: 12px;
+		background: var(--ds-background-100);
+		color: var(--ds-gray-1000);
+		box-shadow:
+			var(--ds-shadow-border),
+			0 20px 50px oklch(0 0 0 / 0.18);
+		overflow: hidden;
+	}
+
+	.cmd-palette__head {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.85rem 1rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.cmd-palette__input {
+		flex: 1;
+		min-width: 0;
+		background: transparent;
+		border: 0;
+		outline: none;
+		color: var(--ds-gray-1000);
+		font-size: 0.9375rem;
+		font-weight: 500;
+	}
+
+	.cmd-palette__input::placeholder {
+		color: var(--ds-gray-700);
+	}
+
+	.cmd-palette__kbd {
+		font-family: inherit;
+		font-size: 0.75rem;
+		color: var(--ds-gray-700);
+		padding: 0.15rem 0.4rem;
+		border-radius: 0.35rem;
+		background: var(--ds-gray-100);
+	}
+
+	.cmd-palette__list {
+		list-style: none;
+		margin: 0;
+		padding: 0.4rem;
+		max-height: 19rem;
+		overflow-y: auto;
+	}
+
+	:global(.cmd-palette__item) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.55rem 0.7rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--ds-gray-1000);
+	}
+
+	:global(.cmd-palette__item.is-selected),
+	:global(.cmd-palette__item:hover) {
+		background: var(--ds-gray-100);
+	}
+
+	:global(.cmd-palette__label) {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	:global(.cmd-palette__meta) {
+		font-size: 0.75rem;
+		color: var(--ds-gray-700);
+		flex-shrink: 0;
+	}
+
+	.cmd-palette__foot {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.55rem 1rem;
+		border-top: 1px solid var(--color-border);
+		font-size: 0.75rem;
+		color: var(--ds-gray-700);
+	}
+</style>
+
+<script>
+	type PaletteItem = {
+		group: string;
+		label: string;
+		meta: string;
+		action: string;
+	};
+
+	const palette = document.getElementById("cmd-palette");
+	const input = document.getElementById(
+		"cmd-palette-input",
+	) as HTMLInputElement | null;
+	const list = document.getElementById("cmd-palette-list");
+	const raw = document.getElementById("cmd-palette-data")?.textContent ?? "[]";
+	const allItems: PaletteItem[] = JSON.parse(raw);
+
+	let filtered = allItems;
+	let selected = 0;
+
+	function toggleTheme() {
+		document.documentElement.classList.toggle("dark");
+		const isDark = document.documentElement.classList.contains("dark");
+		localStorage.setItem("theme", isDark ? "dark" : "light");
+	}
+
+	function closePalette() {
+		if (!palette) return;
+		palette.hidden = true;
+	}
+
+	function runAction(action: string) {
+		closePalette();
+		if (action.startsWith("href:")) {
+			window.location.href = action.slice(5);
+			return;
+		}
+		if (action.startsWith("external:")) {
+			window.open(action.slice(9), "_blank", "noopener,noreferrer");
+			return;
+		}
+		if (action === "cmd:theme") {
+			toggleTheme();
+			return;
+		}
+		if (action === "cmd:email") {
+			navigator.clipboard?.writeText("work@sanju.sh");
+		}
+	}
+
+	function renderList() {
+		if (!list) return;
+		list.innerHTML = "";
+		if (!filtered.length) {
+			const empty = document.createElement("li");
+			empty.className = "cmd-palette__item";
+			empty.style.opacity = "0.55";
+			empty.textContent = "nothing matched";
+			list.appendChild(empty);
+			return;
+		}
+
+		filtered.forEach((item, index) => {
+			const li = document.createElement("li");
+			li.className = `cmd-palette__item ${index === selected ? "is-selected" : ""}`;
+			const label = document.createElement("span");
+			label.className = "cmd-palette__label";
+			label.textContent = item.label;
+			const meta = document.createElement("span");
+			meta.className = "cmd-palette__meta";
+			meta.textContent = `${item.group} · ${item.meta}`;
+			li.appendChild(label);
+			li.appendChild(meta);
+			li.addEventListener("click", () => runAction(item.action));
+			list.appendChild(li);
+		});
+
+		const activeEl = list.children[selected] as HTMLElement | undefined;
+		activeEl?.scrollIntoView({ block: "nearest" });
+	}
+
+	function openPalette() {
+		if (!palette || !input) return;
+		palette.hidden = false;
+		input.value = "";
+		filtered = allItems;
+		selected = 0;
+		renderList();
+		window.setTimeout(() => input.focus(), 10);
+	}
+
+	for (const el of document.querySelectorAll("[data-cmd-close]")) {
+		el.addEventListener("click", closePalette);
+	}
+
+	input?.addEventListener("input", () => {
+		const q = input.value.trim().toLowerCase();
+		filtered = q
+			? allItems.filter(
+					(item) =>
+						item.label.includes(q) ||
+						item.group.includes(q) ||
+						item.meta.includes(q),
+				)
+			: allItems;
+		selected = 0;
+		renderList();
+	});
+
+	function isEditableTarget(target: EventTarget | null) {
+		if (!(target instanceof HTMLElement)) return false;
+		const tag = target.tagName;
+		return (
+			tag === "INPUT" ||
+			tag === "TEXTAREA" ||
+			tag === "SELECT" ||
+			target.isContentEditable
+		);
+	}
+
+	document.addEventListener("keydown", (e) => {
+		if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+			e.preventDefault();
+			if (palette?.hidden) openPalette();
+			else closePalette();
+			return;
+		}
+
+		if (palette && !palette.hidden) {
+			if (e.key === "Escape") {
+				e.preventDefault();
+				closePalette();
+			} else if (e.key === "ArrowDown") {
+				e.preventDefault();
+				selected = Math.min(selected + 1, Math.max(filtered.length - 1, 0));
+				renderList();
+			} else if (e.key === "ArrowUp") {
+				e.preventDefault();
+				selected = Math.max(selected - 1, 0);
+				renderList();
+			} else if (e.key === "Enter" && filtered[selected]) {
+				e.preventDefault();
+				runAction(filtered[selected].action);
+			}
+			return;
+		}
+
+		if (
+			!e.metaKey &&
+			!e.ctrlKey &&
+			!e.altKey &&
+			!isEditableTarget(e.target) &&
+			e.key.toLowerCase() === "t"
+		) {
+			e.preventDefault();
+			toggleTheme();
+		}
+	});
+</script>

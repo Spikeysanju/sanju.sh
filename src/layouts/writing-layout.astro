@@ -168,14 +168,28 @@ const shareImage = ogImage || heroImage || "/images/ogimage.png";
 		#blog-content .prose :is(h2, h3, h4)[id]:hover::after {
 			opacity: 1;
 		}
+
+		#blog-content .prose :is(h2, h3, h4)[id].is-copied::after {
+			content: '✓';
+			opacity: 1;
+			color: var(--ds-gray-1000);
+		}
 	</style>
 
 	<script>
+		const copyTimers = new WeakMap<Element, number>();
 		document.querySelectorAll('#blog-content .prose :is(h2, h3, h4)[id]').forEach((heading) => {
 			heading.addEventListener('click', () => {
 				const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
 				navigator.clipboard.writeText(url);
 				history.replaceState(null, '', `#${heading.id}`);
+				heading.classList.add('is-copied');
+				const prev = copyTimers.get(heading);
+				if (prev) window.clearTimeout(prev);
+				copyTimers.set(
+					heading,
+					window.setTimeout(() => heading.classList.remove('is-copied'), 1200),
+				);
 			});
 		});
 	</script>

@@ -15,11 +15,13 @@ import { products } from "@data/index";
 						target='_blank'
 						rel='noopener noreferrer'
 						class='product-dock__link'
-						aria-label={product.name}>
+						aria-label={`${product.name} — ${product.tagline}`}>
 						<span
 							class='product-dock__tooltip'
 							aria-hidden='true'>
-							{product.name}
+							<span>{product.name}</span>
+							<span class='product-dock__tooltip-sep'>·</span>
+							<span class='product-dock__tooltip-sub'>{product.tagline}</span>
 						</span>
 						<img
 							src={product.image}
@@ -123,24 +125,15 @@ import { products } from "@data/index";
 		outline-color: oklch(1 0 0 / 0.1);
 	}
 
-	@keyframes product-dock-tooltip-in {
-		from {
-			opacity: 0;
-			transform: translateX(-50%) translateY(0.25rem) scale(0.96);
-		}
-
-		to {
-			opacity: 1;
-			transform: translateX(-50%) translateY(0) scale(1);
-		}
-	}
-
 	.product-dock__tooltip {
 		position: absolute;
 		bottom: calc(100% + 0.7rem);
 		left: 50%;
 		z-index: 5;
-		padding: 0.28rem 0.55rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.32rem 0.6rem;
 		border-radius: 0.5rem;
 		background: var(--ds-background-100);
 		color: var(--ds-gray-1000);
@@ -152,11 +145,38 @@ import { products } from "@data/index";
 		pointer-events: none;
 		transform: translateX(-50%) translateY(0.25rem) scale(0.96);
 		box-shadow: var(--ds-shadow-border);
+		transition:
+			opacity 160ms cubic-bezier(0.2, 0, 0, 1),
+			transform 160ms cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.product-dock__tooltip-sep,
+	.product-dock__tooltip-sub {
+		color: var(--ds-gray-700);
+	}
+
+	.product-dock__item:first-child .product-dock__tooltip {
+		left: 0;
+		transform: translateX(0) translateY(0.25rem) scale(0.96);
+	}
+
+	.product-dock__item:last-child .product-dock__tooltip {
+		left: auto;
+		right: 0;
+		transform: translateX(0) translateY(0.25rem) scale(0.96);
 	}
 
 	.product-dock__link:hover .product-dock__tooltip,
 	.product-dock__link:focus-visible .product-dock__tooltip {
-		animation: product-dock-tooltip-in 160ms cubic-bezier(0.2, 0, 0, 1) forwards;
+		opacity: 1;
+		transform: translateX(-50%) translateY(0) scale(1);
+	}
+
+	.product-dock__item:first-child .product-dock__link:hover .product-dock__tooltip,
+	.product-dock__item:first-child .product-dock__link:focus-visible .product-dock__tooltip,
+	.product-dock__item:last-child .product-dock__link:hover .product-dock__tooltip,
+	.product-dock__item:last-child .product-dock__link:focus-visible .product-dock__tooltip {
+		transform: translateX(0) translateY(0) scale(1);
 	}
 
 	.product-dock__link:focus-visible .product-dock__icon {
@@ -182,15 +202,9 @@ import { products } from "@data/index";
 
 	@media (prefers-reduced-motion: reduce) {
 		.product-dock__item,
-		.product-dock__link {
+		.product-dock__link,
+		.product-dock__tooltip {
 			transition: none;
-		}
-
-		.product-dock__link:hover .product-dock__tooltip,
-		.product-dock__link:focus-visible .product-dock__tooltip {
-			animation: none;
-			opacity: 1;
-			transform: translateX(-50%) translateY(0) scale(1);
 		}
 	}
 </style>

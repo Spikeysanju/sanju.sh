@@ -1,9 +1,11 @@
 ---
+import { CommandPalette } from "@components/misc";
+
 interface Props {
 	maxWidth?: string;
 }
 
-const { maxWidth = 'max-w-xl' } = Astro.props;
+const { maxWidth = "max-w-xl" } = Astro.props;
 ---
 
 <div
@@ -11,6 +13,8 @@ const { maxWidth = 'max-w-xl' } = Astro.props;
 	class={`w-full flex flex-col items-center justify-start my-6 p-4 antialiased ${maxWidth} mx-auto`}>
 	<slot />
 </div>
+
+<CommandPalette />
 
 <script>
 	import { WebHaptics } from 'web-haptics';

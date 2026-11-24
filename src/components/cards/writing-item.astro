@@ -4,7 +4,7 @@ import FormattedDate from "@components/misc/formatted-date.astro";
 const { title, date, slug } = Astro.props;
 ---
 
-<a href={`/${slug}`}>
+<a href={`/${slug}`} class='writing-item block transition-opacity duration-150'>
 	<article class='flex flex-row items-center justify-between w-full gap-3'>
 		<h3 class='text-base font-medium min-w-0 flex-1 text-pretty'>{title}</h3>
 		<p class='type-meta shrink-0'>

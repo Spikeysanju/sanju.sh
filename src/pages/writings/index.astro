@@ -25,15 +25,28 @@ const writings = (await getCollection("writing")).sort(
 			<Header />
 			<h1 class='w-full type-page-title'>writings</h1>
 
-			{
-				writings.map((writing) => (
-					<WritingItem
-						title={writing.data.title}
-						date={writing.data.pubDate}
-						slug={writing.id}
-					/>
-				))
-			}
+			<div class='writings-list flex flex-col gap-6'>
+				{
+					writings.map((writing) => (
+						<WritingItem
+							title={writing.data.title}
+							date={writing.data.pubDate}
+							slug={writing.id}
+						/>
+					))
+				}
+			</div>
 		</div>
 	</RootLayout>
+
+	<style>
+		.writings-list:hover :global(.writing-item) {
+			opacity: 0.45;
+		}
+
+		.writings-list :global(.writing-item:hover),
+		.writings-list :global(.writing-item:focus-visible) {
+			opacity: 1;
+		}
+	</style>
 </html>
