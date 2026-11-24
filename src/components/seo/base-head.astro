@@ -46,6 +46,15 @@ const canonicalURL = absoluteUrl(pathname);
 const isHome = pathname === "/";
 const fullTitle = isHome ? title : `${title} | sanju`;
 const resolvedImage = absoluteAssetUrl(image, Astro.url);
+const markdownAlternateUrl = noindex
+	? null
+	: isHome
+		? `${SITE_URL}/index.md`
+		: pathname === "/me" || pathname === "/writings" || pathname === "/thoughts"
+			? `${canonicalURL}.md`
+			: type === "article"
+				? `${canonicalURL}.md`
+				: null;
 
 const runtimeEnv = env as unknown as Partial<Record<string, string>>;
 const umamiTrackingUrl =
@@ -205,6 +214,24 @@ const structuredData =
 	title={`${SITE_TITLE} RSS Feed`}
 	href={new URL('rss.xml', SITE_URL).href}
 />
+
+<!-- LLM & Markdown Discovery -->
+<link
+	rel='alternate'
+	type='text/plain'
+	title={`${SITE_TITLE} llms.txt`}
+	href={new URL('llms.txt', SITE_URL).href}
+/>
+{
+	markdownAlternateUrl && (
+		<link
+			rel='alternate'
+			type='text/markdown'
+			title={`${fullTitle} (markdown)`}
+			href={markdownAlternateUrl}
+		/>
+	)
+}
 
 <!-- JSON-LD Structured Data -->
 <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />

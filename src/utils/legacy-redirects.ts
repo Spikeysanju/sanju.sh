@@ -56,20 +56,28 @@ export function resolveLegacyPath(
 	pathname: string,
 	liveSlugs: Set<string>,
 ): string | null {
-	const path = normalizePath(decodePathname(pathname));
+	const rawPath = normalizePath(decodePathname(pathname));
+	const isMarkdown = rawPath.endsWith(".md") && rawPath.length > 3;
+	const path = isMarkdown ? rawPath.slice(0, -3) : rawPath;
+	const withExt = (dest: string) =>
+		isMarkdown ? (dest === "/" ? "/index.md" : `${dest}.md`) : dest;
 
 	if (path === "/ships" || path.startsWith("/ships/")) {
-		return "/";
+		return withExt("/");
 	}
 
 	const exact = EXACT_PATH_REDIRECTS[path];
-	if (exact && destinationExists(exact, liveSlugs)) return exact;
+	if (exact && destinationExists(exact, liveSlugs)) {
+		return isMarkdown && exact === "/sitemap-index.xml"
+			? exact
+			: withExt(exact);
+	}
 
 	const slug = path.startsWith("/") ? path.slice(1) : path;
 	const alias = SLUG_ALIASES[slug];
 	if (alias) {
 		const dest = `/${alias}`;
-		return destinationExists(dest, liveSlugs) ? dest : null;
+		return destinationExists(dest, liveSlugs) ? withExt(dest) : null;
 	}
 
 	const prefixed = /^\/(?:writings|thoughts)\/(.+)$/.exec(path);
@@ -77,5 +85,5 @@ export function resolveLegacyPath(
 
 	const mapped = SLUG_ALIASES[prefixed[1]] ?? prefixed[1];
 	const dest = `/${mapped}`;
-	return destinationExists(dest, liveSlugs) ? dest : null;
+	return destinationExists(dest, liveSlugs) ? withExt(dest) : null;
 }
