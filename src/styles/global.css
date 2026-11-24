@@ -192,7 +192,7 @@
 @layer components {
   .type-page-title {
     font-size: var(--fs-4xl);
-    line-height: var(--leading-tight);
+    line-height: 1;
     letter-spacing: var(--tracking-tight);
     font-weight: var(--fw-medium);
     text-wrap: balance;
@@ -283,5 +283,123 @@
 
   .prose pre.astro-code[data-language="text"] span {
     color: var(--ds-gray-1000) !important;
+  }
+
+  /* ondine mermaid diagrams — same surface as code blocks */
+  .prose .ondine-diagram {
+    margin: 1.5rem 0;
+    padding: 20px;
+    overflow-x: auto;
+    border-radius: 12px;
+    background: var(--ds-background-200);
+    box-shadow: var(--ds-shadow-border);
+    display: flex;
+    justify-content: center;
+    --ondine-bg: var(--ds-background-200);
+    --ondine-fg: var(--ds-gray-1000);
+    --ondine-muted: var(--ds-gray-900);
+    --ondine-line: var(--ds-gray-700);
+    --ondine-surface: var(--ds-background-100);
+    --ondine-surface-alt: var(--ds-gray-100);
+    --ondine-border: var(--ds-gray-500);
+    --ondine-accent: var(--color-accent-writing);
+    --ondine-stroke: 1.5px;
+    --ondine-radius: 6px;
+  }
+
+  .prose .ondine-diagram svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* reusable light/dark node colors for ondine flowcharts (use :::blue, :::green, :::red, :::purple, :::amber, :::red-dashed) */
+  .prose .ondine-diagram .ondine-node.blue :is(rect, path, polygon, circle, ellipse) {
+    fill: #eff6ff;
+    stroke: #3b82f6;
+  }
+  .prose .ondine-diagram .ondine-node.blue :is(.ondine-label, tspan) {
+    fill: #1d4ed8;
+  }
+
+  .prose .ondine-diagram .ondine-node.green :is(rect, path, polygon, circle, ellipse) {
+    fill: #f0fdf4;
+    stroke: #22c55e;
+  }
+  .prose .ondine-diagram .ondine-node.green :is(.ondine-label, tspan) {
+    fill: #15803d;
+  }
+
+  .prose .ondine-diagram .ondine-node.red :is(rect, path, polygon, circle, ellipse),
+  .prose .ondine-diagram .ondine-node.red-dashed :is(rect, path, polygon, circle, ellipse) {
+    fill: #fef2f2;
+    stroke: #ef4444;
+  }
+  .prose .ondine-diagram .ondine-node.red :is(.ondine-label, tspan),
+  .prose .ondine-diagram .ondine-node.red-dashed :is(.ondine-label, tspan) {
+    fill: #b91c1c;
+  }
+
+  .prose .ondine-diagram .ondine-node.red-dashed :is(rect, path, polygon, circle, ellipse),
+  .prose .ondine-diagram .ondine-node.dashed :is(rect, path, polygon, circle, ellipse) {
+    stroke-dasharray: 5 4;
+  }
+
+  .prose .ondine-diagram .ondine-node.purple :is(rect, path, polygon, circle, ellipse) {
+    fill: #faf5ff;
+    stroke: #a855f7;
+  }
+  .prose .ondine-diagram .ondine-node.purple :is(.ondine-label, tspan) {
+    fill: #7e22ce;
+  }
+
+  .prose .ondine-diagram .ondine-node.amber :is(rect, path, polygon, circle, ellipse) {
+    fill: #fff7ed;
+    stroke: #f97316;
+  }
+  .prose .ondine-diagram .ondine-node.amber :is(.ondine-label, tspan) {
+    fill: #c2410c;
+  }
+
+  .dark .prose .ondine-diagram .ondine-node.blue :is(rect, path, polygon, circle, ellipse) {
+    fill: #172554;
+    stroke: #60a5fa;
+  }
+  .dark .prose .ondine-diagram .ondine-node.blue :is(.ondine-label, tspan) {
+    fill: #bfdbfe;
+  }
+
+  .dark .prose .ondine-diagram .ondine-node.green :is(rect, path, polygon, circle, ellipse) {
+    fill: #052e16;
+    stroke: #4ade80;
+  }
+  .dark .prose .ondine-diagram .ondine-node.green :is(.ondine-label, tspan) {
+    fill: #bbf7d0;
+  }
+
+  .dark .prose .ondine-diagram .ondine-node.red :is(rect, path, polygon, circle, ellipse),
+  .dark .prose .ondine-diagram .ondine-node.red-dashed :is(rect, path, polygon, circle, ellipse) {
+    fill: #450a0a;
+    stroke: #f87171;
+  }
+  .dark .prose .ondine-diagram .ondine-node.red :is(.ondine-label, tspan),
+  .dark .prose .ondine-diagram .ondine-node.red-dashed :is(.ondine-label, tspan) {
+    fill: #fecaca;
+  }
+
+  .dark .prose .ondine-diagram .ondine-node.purple :is(rect, path, polygon, circle, ellipse) {
+    fill: #3b0764;
+    stroke: #c084fc;
+  }
+  .dark .prose .ondine-diagram .ondine-node.purple :is(.ondine-label, tspan) {
+    fill: #e9d5ff;
+  }
+
+  .dark .prose .ondine-diagram .ondine-node.amber :is(rect, path, polygon, circle, ellipse) {
+    fill: #431407;
+    stroke: #fb923c;
+  }
+  .dark .prose .ondine-diagram .ondine-node.amber :is(.ondine-label, tspan) {
+    fill: #fed7aa;
   }
 }

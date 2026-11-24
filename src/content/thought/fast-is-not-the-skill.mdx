@@ -22,7 +22,13 @@ so the work split in two. one half is generating output. the other half is decid
 
 only the first half got automated. that is the whole story.
 
-![the work split in two. producing the output got automated. judging the output is still on you.](/images/thoughts/the-work-split.png)
+```mermaid
+flowchart TD
+  W[the work]:::blue --> P[producing the output]:::green
+  W --> J[judging the output]:::red
+  P --> A[automated]:::green
+  J --> Y[still on you]:::red
+```
 
 ## what the day actually looks like
 
@@ -42,7 +48,19 @@ is this the right shape. what breaks at 10x. what happens on the unhappy path. w
 
 none of that lives in the output. it lives in the decision behind the output.
 
-![the layer under the output. what everyone sees is the code that shipped. what never shows up in the diff is the questions that decided all of it.](/images/thoughts/the-layer-under-the-output.png)
+```mermaid
+flowchart BT
+  subgraph Hidden["what never shows up in the diff"]
+    Q1[is this the right shape?]:::purple
+    Q2[what breaks at 10x?]:::purple
+    Q3[what about the unhappy path?]:::purple
+    Q4[why this abstraction?]:::purple
+  end
+  subgraph Visible["what everyone sees"]
+    Code[the code that shipped]:::green
+  end
+  Hidden -- "decides all of it" --> Visible
+```
 
 the model will happily produce something that works for the case in front of it and quietly commit you to a structure you will hate in 6 months. it does not know that. it was not asked.
 
@@ -60,7 +78,23 @@ opinions are not personality. they are compressed experience. you built it the w
 
 own a decision, live with what it costs you, form a view. if the model owns the decision, the loop never closes.
 
-![where opinions come from. before, you made the call, shipped it, it broke, you paid for it, and you had an opinion. now you prompt, take the output, ship it, and nothing was yours.](/images/thoughts/where-opinions-come-from.png)
+```mermaid
+flowchart LR
+  subgraph Before["before"]
+    direction TB
+    B1[you make the call]:::green --> B2[you ship it]:::green
+    B2 --> B3[it breaks]:::green
+    B3 --> B4[you pay for it]:::green
+    B4 --> B5[you have an opinion]:::green
+  end
+  subgraph Now["now"]
+    direction TB
+    N1[you prompt]:::red --> N2[you take the output]:::red
+    N2 --> N3[you ship it]:::red
+    N3 -.-> N4[nothing was yours]:::red-dashed
+    N4 -.-> N5[nothing to defend]:::red-dashed
+  end
+```
 
 ## we deleted the reps
 
