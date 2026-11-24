@@ -2,38 +2,34 @@
 @config "../../tailwind.config.mjs";
 @plugin "@tailwindcss/typography";
 
-/* ——— @font-face — Uncut Sans ——— */
+/* ——— @font-face — ABC Diatype ——— */
 @font-face {
-  font-family: 'Uncut Sans';
-  src: url('/fonts/uncut/woff2/UncutSans-Regular.woff2') format('woff2'),
-       url('/fonts/uncut/woff/UncutSans-Regular.woff') format('woff');
+  font-family: 'ABC Diatype';
+  src: url('/fonts/diatype/ABCDiatype-Regular-Trial.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Uncut Sans';
-  src: url('/fonts/uncut/woff2/UncutSans-Medium.woff2') format('woff2'),
-       url('/fonts/uncut/woff/UncutSans-Medium.woff') format('woff');
+  font-family: 'ABC Diatype';
+  src: url('/fonts/diatype/ABCDiatype-Medium-Trial.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Uncut Sans';
-  src: url('/fonts/uncut/woff2/UncutSans-Semibold.woff2') format('woff2'),
-       url('/fonts/uncut/woff/UncutSans-Semibold.woff') format('woff');
+  font-family: 'ABC Diatype';
+  src: url('/fonts/diatype/ABCDiatype-Bold-Trial.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Uncut Sans';
-  src: url('/fonts/uncut/woff2/UncutSans-Bold.woff2') format('woff2'),
-       url('/fonts/uncut/woff/UncutSans-Bold.woff') format('woff');
+  font-family: 'ABC Diatype';
+  src: url('/fonts/diatype/ABCDiatype-Bold-Trial.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -43,7 +39,7 @@
 
   /* ——— typography tokens ——— */
   :root {
-    --font-body: 'Uncut Sans', sans-serif;
+    --font-body: 'ABC Diatype', sans-serif;
 
     /* font weights */
     --fw-regular: 400;

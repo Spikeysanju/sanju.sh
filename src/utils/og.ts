@@ -1,5 +1,5 @@
-import { initWasm, Resvg } from "@resvg/resvg-wasm";
-import uncutSansRegularUrl from "../assets/fonts/UncutSans-Regular.woff2?url&inline";
+import { Resvg, initWasm } from "@resvg/resvg-wasm";
+import diatypeRegularUrl from "../assets/fonts/ABCDiatype-Regular-Trial.otf?url&inline";
 // @ts-ignore — handled by @astrojs/cloudflare wasmModuleImports
 import resvgWasm from "./resvg.wasm?module";
 
@@ -8,7 +8,7 @@ const ACCENT_COLORS: Record<string, string> = {
 	thoughts: "#ef4444",
 };
 
-const FONT_FAMILY = "Uncut Sans";
+const FONT_FAMILY = "ABC Diatype";
 
 let wasmInitPromise: Promise<void> | null = null;
 let fontBufferCache: Uint8Array | null = null;
@@ -34,7 +34,7 @@ function decodeBase64(base64: string): Uint8Array {
 function getFontBuffer(): Uint8Array {
 	if (fontBufferCache) return fontBufferCache;
 
-	const [, base64] = uncutSansRegularUrl.split(",");
+	const [, base64] = diatypeRegularUrl.split(",");
 	if (!base64) {
 		throw new Error("Bundled OG font is not an inline data URL");
 	}
@@ -83,14 +83,18 @@ function buildSvg(title: string, section: string): string {
 	const titleTspans = lines
 		.map(
 			(line, i) =>
-				`<tspan x="60" dy="${i === 0 ? 0 : lineHeight}">${escapeXml(line)}</tspan>`,
+				`<tspan x="60" dy="${i === 0 ? 0 : lineHeight}">${escapeXml(
+					line,
+				)}</tspan>`,
 		)
 		.join("");
 
 	return `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="#0a0a0a"/>
   <circle cx="72" cy="60" r="6" fill="${accent}"/>
-  <text x="90" y="68" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">${escapeXml(section)}</text>
+  <text x="90" y="68" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">${escapeXml(
+		section,
+	)}</text>
   <text x="60" y="${titleY}" fill="#ffffff" font-family="${FONT_FAMILY}" font-size="${fontSize}" font-weight="400" letter-spacing="-0.5">${titleTspans}</text>
   <text x="60" y="586" fill="#a3a3a3" font-family="${FONT_FAMILY}" font-size="24">sanju.sh</text>
   <rect x="1020" y="577" width="120" height="6" rx="3" fill="${accent}"/>
@@ -102,10 +106,7 @@ export async function renderOgImage(
 	section: string,
 	_baseUrl: string,
 ): Promise<Uint8Array> {
-	const [fontBuffer] = await Promise.all([
-		getFontBuffer(),
-		ensureWasm(),
-	]);
+	const [fontBuffer] = await Promise.all([getFontBuffer(), ensureWasm()]);
 
 	const svg = buildSvg(title, section);
 
